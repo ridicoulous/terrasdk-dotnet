@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31717.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TerraSdk.Cli", "src\TerraSdk.Cli\TerraSdk.Cli.csproj", "{05141963-1821-4EF5-97BF-76D0C39A4B68}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TerraSdk.Core", "src\TerraSdk.Core\TerraSdk.Core.csproj", "{7C5F4FA2-69DD-44CA-8EEE-F756E31F4E22}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TerraSdk.Test", "tests\TerraSdk.Test\TerraSdk.Test.csproj", "{2B1E33C7-2094-4112-9009-6CD48A30D2DA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{05141963-1821-4EF5-97BF-76D0C39A4B68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05141963-1821-4EF5-97BF-76D0C39A4B68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05141963-1821-4EF5-97BF-76D0C39A4B68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05141963-1821-4EF5-97BF-76D0C39A4B68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C5F4FA2-69DD-44CA-8EEE-F756E31F4E22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C5F4FA2-69DD-44CA-8EEE-F756E31F4E22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C5F4FA2-69DD-44CA-8EEE-F756E31F4E22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C5F4FA2-69DD-44CA-8EEE-F756E31F4E22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B1E33C7-2094-4112-9009-6CD48A30D2DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B1E33C7-2094-4112-9009-6CD48A30D2DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B1E33C7-2094-4112-9009-6CD48A30D2DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B1E33C7-2094-4112-9009-6CD48A30D2DA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {414A123F-A4EF-4A39-AF8D-5946B6F55DAF}
+	EndGlobalSection
+EndGlobal
