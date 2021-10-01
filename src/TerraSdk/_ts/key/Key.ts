@@ -58,7 +58,7 @@ export abstract class Key {
   /**
    * Terra account address. `terra-` prefixed.
    */
-  public get accAddress(): AccAddress {
+  public byte[] get accAddress(): AccAddress {
     if (!this.rawAddress) {
       throw new Error('Could not compute accAddress: missing rawAddress');
     }

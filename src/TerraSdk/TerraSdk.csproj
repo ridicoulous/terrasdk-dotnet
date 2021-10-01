@@ -1,12 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
+	<PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
-    <Folder Include="Key\" />
-    <Folder Include="Util\" />
+    <Folder Include="Crypto\Helpers\" />
   </ItemGroup>
-
 </Project>
