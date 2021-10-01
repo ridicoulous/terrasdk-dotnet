@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\TerraSdk.Core\TerraSdk.Core.csproj" />
+    <ProjectReference Include="..\..\src\TerraSdk\TerraSdk.csproj" />
   </ItemGroup>
 
   <ItemGroup>
