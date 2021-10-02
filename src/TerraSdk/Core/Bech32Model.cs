@@ -161,7 +161,7 @@ namespace TerraSdk.Core
         public void FromValAddress(ValAddress address)
         {
             var vals = Bech32.Decode(address.Value);
-            Value = Bech32.Encode("terravaloperpub", vals);
+            Value = Bech32.Encode("terravaloperpub", vals.words);
         }
     }
 

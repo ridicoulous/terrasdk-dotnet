@@ -1,4 +1,7 @@
 ﻿using TerraSdk.Crypto;
+using TerraSdk.Util;
+using TerraSdk.Util.Common;
+using Xunit;
 using Xunit.Abstractions;
 // ReSharper disable FormatStringProblem
 
@@ -57,40 +60,51 @@ namespace TerraSdk.Test.Crypto
 
         public (string prefix, byte[] data) DecodeUnsafe(string address)
         {
-            var decodedAddress = Bech32.DecodeUnsafe(address);
+            var decodedAddress = Bech32.Decode(address);
             return (
                 decodedAddress.prefix,
-                data: Bech32.FromWordsUnsafe(decodedAddress.words)
+                data: Bech32.FromWords(decodedAddress.words)
             );
         }
 
-
+        [Fact]
         public void Test1()
         {
             var prefix = "foo";
             var data = new byte[] { 0x00, 0x11, 0x22 };
             var address  = EncodeUint8Array(prefix, data);
             var decoded  = DecodeUint8Array(address);
-            output.WriteLine("%0, %1, %2, %3", prefix, data, address, decoded);
+            output.WriteLine("{0}, {1}, {2}, {3}, {4}", prefix, data.ToHex(), address, decoded.prefix, decoded.data.ToHex());
+
+            Assert.Equal(prefix, decoded.prefix);
+            Assert.Equal(data, decoded.data);
         }
 
+        [Fact]
         public void Test2()
         {
             var prefix = "foo";
             var data = new byte[] { 0x00, 0x11, 0x22 };
             var address  = EncodeBuffer(prefix, data);
             var decoded  = DecodeBuffer(address);
-            output.WriteLine("%0, %1, %2, %3", prefix, data, address, decoded);
+            output.WriteLine("{0}, {1}, {2}, {3}, {4}", prefix, data.ToHex(), address, decoded.prefix, decoded.data.ToHex());
+
+            Assert.Equal(prefix, decoded.prefix);
+            Assert.Equal(data, decoded.data);
         }
 
-
+        [Fact]
         public void Test3()
         {
             var prefix = "foo";
             var data = new byte[] { 0x00, 0x11, 0x22 };
             var address  = EncodeUnsafe(prefix, data);
             var decoded  = DecodeUnsafe(address!);
-            output.WriteLine("%0, %1, %2, %3", prefix, data, address, decoded);
+            output.WriteLine("{0}, {1}, {2}, {3}, {4}", prefix, data.ToHex(), address, decoded.prefix, decoded.data.ToHex());
+
+            Assert.Equal(prefix, decoded.prefix);
+            Assert.Equal(data, decoded.data);
+
         }
     }
 }

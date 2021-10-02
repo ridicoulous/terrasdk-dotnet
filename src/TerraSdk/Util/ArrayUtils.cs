@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TerraSdk.Util
 {
-    internal static class ArrayUtils
+    public static class ArrayUtils
     {
         public static byte[] Concat(byte[] arr, params byte[][] arrs)
         {
@@ -26,6 +26,12 @@ namespace TerraSdk.Util
             return Encoding.UTF8.GetBytes(data);
         }
 
+
+
+        public static string ToStringFromArray(this byte[] data)
+        {
+            return System.Text.Encoding.UTF8.GetString(data, 0, data.Length);
+        }
 
     }
 }
