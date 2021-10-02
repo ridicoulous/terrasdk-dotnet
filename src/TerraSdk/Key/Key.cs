@@ -1,4 +1,5 @@
 ﻿#nullable enable
+using System;
 using System.Threading.Tasks;
 
 namespace TerraSdk.Key
@@ -32,7 +33,7 @@ namespace TerraSdk.Key
             //var hash = Hash.Ripemd160(Hash.Sha256(message).ToString());
             //const address = Buffer.from(hash, 'hex');
             //return Buffer.from(Bech32.toWords(address));
-            return default;
+              throw new NotImplementedException();
         }
 
         /**
@@ -45,7 +46,7 @@ namespace TerraSdk.Key
             //const buffer = Buffer.from(BECH32_PUBKEY_DATA_PREFIX, 'hex');
             //const combined = Buffer.concat([buffer, publicKey]);
             //return Buffer.from(bech32.toWords(combined));
-            return default;
+            throw new NotImplementedException();
         }
 
 
