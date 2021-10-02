@@ -14,8 +14,8 @@ namespace TerraSdk.Core
         {
             try
             {
-                Bech32.Bech32Decode(data, out var hrp);
-                return hrp.ToString() == prefix && data.Length == length;
+                var vals= Bech32.Decode(data);
+                return vals.prefix == prefix && data.Length == length;
             }
             catch (Exception)
             {
@@ -55,8 +55,8 @@ namespace TerraSdk.Core
          */
         public void FromValAddress(ValAddress address)
         {
-            var vals = Bech32.Bech32Decode(address.Value, out _);
-            Value = Bech32.Bech32Encode("terra".ToByteArray(), vals);
+            var vals = Bech32.Decode(address.Value);
+            Value = Bech32.Encode("terra", vals.words);
         }
     }
 
@@ -86,8 +86,8 @@ namespace TerraSdk.Core
         */
         public void FromAccAddress(AccAddress address)
         {
-            var vals = Bech32.Bech32Decode(address.Value, out _);
-            Value = Bech32.Bech32Encode("terravaloper".ToByteArray(), vals);
+            var vals = Bech32.Decode(address.Value);
+            Value = Bech32.Encode("terravaloper", vals.words);
         }
     }
 
@@ -131,8 +131,8 @@ namespace TerraSdk.Core
         */
         public void FromAccAddress(AccAddress address)
         {
-            var vals = Bech32.Bech32Decode(address.Value, out _);
-            Value = Bech32.Bech32Encode("terrapub".ToByteArray(), vals);
+            var vals = Bech32.Decode(address.Value);
+            Value = Bech32.Encode("terrapub", vals.words);
         }
     }
 
@@ -160,8 +160,8 @@ namespace TerraSdk.Core
 
         public void FromValAddress(ValAddress address)
         {
-            var vals = Bech32.Bech32Decode(address.Value, out _);
-            Value = Bech32.Bech32Encode("terravaloperpub".ToByteArray(), vals);
+            var vals = Bech32.Decode(address.Value);
+            Value = Bech32.Encode("terravaloperpub", vals);
         }
     }
 
