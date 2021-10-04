@@ -1,6 +1,11 @@
 ﻿#nullable enable
 using System;
 using System.Threading.Tasks;
+using dotnetstandard_bip32;
+using TerraSdk.Core;
+using TerraSdk.Crypto.Bech32;
+using TerraSdk.Crypto.Ecdsa;
+using TerraSdk.Crypto.Util;
 
 namespace TerraSdk.Key
 {
@@ -25,15 +30,7 @@ namespace TerraSdk.Key
          */
         public static byte[] AddressFromPublicKey(byte[] publicKey)
         {
-            //if (typeof publicKey !== 'object' || !(publicKey instanceof Buffer)) {
-            //    throw new TypeError('parameter must be Buffer that contains public key');
-            //}
-
-            //var message = Hex.Parse(publicKey.toString('hex'));
-            //var hash = Hash.Ripemd160(Hash.Sha256(message).ToString());
-            //const address = Buffer.from(hash, 'hex');
-            //return Buffer.from(Bech32.toWords(address));
-              throw new NotImplementedException();
+            return Ripemd160Manager.GetHash(Sha256Manager.GetHash(publicKey));
         }
 
         /**
@@ -43,61 +40,81 @@ namespace TerraSdk.Key
          */
         public static byte[] PubKeyFromPublicKey(byte[] publicKey)
         {
-            //const buffer = Buffer.from(BECH32_PUBKEY_DATA_PREFIX, 'hex');
-            //const combined = Buffer.concat([buffer, publicKey]);
-            //return Buffer.from(bech32.toWords(combined));
-            throw new NotImplementedException();
+            var buffer = BECH32_PUBKEY_DATA_PREFIX.HexToByteArray();
+            var rv = new byte[buffer.Length + publicKey.Length];
+            Buffer.BlockCopy(buffer, 0, rv, 0, buffer.Length);
+            Buffer.BlockCopy(publicKey, 0, rv, buffer.Length, publicKey.Length);
+            return rv;
         }
-
-
+        
         /**
          * You will need to supply `sign`, which produces a signature for an arbitrary bytes payload
          * with the ECDSA curve secp256pk1.
          *
          * @param payload the data to be signed
          */
-        public abstract Task<byte[]> Sign(byte[] payload);
+        public abstract byte[] Sign(byte[] payload);
 
         /**
          * Terra account address. `terra-` prefixed.
          */
-        //  public get accAddress(): AccAddress {
-        //    if (!this.RawAddress) {
-        //      throw new Error('Could not compute accAddress: missing rawAddress');
-        //    }
-        //    return bech32.encode('terra', Array.from(this.RawAddress));
-        //    }
+
+        public AccAddress AccAddress {
+            get
+            {
+                if (this.RawAddress == null)
+                {
+                    throw new Exception("Could not compute AccAddress: missing rawAddress");
+                }
+                return AccAddress.New(Bech32.Encode("terra",(byte[])this.RawAddress));
+            }
+        }
 
         //    /**
         //     * Terra validator address. `terravaloper-` prefixed.
         //     */
-        //    public get valAddress(): ValAddress {
-        //    if (!this.RawAddress) {
-        //        throw new Error('Could not compute valAddress: missing rawAddress');
-        //    }
-        //    return bech32.encode('terravaloper', Array.from(this.RawAddress));
-        //    }
+        public ValAddress ValAddress
+        {
+            get
+            {
+                if (this.RawAddress == null)
+                {
+                    throw new Exception("Could not compute ValAddress: missing rawAddress");
+                }
+                return ValAddress.New(Bech32.Encode("terravaloper", (byte[])this.RawAddress));
+            }
+        }
 
         //    /**
         //     * Terra account public key. `terrapub-` prefixed.
         //     */
-        //    public get accPubKey(): AccPubKey {
-        //    if (!this.RawPubKey) {
-        //        throw new Error('Could not compute accPubKey: missing rawPubKey');
-        //    }
-        //    return bech32.encode('terrapub', Array.from(this.RawPubKey));
-        //    }
+        public AccPubKey AccPubKey
+        {
+            get
+            {
+                if (this.RawPubKey == null)
+                {
+                    throw new Exception("Could not compute AccPubKey: missing RawPubKey");
+                }
+                return AccPubKey.New(Bech32.Encode("terrapub", (byte[])this.RawPubKey));
+            }
+        }
 
         //    /**
         //     * Terra validator public key. `terravaloperpub-` prefixed.
         //     */
-        //    public get valPubKey(): ValPubKey {
-        //    if (!this.RawPubKey) {
-        //        throw new Error('Could not compute valPubKey: missing rawPubKey');
-        //    }
-        //    return bech32.encode('terravaloperpub', Array.from(this.RawPubKey));
-        //    }
-
+        public ValPubKey ValPubKey
+        {
+            get
+            {
+                if (this.RawPubKey == null)
+                {
+                    throw new Exception("Could not compute ValAddress: missing RawPubKey");
+                }
+                return ValPubKey.New(Bech32.Encode("terravaloperpub", (byte[])this.RawPubKey));
+            }
+        }
+        
         //    /**
         //     * Called to derive the relevant account and validator addresses and public keys from
         //     * the raw compressed public key in bytes.
@@ -111,11 +128,25 @@ namespace TerraSdk.Key
         //    }
         //}
 
+        public Key(byte[] publicKey)
+        {
+            this.RawAddress = AddressFromPublicKey(publicKey);
+            this.RawPubKey = PubKeyFromPublicKey(publicKey);
+        }
+
+        protected Key()
+        {
+        }
+
         ///**
         // * Signs a [[StdSignMsg]] with the method supplied by the child class.
         // *
         // * @param tx sign-message of the transaction to sign
         // */
+
+
+
+
         //public async createSignature(tx: StdSignMsg): Promise<StdSignature> {
         //    const sigBuffer = await this.sign(Buffer.from(tx.toJSON()));
 

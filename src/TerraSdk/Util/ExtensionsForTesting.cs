@@ -1,8 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
-using Xunit.Abstractions;
 
-namespace TerraSdk.Test.Utils
+namespace TerraSdk.Util
 {
     public static class ExtensionsForTesting
     {
@@ -16,9 +15,6 @@ namespace TerraSdk.Test.Utils
             return JsonConvert.SerializeObject(obj, Formatting.Indented);
         }
 
-        public static void Dump(this ITestOutputHelper console, object obj)
-        {
-            Console.WriteLine(obj.DumpString());
-        }
+
     }
 }

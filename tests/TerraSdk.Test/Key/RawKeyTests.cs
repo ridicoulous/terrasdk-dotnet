@@ -1,4 +1,7 @@
-﻿using Xunit;
+﻿using TerraSdk.Crypto.Util;
+using TerraSdk.Key;
+using TerraSdk.Test.Utils;
+using Xunit;
 
 namespace TerraSdk.Test.Key
 {
@@ -43,13 +46,17 @@ namespace TerraSdk.Test.Key
                 };
 
 
-            foreach (var example in  examples )
+            foreach (var exm in  examples )
             {
-                //const { mnemonic } = example;
-                //const mk = new MnemonicKey({ mnemonic });
-                //const rk = new RawKey(mk.privateKey);
-                //delete example.mnemonic;
-                //expect(rk).toMatchObject(example);
+            
+                var mk = MnemonicKey.New(new MnemonicKeyOptions(){ Mnemonic = exm.mnemonic });
+                var rk = new RawKey(mk.PrivateKey);
+
+                exm.Dump();
+
+// Assert.Equal(exm.accAddress, rk.AccAddress.Value);
+Assert.Equal(exm.accPubKey, rk.AccPubKey.Value);
+
             }
 
 

@@ -2,7 +2,7 @@
   <Settings>
     <IgnoredTests>
       <FixtureTestSelector>
-        <FixtureName>TerraSdk.Test.Crypto.Bech32.Bech32TypeTests</FixtureName>
+        <FixtureName>TerraSdk.Test.Crypto.Ecdsa.Base58Test</FixtureName>
       </FixtureTestSelector>
       <FixtureTestSelector>
         <FixtureName>TerraSdk.Test.Crypto.Cryptography.ECDSA.Secp256K1ManagerTest</FixtureName>
@@ -15,6 +15,24 @@
       </FixtureTestSelector>
       <FixtureTestSelector>
         <FixtureName>TerraSdk.Test.Crypto.Cryptography.ECDSA.Base58Test</FixtureName>
+      </FixtureTestSelector>
+      <FixtureTestSelector>
+        <FixtureName>TerraSdk.Test.Crypto.Bip39.Bip39Tests</FixtureName>
+      </FixtureTestSelector>
+      <FixtureTestSelector>
+        <FixtureName>TerraSdk.Test.Crypto.Ecdsa.HexTest</FixtureName>
+      </FixtureTestSelector>
+      <FixtureTestSelector>
+        <FixtureName>TerraSdk.Test.Crypto.Ecdsa.Ripemd160ManagerTest</FixtureName>
+      </FixtureTestSelector>
+      <FixtureTestSelector>
+        <FixtureName>TerraSdk.Test.Crypto.Ecdsa.Secp256K1ManagerTest</FixtureName>
+      </FixtureTestSelector>
+      <FixtureTestSelector>
+        <FixtureName>TerraSdk.Test.Crypto.Bip32.VectorTests</FixtureName>
+      </FixtureTestSelector>
+      <FixtureTestSelector>
+        <FixtureName>TerraSdk.Test.Crypto.Bech32.Bech32TypeTests</FixtureName>
       </FixtureTestSelector>
     </IgnoredTests>
   </Settings>

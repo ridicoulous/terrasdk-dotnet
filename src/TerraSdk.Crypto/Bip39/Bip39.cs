@@ -159,7 +159,7 @@ namespace TerraSdk.Crypto.Bip39
             return "mnemonic" + (!string.IsNullOrEmpty(password) ? password : "");
         }
 
-        private byte[] MnemonicToSeed(string mnemonic, string password)
+        public byte[] MnemonicToSeed(string mnemonic, string password)
         {
             var mnemonicBytes = Encoding.UTF8.GetBytes(mnemonic.Normalize(NormalizationForm.FormKD));
             var saltBytes = Encoding.UTF8.GetBytes(Salt(password.Normalize(NormalizationForm.FormKD)));

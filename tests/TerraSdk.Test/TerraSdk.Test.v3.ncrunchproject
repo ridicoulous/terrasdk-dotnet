@@ -7,6 +7,9 @@
       <FixtureTestSelector>
         <FixtureName>TerraSdk.Test.Core.Bech32ModelTests</FixtureName>
       </FixtureTestSelector>
+      <NamedTestSelector>
+        <TestName>TerraSdk.Test.Key.RawKeyTests.RawKey_signature</TestName>
+      </NamedTestSelector>
     </IgnoredTests>
   </Settings>
 </ProjectConfiguration>
