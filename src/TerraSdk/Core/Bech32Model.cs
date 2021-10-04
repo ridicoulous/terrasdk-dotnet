@@ -1,6 +1,5 @@
 ﻿using System;
 using TerraSdk.Crypto;
-using TerraSdk.Util;
 
 namespace TerraSdk.Core
 {
@@ -14,7 +13,7 @@ namespace TerraSdk.Core
         {
             try
             {
-                var vals= Bech32.Decode(data);
+                var vals = Bech32.Decode(data);
                 return vals.prefix == prefix && data.Length == length;
             }
             catch (Exception)
@@ -30,12 +29,12 @@ namespace TerraSdk.Core
      */
     public class AccAddress
     {
-        public AccAddress(string value)
-        {
-            Value = value;
-        }
-
         public string Value { get; private set; }
+
+        public static AccAddress New(string value)
+        {
+            return new AccAddress { Value = value };
+        }
 
 
         /**
@@ -45,7 +44,12 @@ namespace TerraSdk.Core
          */
         public bool Validate()
         {
-            return Bech32Helper.CheckPrefixAndLength("terra", Value, 44);
+            return Validate(Value);
+        }
+
+        public bool Validate(string value)
+        {
+            return Bech32Helper.CheckPrefixAndLength("terra", value, 44);
         }
 
         /**
@@ -53,10 +57,10 @@ namespace TerraSdk.Core
          *
          * @param address validator address
          */
-        public void FromValAddress(ValAddress address)
+        public static AccAddress FromValAddress(ValAddress address)
         {
             var vals = Bech32.Decode(address.Value);
-            Value = Bech32.Encode("terra", vals.words);
+            return new AccAddress { Value = Bech32.Encode("terra", vals.words) };
         }
     }
 
@@ -66,7 +70,18 @@ namespace TerraSdk.Core
      */
     public class ValAddress
     {
+        private ValAddress(string value)
+        {
+            Value = value;
+        }
+
+
         public string Value { get; set; }
+
+        public static ValAddress New(string value)
+        {
+            return new ValAddress(value);
+        }
 
 
         /**
@@ -76,7 +91,12 @@ namespace TerraSdk.Core
          */
         public bool Validate()
         {
-            return Bech32Helper.CheckPrefixAndLength("terravaloper", Value, 51);
+            return Validate(Value);
+        }
+
+        public bool Validate(string value)
+        {
+            return Bech32Helper.CheckPrefixAndLength("terravaloper", value, 51);
         }
 
 
@@ -84,10 +104,10 @@ namespace TerraSdk.Core
         * Converts a Terra account address to a validator address.
         * @param address account address to convert
         */
-        public void FromAccAddress(AccAddress address)
+        public static ValAddress FromAccAddress(AccAddress address)
         {
             var vals = Bech32.Decode(address.Value);
-            Value = Bech32.Encode("terravaloper", vals.words);
+            return new ValAddress(Bech32.Encode("terravaloper", vals.words));
         }
     }
 
@@ -107,6 +127,11 @@ namespace TerraSdk.Core
         {
             return Bech32Helper.CheckPrefixAndLength("terravalcons", Value, 51);
         }
+
+        public static ValConsAddress New(string value)
+        {
+            return new ValConsAddress { Value = value };
+        }
     }
 
     /**
@@ -114,7 +139,7 @@ namespace TerraSdk.Core
      */
     public class AccPubKey
     {
-        public string Value { get; set; }
+        public string Value { get; private set; }
 
         /**
          * Checks if a string is a Terra account's public key
@@ -122,17 +147,27 @@ namespace TerraSdk.Core
          */
         public bool Validate()
         {
-            return Bech32Helper.CheckPrefixAndLength("terrapub", Value, 51);
+            return Validate(Value);
+        }
+
+        public bool Validate(string value)
+        {
+            return Bech32Helper.CheckPrefixAndLength("terrapub", value, 47);
         }
 
         /**
         * Converts a Terra validator pubkey to an account pubkey.
         * @param address validator pubkey to convert
         */
-        public void FromAccAddress(AccAddress address)
+        public static AccPubKey FromAccAddress(AccAddress address)
         {
             var vals = Bech32.Decode(address.Value);
-            Value = Bech32.Encode("terrapub", vals.words);
+            return new AccPubKey { Value = Bech32.Encode("terrapub", vals.words) };
+        }
+
+        public static AccPubKey New(string publicKey)
+        {
+            return new AccPubKey { Value = publicKey };
         }
     }
 
@@ -141,27 +176,35 @@ namespace TerraSdk.Core
      */
     public class ValPubKey
     {
-        public string Value { get; set; }
-        
+        public string Value { get; private set; }
+
         /**
          * Checks if a string is a Terra validator pubkey
          * @param data string to check
          */
-
         public bool Validate()
         {
-            return Bech32Helper.CheckPrefixAndLength("terravaloperpub", Value, 51);
+            return Validate(Value);
         }
-        
+
+        public bool Validate(string value)
+        {
+            return Bech32Helper.CheckPrefixAndLength("terravaloperpub", value, 54);
+        }
+
         /**
         * Converts a Terra validator operator address to a validator pubkey.
         * @param valAddress account pubkey
         */
-
-        public void FromValAddress(ValAddress address)
+        public static ValPubKey FromValAddress(ValAddress address)
         {
             var vals = Bech32.Decode(address.Value);
-            Value = Bech32.Encode("terravaloperpub", vals.words);
+            return new ValPubKey { Value = Bech32.Encode("terravaloperpub", vals.words) };
+        }
+
+        public static ValPubKey New(string value)
+        {
+            return new ValPubKey { Value = value };
         }
     }
 
@@ -180,7 +223,17 @@ namespace TerraSdk.Core
          */
         public bool Validate()
         {
-            return Type == "tendermint/PubKeyEd25519" && Value != null; // Todo: Investigate
+            return Validate(Type, Value);
+        }
+
+        public bool Validate(string type, string value)
+        {
+            return type == "tendermint/PubKeyEd25519" && value != null; // Todo: Investigate
+        }
+
+        public static ValConsPubKey New(string type, string value)
+        {
+            return new ValConsPubKey { Type = type, Value = value };
         }
     }
 }

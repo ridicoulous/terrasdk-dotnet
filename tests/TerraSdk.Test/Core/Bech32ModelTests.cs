@@ -1,12 +1,12 @@
-
 using TerraSdk.Core;
 using TerraSdk.Crypto;
+using TerraSdk.Util;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace TerraSdk.Test.Core
 {
-    public class Bech32ModelTests 
+    public class Bech32ModelTests
     {
         private readonly ITestOutputHelper output;
 
@@ -18,138 +18,88 @@ namespace TerraSdk.Test.Core
         [Fact]
         public void AccAddress_validates_account_address()
         {
-            Assert.False(new AccAddress("terravaloper1pdx498r0hrc2fj36sjhs8vuhrz9hd2cw0yhqtk").Validate());
-            Assert.False(new AccAddress("terra1pdx498r0h7c2fj36sjhs8vu8rz9hd2cw0tmam9").Validate());
-            Assert.False(new AccAddress("cosmos176m2p8l3fps3dal7h8gf9jvrv98tu3rqfdht86").Validate());
+            Assert.False(AccAddress.New("terravaloper1pdx498r0hrc2fj36sjhs8vuhrz9hd2cw0yhqtk").Validate());
+            Assert.False(AccAddress.New("terra1pdx498r0h7c2fj36sjhs8vu8rz9hd2cw0tmam9").Validate());
+            Assert.False(AccAddress.New("cosmos176m2p8l3fps3dal7h8gf9jvrv98tu3rqfdht86").Validate());
 
-          //var words = Bech32.toWords(Buffer.from('foobar', 'utf8'));
-          //var badAddress = bech32.encode('terra', words);
+            var words = Bech32.ToWords("foobar".ToByteArray());
+            var badAddress = Bech32.Encode("terra", words);
 
+            Assert.False(AccAddress.New(badAddress).Validate());
+            Assert.True(AccAddress.New("terra1pdx498r0hrc2fj36sjhs8vuhrz9hd2cw0tmam9").Validate());
         }
 
+        [Fact]
+        public void AccAddress_converts_from_validator_address()
+        {
+            Assert.Equal("terra1pdx498r0hrc2fj36sjhs8vuhrz9hd2cw0tmam9", AccAddress.FromValAddress(ValAddress.New("terravaloper1pdx498r0hrc2fj36sjhs8vuhrz9hd2cw0yhqtk")).Value);
+        }
+
+
+        [Fact]
+        public void ValAddress_validates_validator_address()
+        {
+            var words = Bech32.ToWords("foobar".ToByteArray());
+            var badAddress = Bech32.Encode("terravaloper", words);
+
+            Assert.False(ValAddress.New(badAddress).Validate());
+            Assert.True(ValAddress.New("terravaloper1pdx498r0hrc2fj36sjhs8vuhrz9hd2cw0yhqtk").Validate());
+        }
+
+        [Fact]
+        public void ValAddress_converts_from_account_address()
+        {
+            Assert.Equal("terravaloper1pdx498r0hrc2fj36sjhs8vuhrz9hd2cw0yhqtk", ValAddress.FromAccAddress(AccAddress.New("terra1pdx498r0hrc2fj36sjhs8vuhrz9hd2cw0tmam9")).Value);
+        }
+
+
+        [Fact]
+        public void AccPubKey_validates_account_pubkey()
+        {
+            Assert.False(AccPubKey.New("terravaloperpub1addwnpepqt8ha594svjn3nvfk4ggfn5n8xd3sm3cz6ztxyugwcuqzsuuhhfq5y7accr").Validate());
+
+            var words = Bech32.ToWords("foobar".ToByteArray());
+            var badPubKey = Bech32.Encode("terrapub", words);
+
+            Assert.False(AccPubKey.New(badPubKey).Validate());
+            Assert.True(AccPubKey.New("terrapub1x46rqay4d3cssq8gxxvqz8xt6nwlz4tdh39t77").Validate());
+        }
+
+
+        [Fact]
+        public void AccPubKey_converts_from_validator_pubkey()
+        {
+            Assert.Equal("terrapub1x46rqay4d3cssq8gxxvqz8xt6nwlz4tdh39t77", AccPubKey.FromAccAddress(AccAddress.New("terra1x46rqay4d3cssq8gxxvqz8xt6nwlz4td20k38v")).Value);
+        }
+
+        [Fact]
+        public void ValPubKey_validates_validator_pubkey()
+        {
+            Assert.True(ValPubKey.New("terravaloperpub12g4nkvsjjnl0t7fvq3hdcw7y8dc9fq69gvd5ag").Validate());
+
+            var words = Bech32.ToWords("foobar".ToByteArray());
+            var badPubKey = Bech32.Encode("terrapub", words);
+
+            Assert.False(ValPubKey.New(badPubKey).Validate());
+            Assert.False(ValPubKey.New("terravaloper12g4nkvsjjnl0t7fvq3hdcw7y8dc9fq69nyeu9q").Validate());
+        }
+
+        [Fact]
+        public void ValPubKey_converts_from_validator_address()
+        {
+            Assert.Equal("terravaloperpub12g4nkvsjjnl0t7fvq3hdcw7y8dc9fq69gvd5ag", ValPubKey.FromValAddress(ValAddress.New("terravaloper12g4nkvsjjnl0t7fvq3hdcw7y8dc9fq69nyeu9q")).Value);
+        }
+
+        [Fact]
+        public void ValConsAddress_validate_validator_consensus_address()
+        {
+            Assert.True(ValConsAddress.New("terravalcons1relcztayk87c3r529rqf3fwdmn8hr6rhcgyrxd").Validate());
+        }
+
+        [Fact]
+        public void ValConsPubKey_validate_validator_consensus_public_key()
+        {
+            Assert.True(ValConsPubKey.New("tendermint/PubKeyEd25519", "abcdef").Validate());
+        }
     }
 }
-
-
-        //        describe('AccAddress', () => {
-        //            it('validates account address', () => {
-        //                expect(
-        //                  AccAddress.validate('terravaloper1pdx498r0hrc2fj36sjhs8vuhrz9hd2cw0yhqtk')
-        //                ).toBe(false);
-
-        //                expect(
-        //                  AccAddress.validate('terra1pdx498r0h7c2fj36sjhs8vu8rz9hd2cw0tmam9')
-        //                ).toBe(false); // bad checksum
-
-        //                expect(
-        //                  AccAddress.validate('cosmos176m2p8l3fps3dal7h8gf9jvrv98tu3rqfdht86')
-        //                ).toBe(false);
-
-        //                const words = bech32.toWords(Buffer.from('foobar', 'utf8'));
-        //                const badAddress = bech32.encode('terra', words);
-
-        //                expect(AccAddress.validate(badAddress)).toBe(false);
-        //                expect(
-        //                  AccAddress.validate('terra1pdx498r0hrc2fj36sjhs8vuhrz9hd2cw0tmam9')
-        //                ).toBe(true);
-        //            });
-
-        //            it('converts from validator address', () => {
-        //                expect(
-        //                  AccAddress.fromValAddress(
-        //                    'terravaloper1pdx498r0hrc2fj36sjhs8vuhrz9hd2cw0yhqtk'
-        //                  )
-        //                ).toEqual('terra1pdx498r0hrc2fj36sjhs8vuhrz9hd2cw0tmam9');
-        //            });
-        //        });
-
-        //describe('ValAddress', () => {
-        //            it('validates validator address', () => {
-        //                const words = bech32.toWords(Buffer.from('foobar', 'utf8'));
-        //                const badAddress = bech32.encode('terravaloper', words);
-
-        //                expect(ValAddress.validate(badAddress)).toBe(false);
-
-        //                expect(
-        //                  ValAddress.validate('terravaloper1pdx498r0hrc2fj36sjhs8vuhrz9hd2cw0yhqtk')
-        //                ).toBe(true);
-        //            });
-
-        //            it('converts from account address', () => {
-        //                expect(
-        //                  ValAddress.fromAccAddress('terra1pdx498r0hrc2fj36sjhs8vuhrz9hd2cw0tmam9')
-        //                ).toEqual('terravaloper1pdx498r0hrc2fj36sjhs8vuhrz9hd2cw0yhqtk');
-        //            });
-        //        });
-
-        //describe('AccPubKey', () => {
-        //            it('validates account pubkey', () => {
-        //                expect(
-        //                  AccPubKey.validate(
-        //                    'terravaloperpub1addwnpepqt8ha594svjn3nvfk4ggfn5n8xd3sm3cz6ztxyugwcuqzsuuhhfq5y7accr'
-        //                  )
-        //                ).toBe(false);
-
-        //                const words = bech32.toWords(Buffer.from('foobar', 'utf8'));
-        //                const badPubKey = bech32.encode('terrapub', words);
-
-        //                expect(AccPubKey.validate(badPubKey)).toBe(false);
-        //                expect(
-        //                  AccPubKey.validate('terrapub1x46rqay4d3cssq8gxxvqz8xt6nwlz4tdh39t77')
-        //                ).toBe(true);
-        //            });
-
-        //            it('converts from validator pubkey', () => {
-        //                expect(
-        //                  AccPubKey.fromAccAddress('terra1x46rqay4d3cssq8gxxvqz8xt6nwlz4td20k38v')
-        //                ).toEqual('terrapub1x46rqay4d3cssq8gxxvqz8xt6nwlz4tdh39t77');
-        //            });
-        //        });
-
-        //describe('ValPubKey', () => {
-        //            it('validates validator pubkey', () => {
-        //                expect(
-        //                  ValPubKey.validate(
-        //                    'terravaloperpub12g4nkvsjjnl0t7fvq3hdcw7y8dc9fq69gvd5ag'
-        //                  )
-        //                ).toBe(true);
-
-        //                const words = bech32.toWords(Buffer.from('foobar', 'utf8'));
-        //                const badPubKey = bech32.encode('terrapub', words);
-
-        //                expect(ValPubKey.validate(badPubKey)).toBe(false);
-        //                expect(
-        //                  ValPubKey.validate('terravaloper12g4nkvsjjnl0t7fvq3hdcw7y8dc9fq69nyeu9q')
-        //                ).toBe(false);
-        //            });
-
-        //            it('converts from validator address', () => {
-        //                expect(
-        //                  ValPubKey.fromValAddress(
-        //                    'terravaloper12g4nkvsjjnl0t7fvq3hdcw7y8dc9fq69nyeu9q'
-        //                  )
-        //                ).toEqual('terravaloperpub12g4nkvsjjnl0t7fvq3hdcw7y8dc9fq69gvd5ag');
-        //            });
-        //        });
-
-        //describe('ValConsAddress', () => {
-        //            it('validate validator consensus address', () => {
-        //                expect(
-        //                  ValConsAddress.validate(
-        //                    'terravalcons1relcztayk87c3r529rqf3fwdmn8hr6rhcgyrxd'
-        //                  )
-        //                ).toBeTruthy();
-        //            });
-        //        });
-
-        //describe('ValConsPubKey', () => {
-        //            it('validate validator consensus public key', () => {
-        //            expect(
-        //              ValConsPubKey.validate({
-        //            type: 'tendermint/PubKeyEd25519',
-        //        value: 'abcdef',
-        //      })
-        //    ).toBeTruthy();
-        //        });
-        //});
-
