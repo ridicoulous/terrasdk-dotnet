@@ -1,3 +1,9 @@
 ﻿<ProjectConfiguration>
-  <Settings />
+  <Settings>
+    <IgnoredTests>
+      <FixtureTestSelector>
+        <FixtureName>TerraSdk.Test.Crypto.Bech32TypeTests</FixtureName>
+      </FixtureTestSelector>
+    </IgnoredTests>
+  </Settings>
 </ProjectConfiguration>
