@@ -11,7 +11,7 @@ namespace TerraSdk.Key
      * `super` with the raw public key from within your subclass. See [[MnemonicKey]] for
      * an implementation of a basic mnemonic-based key.
      */
-    internal abstract class Key
+    public abstract class Key
     {
         private const string BECH32_PUBKEY_DATA_PREFIX = "eb5ae98721";
 

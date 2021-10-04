@@ -4,6 +4,9 @@
       <FixtureTestSelector>
         <FixtureName>TerraSdk.Test.Crypto.Bech32TypeTests</FixtureName>
       </FixtureTestSelector>
+      <FixtureTestSelector>
+        <FixtureName>TerraSdk.Test.Core.Bech32ModelTests</FixtureName>
+      </FixtureTestSelector>
     </IgnoredTests>
   </Settings>
 </ProjectConfiguration>
