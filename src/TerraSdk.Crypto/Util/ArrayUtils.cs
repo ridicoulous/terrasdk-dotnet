@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 
-namespace TerraSdk.Util
+namespace TerraSdk.Crypto.Util
 {
     public static class ArrayUtils
     {

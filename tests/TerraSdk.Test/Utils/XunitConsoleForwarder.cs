@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using Xunit.Abstractions;
 
-namespace Reform.Test.Utils
+namespace TerraSdk.Test.Utils
 {
     public class XunitConsoleForwarder : TextWriter
     {

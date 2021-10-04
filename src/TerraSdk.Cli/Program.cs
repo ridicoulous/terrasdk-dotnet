@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Reform.Cli
+namespace TerraSdk.Cli
 {
     class Program
     {

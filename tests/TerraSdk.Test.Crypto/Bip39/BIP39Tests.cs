@@ -1,10 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TerraSdk.Crypto.Bip39;
 
-namespace dotnetstandard_bip39_unittest
+namespace TerraSdk.Test.Crypto.Bip39
 {
     [TestClass]
-    public class BIP39Tests
+    public class Bip39Tests
     {
         [TestMethod]
         public void TestEnglish_Test1()
@@ -682,7 +682,7 @@ namespace dotnetstandard_bip39_unittest
         private (string entropy, string seedHex, string mnemonic) TestVector(string description, Bip39Wordlist wordlist, string password, 
             string entropy, string mnemonic, string seedHex)
         {
-            var bip39 = new Bip39();
+            var bip39 = new TerraSdk.Crypto.Bip39.Bip39();
             var entropyResult = bip39.MnemonicToEntropy(mnemonic, wordlist);
             var seedResult = bip39.MnemonicToSeedHex(mnemonic, password);
             var mnemonicResult = bip39.EntropyToMnemonic(entropy, wordlist);

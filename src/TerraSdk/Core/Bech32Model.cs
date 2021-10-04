@@ -1,5 +1,6 @@
 ﻿using System;
 using TerraSdk.Crypto;
+using TerraSdk.Crypto.Bech32;
 
 
 namespace TerraSdk.Core

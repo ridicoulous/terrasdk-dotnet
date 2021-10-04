@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 using TerraSdk.Crypto.Chaos.Nacl;
-using TerraSdk.Util.Common;
+using TerraSdk.Crypto.Util.Common;
 
 namespace TerraSdk.Crypto
 {

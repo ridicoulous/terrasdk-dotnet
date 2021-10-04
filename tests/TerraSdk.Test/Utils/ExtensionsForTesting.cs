@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Xunit.Abstractions;
 
-namespace Reform.Test.Utils
+namespace TerraSdk.Test.Utils
 {
     public static class ExtensionsForTesting
     {

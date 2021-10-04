@@ -1,4 +1,4 @@
-﻿using TerraSdk.Util.Common;
+﻿using TerraSdk.Crypto.Util.Common;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -23,46 +23,46 @@ namespace TerraSdk.Test.Crypto.Bech32
 
         public string EncodeUint8Array(string prefix, byte[] data)
         {
-            var address = TerraSdk.Crypto.Bech32.Encode(prefix, TerraSdk.Crypto.Bech32.ToWords(data));
+            var address = TerraSdk.Crypto.Bech32.Bech32.Encode(prefix, TerraSdk.Crypto.Bech32.Bech32.ToWords(data));
             return address;
         }
 
         public (string prefix, byte[] data) DecodeUint8Array(string address)
         {
-            var decodedAddress = TerraSdk.Crypto.Bech32.Decode(address);
+            var decodedAddress = TerraSdk.Crypto.Bech32.Bech32.Decode(address);
             return (
                 decodedAddress.prefix,
-                data: TerraSdk.Crypto.Bech32.FromWords(decodedAddress.words)
+                data: TerraSdk.Crypto.Bech32.Bech32.FromWords(decodedAddress.words)
             );
         }
 
         public string EncodeBuffer(string prefix, byte[] data)
         {
-            var address = TerraSdk.Crypto.Bech32.Encode(prefix, TerraSdk.Crypto.Bech32.ToWords(data));
+            var address = TerraSdk.Crypto.Bech32.Bech32.Encode(prefix, TerraSdk.Crypto.Bech32.Bech32.ToWords(data));
             return address;
         }
 
         public (string prefix, byte[] data) DecodeBuffer(string address)
         {
-            var decodedAddress = TerraSdk.Crypto.Bech32.Decode(address);
+            var decodedAddress = TerraSdk.Crypto.Bech32.Bech32.Decode(address);
             return (
                 decodedAddress.prefix,
-                data: TerraSdk.Crypto.Bech32.FromWords(decodedAddress.words)
+                data: TerraSdk.Crypto.Bech32.Bech32.FromWords(decodedAddress.words)
             );
         }
 
         public string EncodeUnsafe(string prefix, byte[] data)
         {
-            var address = TerraSdk.Crypto.Bech32.Encode(prefix, TerraSdk.Crypto.Bech32.ToWords(data));
+            var address = TerraSdk.Crypto.Bech32.Bech32.Encode(prefix, TerraSdk.Crypto.Bech32.Bech32.ToWords(data));
             return address;
         }
 
         public (string prefix, byte[] data) DecodeUnsafe(string address)
         {
-            var decodedAddress = TerraSdk.Crypto.Bech32.Decode(address);
+            var decodedAddress = TerraSdk.Crypto.Bech32.Bech32.Decode(address);
             return (
                 decodedAddress.prefix,
-                data: TerraSdk.Crypto.Bech32.FromWords(decodedAddress.words)
+                data: TerraSdk.Crypto.Bech32.Bech32.FromWords(decodedAddress.words)
             );
         }
 

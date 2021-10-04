@@ -1,5 +1,6 @@
 using TerraSdk.Core;
 using TerraSdk.Crypto;
+using TerraSdk.Crypto.Bech32;
 using TerraSdk.Util;
 using Xunit;
 using Xunit.Abstractions;

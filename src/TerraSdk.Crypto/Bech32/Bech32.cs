@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
 using System.Text;
-using TerraSdk.Util;
+using TerraSdk.Crypto.Util;
 
-namespace TerraSdk.Crypto
+namespace TerraSdk.Crypto.Bech32
 {
 	public static class Bech32
 	{
