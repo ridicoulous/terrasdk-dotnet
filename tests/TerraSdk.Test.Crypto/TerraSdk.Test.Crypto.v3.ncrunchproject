@@ -34,6 +34,9 @@
       <FixtureTestSelector>
         <FixtureName>TerraSdk.Test.Crypto.Bech32.Bech32TypeTests</FixtureName>
       </FixtureTestSelector>
+      <FixtureTestSelector>
+        <FixtureName>TerraSdk.Test.Crypto.Bip32.Ed25519HdKeyTests</FixtureName>
+      </FixtureTestSelector>
     </IgnoredTests>
   </Settings>
 </ProjectConfiguration>

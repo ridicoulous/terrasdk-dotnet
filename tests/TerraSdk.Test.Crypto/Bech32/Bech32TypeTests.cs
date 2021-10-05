@@ -1,4 +1,4 @@
-﻿using TerraSdk.Crypto.Util.Common;
+﻿using TerraSdk.Common;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -73,7 +73,7 @@ namespace TerraSdk.Test.Crypto.Bech32
             var data = new byte[] { 0x00, 0x11, 0x22 };
             var address  = EncodeUint8Array(prefix, data);
             var decoded  = DecodeUint8Array(address);
-            output.WriteLine("{0}, {1}, {2}, {3}, {4}", prefix, data.ToHex(), address, decoded.prefix, decoded.data.ToHex());
+            output.WriteLine("{0}, {1}, {2}, {3}, {4}", prefix, data.ToHexFromByteArray(), address, decoded.prefix, decoded.data.ToHexFromByteArray());
 
             Assert.Equal(prefix, decoded.prefix);
             Assert.Equal(data, decoded.data);
@@ -86,7 +86,7 @@ namespace TerraSdk.Test.Crypto.Bech32
             var data = new byte[] { 0x00, 0x11, 0x22 };
             var address  = EncodeBuffer(prefix, data);
             var decoded  = DecodeBuffer(address);
-            output.WriteLine("{0}, {1}, {2}, {3}, {4}", prefix, data.ToHex(), address, decoded.prefix, decoded.data.ToHex());
+            output.WriteLine("{0}, {1}, {2}, {3}, {4}", prefix, data.ToHexFromByteArray(), address, decoded.prefix, decoded.data.ToHexFromByteArray());
 
             Assert.Equal(prefix, decoded.prefix);
             Assert.Equal(data, decoded.data);
@@ -99,7 +99,7 @@ namespace TerraSdk.Test.Crypto.Bech32
             var data = new byte[] { 0x00, 0x11, 0x22 };
             var address  = EncodeUnsafe(prefix, data);
             var decoded  = DecodeUnsafe(address!);
-            output.WriteLine("{0}, {1}, {2}, {3}, {4}", prefix, data.ToHex(), address, decoded.prefix, decoded.data.ToHex());
+            output.WriteLine("{0}, {1}, {2}, {3}, {4}", prefix, data.ToHexFromByteArray(), address, decoded.prefix, decoded.data.ToHexFromByteArray());
 
             Assert.Equal(prefix, decoded.prefix);
             Assert.Equal(data, decoded.data);

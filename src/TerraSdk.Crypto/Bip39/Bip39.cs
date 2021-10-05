@@ -162,7 +162,7 @@ namespace TerraSdk.Crypto.Bip39
         public byte[] MnemonicToSeed(string mnemonic, string password)
         {
             var mnemonicBytes = Encoding.UTF8.GetBytes(mnemonic.Normalize(NormalizationForm.FormKD));
-            var saltBytes = Encoding.UTF8.GetBytes(Salt(password.Normalize(NormalizationForm.FormKD)));
+            var saltBytes =Encoding.UTF8.GetBytes(Salt(password?.Normalize(NormalizationForm.FormKD)));
 
             var rfc2898DerivedBytes = new Rfc2898DeriveBytesExtended(mnemonicBytes, saltBytes, 2048, HashAlgorithmName.SHA512);
             var key = rfc2898DerivedBytes.GetBytes(64);

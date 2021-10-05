@@ -1,11 +1,9 @@
 ﻿#nullable enable
 using System;
-using System.Threading.Tasks;
-using dotnetstandard_bip32;
+using TerraSdk.Common;
 using TerraSdk.Core;
 using TerraSdk.Crypto.Bech32;
 using TerraSdk.Crypto.Ecdsa;
-using TerraSdk.Crypto.Util;
 
 namespace TerraSdk.Key
 {
@@ -30,7 +28,8 @@ namespace TerraSdk.Key
          */
         public static byte[] AddressFromPublicKey(byte[] publicKey)
         {
-            return Ripemd160Manager.GetHash(Sha256Manager.GetHash(publicKey));
+            var hash = Ripemd160Manager.GetHash(Sha256Manager.GetHash(publicKey));
+            return Bech32.ToWords(hash);
         }
 
         /**
@@ -40,11 +39,11 @@ namespace TerraSdk.Key
          */
         public static byte[] PubKeyFromPublicKey(byte[] publicKey)
         {
-            var buffer = BECH32_PUBKEY_DATA_PREFIX.HexToByteArray();
+            var buffer = BECH32_PUBKEY_DATA_PREFIX.ToByteArrayFromHex();
             var rv = new byte[buffer.Length + publicKey.Length];
             Buffer.BlockCopy(buffer, 0, rv, 0, buffer.Length);
             Buffer.BlockCopy(publicKey, 0, rv, buffer.Length, publicKey.Length);
-            return rv;
+            return Bech32.ToWords(rv);
         }
         
         /**

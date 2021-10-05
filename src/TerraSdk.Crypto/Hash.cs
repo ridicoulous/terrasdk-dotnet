@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Text;
+using TerraSdk.Common;
 using TerraSdk.Crypto.Chaos.Nacl;
-using TerraSdk.Crypto.Util.Common;
 
 namespace TerraSdk.Crypto
 {
@@ -58,7 +58,7 @@ namespace TerraSdk.Crypto
 
                 var doubleHash = sha256.ComputeHash(hash);
 
-                return doubleHash.ToHex();
+                return doubleHash.ToHexFromByteArray();
             }
         }
 
@@ -78,7 +78,7 @@ namespace TerraSdk.Crypto
 
         public static byte[] Ripemd160Hex(string inputHex)
         {
-            var bytes = inputHex.ParseHex();
+            var bytes = inputHex.ToByteArrayFromHex();
             var result = Ripemd160Lazy.Value.ComputeHash(bytes);
             return result;
         }

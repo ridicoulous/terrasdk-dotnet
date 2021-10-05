@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TerraSdk.Crypto.Util;
+using TerraSdk.Common;
 
 namespace TerraSdk.Crypto.Bech32
 {
@@ -40,7 +40,7 @@ namespace TerraSdk.Crypto.Bech32
         }
         private static bool VerifyChecksum(byte[] hrp, byte[] data)
         {
-            var values = ArrayUtils.Concat(HrpExpand(hrp), data);
+            var values =ArrayUtils.Concat(HrpExpand(hrp), data);
             return Polymod(values) == 1;
         }
         private static byte[] CreateChecksum(byte[] hrp, byte[] data)
@@ -164,7 +164,7 @@ namespace TerraSdk.Crypto.Bech32
         //}
         public static string Encode(string prefix, byte[] data)
         {
-            var hrp = prefix.ToByteArray();
+            var hrp = prefix.ToByteArrayFromString();
             var combined = ArrayUtils.Concat(data, CreateChecksum(hrp, data));
             var tmp = new byte[combined.Length];
             for (int i = 0; i < combined.Length; i++)
@@ -213,7 +213,7 @@ namespace TerraSdk.Crypto.Bech32
                     throw new FormatException("Error while veriying checksum");
                 }
 
-                return (hrp.ToStringFromArray(), data.Take(data.Length - 6).ToArray());
+                return (hrp.ToStringFromByteArray(), data.Take(data.Length - 6).ToArray());
         }
 
         public static byte[] FromWords(byte[] words)

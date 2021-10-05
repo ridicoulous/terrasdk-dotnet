@@ -6,6 +6,7 @@
 	  <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
 	</ItemGroup>
 	<ItemGroup>
+	  <ProjectReference Include="..\TerraSdk.Common\TerraSdk.Common.csproj" />
 	  <ProjectReference Include="..\TerraSdk.Crypto\TerraSdk.Crypto.csproj" />
 	</ItemGroup>
 </Project>

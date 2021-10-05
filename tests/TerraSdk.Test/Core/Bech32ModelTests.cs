@@ -1,7 +1,7 @@
+using TerraSdk.Common;
 using TerraSdk.Core;
 using TerraSdk.Crypto;
 using TerraSdk.Crypto.Bech32;
-using TerraSdk.Util;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -23,7 +23,7 @@ namespace TerraSdk.Test.Core
             Assert.False(AccAddress.New("terra1pdx498r0h7c2fj36sjhs8vu8rz9hd2cw0tmam9").Validate());
             Assert.False(AccAddress.New("cosmos176m2p8l3fps3dal7h8gf9jvrv98tu3rqfdht86").Validate());
 
-            var words = Bech32.ToWords("foobar".ToByteArray());
+            var words = Bech32.ToWords("foobar".ToByteArrayFromString());
             var badAddress = Bech32.Encode("terra", words);
 
             Assert.False(AccAddress.New(badAddress).Validate());
@@ -40,7 +40,7 @@ namespace TerraSdk.Test.Core
         [Fact]
         public void ValAddress_validates_validator_address()
         {
-            var words = Bech32.ToWords("foobar".ToByteArray());
+            var words = Bech32.ToWords("foobar".ToByteArrayFromString());
             var badAddress = Bech32.Encode("terravaloper", words);
 
             Assert.False(ValAddress.New(badAddress).Validate());
@@ -59,7 +59,7 @@ namespace TerraSdk.Test.Core
         {
             Assert.False(AccPubKey.New("terravaloperpub1addwnpepqt8ha594svjn3nvfk4ggfn5n8xd3sm3cz6ztxyugwcuqzsuuhhfq5y7accr").Validate());
 
-            var words = Bech32.ToWords("foobar".ToByteArray());
+            var words = Bech32.ToWords("foobar".ToByteArrayFromString());
             var badPubKey = Bech32.Encode("terrapub", words);
 
             Assert.False(AccPubKey.New(badPubKey).Validate());
@@ -78,7 +78,7 @@ namespace TerraSdk.Test.Core
         {
             Assert.True(ValPubKey.New("terravaloperpub12g4nkvsjjnl0t7fvq3hdcw7y8dc9fq69gvd5ag").Validate());
 
-            var words = Bech32.ToWords("foobar".ToByteArray());
+            var words = Bech32.ToWords("foobar".ToByteArrayFromString());
             var badPubKey = Bech32.Encode("terrapub", words);
 
             Assert.False(ValPubKey.New(badPubKey).Validate());

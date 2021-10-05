@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 
-namespace TerraSdk.Crypto.Util
+namespace TerraSdk.Common
 {
     public static class ArrayUtils
     {
@@ -21,17 +21,34 @@ namespace TerraSdk.Crypto.Util
         }
 
 
-        public static byte[] ToByteArray(this string data)
+        public static byte[] ToByteArrayFromString(this string data)
         {
             return Encoding.UTF8.GetBytes(data);
         }
 
 
 
-        public static string ToStringFromArray(this byte[] data)
+        public static string ToStringFromByteArray(this byte[] data)
         {
             return System.Text.Encoding.UTF8.GetString(data, 0, data.Length);
         }
+        public static byte[] ToByteArrayFromHex(this string hex)
+        {
+            return Enumerable.Range(0, hex.Length)
+                .Where(x => x % 2 == 0)
+                .Select(x => Convert.ToByte(hex.Substring(x, 2), 16))
+                .ToArray();
+        }
 
+        public static string ToHexFromByteArray(this byte[] data)
+        {
+            if (data == null)
+            {
+                return String.Empty;
+            }
+
+            string hex = BitConverter.ToString(data);
+            return hex.Replace("-", "").ToLower();
+        }
     }
 }
