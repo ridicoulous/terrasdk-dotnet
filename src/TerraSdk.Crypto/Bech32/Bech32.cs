@@ -26,10 +26,7 @@ namespace TerraSdk.Crypto.Bech32
             }
             return chk;
         }
-
-
-
-
+        
         private static byte[] HrpExpand(byte[] hrp)
         {
             var len = hrp.Length;
@@ -41,13 +38,11 @@ namespace TerraSdk.Crypto.Bech32
             }
             return ret;
         }
-
         private static bool VerifyChecksum(byte[] hrp, byte[] data)
         {
             var values = ArrayUtils.Concat(HrpExpand(hrp), data);
             return Polymod(values) == 1;
         }
-
         private static byte[] CreateChecksum(byte[] hrp, byte[] data)
         {
             var values = ArrayUtils.Concat(HrpExpand(hrp), data, new byte[] { 0, 0, 0, 0, 0, 0 });
