@@ -1,10 +1,5 @@
-﻿using System.Linq;
-using System.Resources;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel.DataCollection;
-using TerraSdk.Common;
-using TerraSdk.Key;
+﻿using TerraSdk.Key;
 using Xunit;
-using ExtensionsForTesting = TerraSdk.Test.Utils.ExtensionsForTesting;
 
 namespace TerraSdk.Test.Key
 {
@@ -69,16 +64,16 @@ namespace TerraSdk.Test.Key
             var mk = new MnemonicKey(new MnemonicKeyOptions() { Mnemonic = "island relax shop such yellow opinion find know caught erode blue dolphin behind coach tattoo light focus snake common size analyst imitate employ walnut" });
             var rk = new RawKey(mk.PrivateKey);
             var accAddress = rk.AccAddress;
-            
-//            var msgSend = new MsgSend(accAddress, "terra1wg2mlrxdmnnkkykgqg4znky86nyrtc45q336yv", new Coins() { { "uluna", "100000000" } });
-        
-//              var fee = new StdFee(46467, new Coins({ uluna: '698' }));
-//              var stdSignMsg = new StdSignMsg("columbus-3-testnet", 45, 0, fee, [msgSend,]);
 
-//  var signature = rk.CreateSignature(stdSignMsg);
-//expect(signature).toEqual(
-//    'FJKAXRxNB5ruqukhVqZf3S/muZEUmZD10fVmWycdVIxVWiCXXFsUy2VY2jINEOUGNwfrqEZsT2dUfAvWj8obLg=='
-//);
+            //var msgSend = new MsgSend(accAddress, "terra1wg2mlrxdmnnkkykgqg4znky86nyrtc45q336yv", new Coins() { { "uluna", "100000000" } });
+
+            //              var fee = new StdFee(46467, new Coins({ uluna: '698' }));
+            //              var stdSignMsg = new StdSignMsg("columbus-3-testnet", 45, 0, fee, [msgSend,]);
+
+            //  var signature = rk.CreateSignature(stdSignMsg);
+            //expect(signature).toEqual(
+            //    'FJKAXRxNB5ruqukhVqZf3S/muZEUmZD10fVmWycdVIxVWiCXXFsUy2VY2jINEOUGNwfrqEZsT2dUfAvWj8obLg=='
+            //);
 
 
 

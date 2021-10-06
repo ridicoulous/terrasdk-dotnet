@@ -1,5 +1,6 @@
 using TerraSdk.Common;
 using TerraSdk.Core;
+using TerraSdk.Core.Account;
 using TerraSdk.Crypto;
 using TerraSdk.Crypto.Bech32;
 using Xunit;
@@ -7,11 +8,11 @@ using Xunit.Abstractions;
 
 namespace TerraSdk.Test.Core
 {
-    public class Bech32ModelTests
+    public class AccountTests
     {
         private readonly ITestOutputHelper output;
 
-        public Bech32ModelTests(ITestOutputHelper output)
+        public AccountTests(ITestOutputHelper output)
         {
             this.output = output;
         }
@@ -19,15 +20,15 @@ namespace TerraSdk.Test.Core
         [Fact]
         public void AccAddress_validates_account_address()
         {
-            Assert.False(AccAddress.New("terravaloper1pdx498r0hrc2fj36sjhs8vuhrz9hd2cw0yhqtk").Validate());
-            Assert.False(AccAddress.New("terra1pdx498r0h7c2fj36sjhs8vu8rz9hd2cw0tmam9").Validate());
-            Assert.False(AccAddress.New("cosmos176m2p8l3fps3dal7h8gf9jvrv98tu3rqfdht86").Validate());
+            Assert.False(new AccAddress("terravaloper1pdx498r0hrc2fj36sjhs8vuhrz9hd2cw0yhqtk").Validate());
+            Assert.False(new AccAddress("terra1pdx498r0h7c2fj36sjhs8vu8rz9hd2cw0tmam9").Validate());
+            Assert.False(new AccAddress("cosmos176m2p8l3fps3dal7h8gf9jvrv98tu3rqfdht86").Validate());
 
             var words = Bech32.ToWords("foobar".ToByteArrayFromString());
             var badAddress = Bech32.Encode("terra", words);
 
-            Assert.False(AccAddress.New(badAddress).Validate());
-            Assert.True(AccAddress.New("terra1pdx498r0hrc2fj36sjhs8vuhrz9hd2cw0tmam9").Validate());
+            Assert.False(new AccAddress(badAddress).Validate());
+            Assert.True(new AccAddress("terra1pdx498r0hrc2fj36sjhs8vuhrz9hd2cw0tmam9").Validate());
         }
 
         [Fact]
@@ -50,7 +51,7 @@ namespace TerraSdk.Test.Core
         [Fact]
         public void ValAddress_converts_from_account_address()
         {
-            Assert.Equal("terravaloper1pdx498r0hrc2fj36sjhs8vuhrz9hd2cw0yhqtk", ValAddress.FromAccAddress(AccAddress.New("terra1pdx498r0hrc2fj36sjhs8vuhrz9hd2cw0tmam9")).Value);
+            Assert.Equal("terravaloper1pdx498r0hrc2fj36sjhs8vuhrz9hd2cw0yhqtk", ValAddress.FromAccAddress(new AccAddress("terra1pdx498r0hrc2fj36sjhs8vuhrz9hd2cw0tmam9")).Value);
         }
 
 
@@ -70,7 +71,7 @@ namespace TerraSdk.Test.Core
         [Fact]
         public void AccPubKey_converts_from_validator_pubkey()
         {
-            Assert.Equal("terrapub1x46rqay4d3cssq8gxxvqz8xt6nwlz4tdh39t77", AccPubKey.FromAccAddress(AccAddress.New("terra1x46rqay4d3cssq8gxxvqz8xt6nwlz4td20k38v")).Value);
+            Assert.Equal("terrapub1x46rqay4d3cssq8gxxvqz8xt6nwlz4tdh39t77", AccPubKey.FromAccAddress(new AccAddress("terra1x46rqay4d3cssq8gxxvqz8xt6nwlz4td20k38v")).Value);
         }
 
         [Fact]

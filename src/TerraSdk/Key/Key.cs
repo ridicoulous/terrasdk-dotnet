@@ -2,6 +2,7 @@
 using System;
 using TerraSdk.Common;
 using TerraSdk.Core;
+using TerraSdk.Core.Account;
 using TerraSdk.Crypto.Bech32;
 using TerraSdk.Crypto.Ecdsa;
 
@@ -68,7 +69,7 @@ namespace TerraSdk.Key
                 {
                     throw new Exception("Could not compute AccAddress: missing rawAddress");
                 }
-                return AccAddress.New(Bech32.Encode("terra",(byte[])this.RawAddress));
+                return new AccAddress(Bech32.Encode("terra",(byte[])this.RawAddress));
             }
         }
 
