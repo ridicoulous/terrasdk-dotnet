@@ -1,7 +1,5 @@
 using System;
-using System.Numerics;
 using Newtonsoft.Json;
-using TerraSdk.Common.Convertors;
 
 /**
  * Captures `sdk.Coin` and `sdk.DecCoin` from Cosmos SDK. A composite value that combines
