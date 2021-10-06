@@ -1,94 +1,53 @@
 ﻿using Newtonsoft.Json;
-using TerraSdk.Common;
+using Newtonsoft.Json.Linq;
+using TerraSdk.Common.Helpers;
 using TerraSdk.Core;
 using TerraSdk.Core.Bank.Msgs;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace TerraSdk.Test.Key
 {
-    public class MsgSendTests
+    public class MsgSendTests : TestBase
     {
+        public MsgSendTests(ITestOutputHelper output) : base(output)
+        {
+        }
+
         [Fact]
         public void MsgSend_deserializes_correctly()
         {
-
             var json = @"{
             type: 'bank/MsgSend',
-                        value:
+            value:
                 {
                 from_address: 'terra1y4umfuqfg76t8mfcff6zzx7elvy93jtp4xcdvw',
-                            to_address: 'terra1v9ku44wycfnsucez6fp085f5fsksp47u9x8jr4',
-                            amount:
+                to_address: 'terra1v9ku44wycfnsucez6fp085f5fsksp47u9x8jr4',
+                amount:
                     [
-                            {
-                    denom: 'uluna',
-                                amount: '8102024952',
-                            },
-                            ],
+                        {
+                            denom: 'uluna',
+                            amount: '8102024952',
                         },
-                    }";
+                    ],
+                },
+            }".FormatJson();
 
+            Output.WriteLine("Input JSON:");
+            Output.WriteLine(json);
 
             var data = JsonConvert.DeserializeObject<Data>(json);
-            
-            data.Dump();
 
             var send = MsgSend.FromData(data);
 
-            send.Dump();
+            var toData = send.ToData();
 
-            var dataOut = send.ToData();
+            var dataOutJson = JsonConvert.SerializeObject(toData);
 
-            dataOut.Dump();
+            Output.WriteLine("Output JSON:");
+            Output.WriteLine(dataOutJson.FormatJson());
 
-
-
-            //expect(send).toMatchObject({
-            //from_address: 'terra1y4umfuqfg76t8mfcff6zzx7elvy93jtp4xcdvw',
-            //            to_address: 'terra1v9ku44wycfnsucez6fp085f5fsksp47u9x8jr4',
-            //            amount: new Coins({
-            //                uluna: 8102024952,
-            //            }),
-            //        });
-
-            //expect(send.toData()).toMatchObject({ });
+            Assert.True(JToken.DeepEquals(JToken.Parse(json), JToken.Parse(dataOutJson)));
         }
     }
 }
-
-//import
-//{ MsgSend }
-//from './MsgSend';
-//import
-//{ Coins }
-//from '../../Coins';
-
-//describe('MsgSend', () => {
-//    it('deserializes correctly', () => {
-//        const send = MsgSend.fromData({
-//            type: 'bank/MsgSend',
-//            value:
-//            {
-//                from_address: 'terra1y4umfuqfg76t8mfcff6zzx7elvy93jtp4xcdvw',
-//                to_address: 'terra1v9ku44wycfnsucez6fp085f5fsksp47u9x8jr4',
-//                amount:
-//                [
-//                {
-//                    denom: 'uluna',
-//                    amount: '8102024952',
-//                },
-//                ],
-//            },
-//        });
-
-//        expect(send).toMatchObject({
-//            from_address: 'terra1y4umfuqfg76t8mfcff6zzx7elvy93jtp4xcdvw',
-//            to_address: 'terra1v9ku44wycfnsucez6fp085f5fsksp47u9x8jr4',
-//            amount: new Coins({
-//                uluna: 8102024952,
-//            }),
-//        });
-
-//        expect(send.toData()).toMatchObject({ });
-//    });
-//});

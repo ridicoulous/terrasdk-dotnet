@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Text;
 
-namespace TerraSdk.Common
+namespace TerraSdk.Common.Helpers
 {
-    public static class ArrayUtils
+    public static class ArrayHelpers
     {
         public static byte[] Concat(byte[] arr, params byte[][] arrs)
         {

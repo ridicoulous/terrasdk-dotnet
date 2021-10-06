@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using TerraSdk.Common.Helpers;
 
 namespace TerraSdk.Common
 {
@@ -19,7 +20,6 @@ namespace TerraSdk.Common
         {
             return JsonConvert.SerializeObject(obj, Formatting.Indented);
         }
-
 
     }
 }

@@ -49,7 +49,7 @@ namespace TerraSdk.Test.Key
 
                 var mk = new MnemonicKey(new MnemonicKeyOptions { Mnemonic = exm.Mnemonic });
                 var rk = new RawKey(mk.PrivateKey);
-                
+
                 Assert.Equal(exm.AccAddress, rk.AccAddress.Value);
                 Assert.Equal(exm.AccPubKey, rk.AccPubKey.Value);
                 Assert.Equal(exm.ValAddress, rk.ValAddress.Value);
@@ -60,8 +60,7 @@ namespace TerraSdk.Test.Key
         [Fact]
         public void RawKey_signature()
         {
-
-            var mk = new MnemonicKey(new MnemonicKeyOptions() { Mnemonic = "island relax shop such yellow opinion find know caught erode blue dolphin behind coach tattoo light focus snake common size analyst imitate employ walnut" });
+            var mk = new MnemonicKey(new MnemonicKeyOptions { Mnemonic = "island relax shop such yellow opinion find know caught erode blue dolphin behind coach tattoo light focus snake common size analyst imitate employ walnut" });
             var rk = new RawKey(mk.PrivateKey);
             var accAddress = rk.AccAddress;
 
@@ -74,7 +73,6 @@ namespace TerraSdk.Test.Key
             //expect(signature).toEqual(
             //    'FJKAXRxNB5ruqukhVqZf3S/muZEUmZD10fVmWycdVIxVWiCXXFsUy2VY2jINEOUGNwfrqEZsT2dUfAvWj8obLg=='
             //);
-
 
 
             //var mk = new MnemonicKey({
@@ -103,7 +101,7 @@ namespace TerraSdk.Test.Key
             //  );
         }
 
-    public class Data
+        public class Data
         {
             public string Mnemonic { get; set; }
             public string AccAddress { get; set; }

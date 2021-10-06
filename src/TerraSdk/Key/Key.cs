@@ -1,6 +1,7 @@
 ﻿#nullable enable
 using System;
 using TerraSdk.Common;
+using TerraSdk.Common.Helpers;
 using TerraSdk.Core;
 using TerraSdk.Core.Account;
 using TerraSdk.Crypto.Bech32;

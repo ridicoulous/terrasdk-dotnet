@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TerraSdk.Common;
+using TerraSdk.Common.Helpers;
 
 namespace TerraSdk.Crypto.Bech32
 {
@@ -40,12 +41,12 @@ namespace TerraSdk.Crypto.Bech32
         }
         private static bool VerifyChecksum(byte[] hrp, byte[] data)
         {
-            var values =ArrayUtils.Concat(HrpExpand(hrp), data);
+            var values =ArrayHelpers.Concat(HrpExpand(hrp), data);
             return Polymod(values) == 1;
         }
         private static byte[] CreateChecksum(byte[] hrp, byte[] data)
         {
-            var values = ArrayUtils.Concat(HrpExpand(hrp), data, new byte[] { 0, 0, 0, 0, 0, 0 });
+            var values = ArrayHelpers.Concat(HrpExpand(hrp), data, new byte[] { 0, 0, 0, 0, 0, 0 });
             var polymod = Polymod(values) ^ 1;
             var ret = new byte[6];
             foreach (var i in Enumerable.Range(0, 6))
@@ -57,13 +58,13 @@ namespace TerraSdk.Crypto.Bech32
 
         //public static string Bech32Encode(byte[] hrp, byte[] data)
         //{
-        //    var combined = ArrayUtils.Concat(data, CreateChecksum(hrp, data));
+        //    var combined = ArrayHelpers.Concat(data, CreateChecksum(hrp, data));
         //    var tmp = new byte[combined.Length];
         //    for (int i = 0; i < combined.Length; i++)
         //    {
         //        tmp[i] = Byteset[combined[i]];
         //    }
-        //    return Encoding.ASCII.GetString(ArrayUtils.Concat(hrp, new byte[] { 49 }, tmp));
+        //    return Encoding.ASCII.GetString(ArrayHelpers.Concat(hrp, new byte[] { 49 }, tmp));
         //}
 
         //public static byte[] Bech32Decode(string bech, out byte[] hrp)
@@ -156,7 +157,7 @@ namespace TerraSdk.Crypto.Bech32
 
         //public static string Encode(byte[] hrp, byte witnessVerion, byte[] witnessProgramm)
         //{
-        //	var data = ArrayUtils.Concat(new[] { witnessVerion }, ConvertBits(witnessProgramm, 8, 5));
+        //	var data = ArrayHelpers.Concat(new[] { witnessVerion }, ConvertBits(witnessProgramm, 8, 5));
         //	var ret = Bech32Encode(hrp, data);
         //	byte witVer;
         //	Debug.Assert(Decode(Encoding.ASCII.GetString(hrp), ret, out witVer) == data);
@@ -165,13 +166,13 @@ namespace TerraSdk.Crypto.Bech32
         public static string Encode(string prefix, byte[] data)
         {
             var hrp = prefix.ToByteArrayFromString();
-            var combined = ArrayUtils.Concat(data, CreateChecksum(hrp, data));
+            var combined = ArrayHelpers.Concat(data, CreateChecksum(hrp, data));
             var tmp = new byte[combined.Length];
             for (int i = 0; i < combined.Length; i++)
             {
                 tmp[i] = Byteset[combined[i]];
             }
-            return Encoding.ASCII.GetString(ArrayUtils.Concat(hrp, new byte[] { 49 }, tmp));
+            return Encoding.ASCII.GetString(ArrayHelpers.Concat(hrp, new byte[] { 49 }, tmp));
         }
 
         public static byte[] ToWords(byte[] data)

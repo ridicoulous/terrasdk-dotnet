@@ -1,5 +1,7 @@
+using System;
 using System.Numerics;
 using Newtonsoft.Json;
+using TerraSdk.Common.Convertors;
 
 /**
  * Captures `sdk.Coin` and `sdk.DecCoin` from Cosmos SDK. A composite value that combines
@@ -12,6 +14,8 @@ namespace TerraSdk.Core
 
     public class Coin
     {
+        private string amountString;
+
         /// <summary>
         /// Initializes a new instance of the Coin class.
         /// </summary>
@@ -26,7 +30,7 @@ namespace TerraSdk.Core
         * @param denom denomination
         * @param amount coin's amount
         */  
-        public Coin(string denom, float amount)
+        public Coin(string denom, decimal amount)
         {
             Denom = denom;
             Amount = amount;
@@ -36,9 +40,19 @@ namespace TerraSdk.Core
         [JsonProperty(PropertyName = "denom")]
         public string Denom { get; set; } = null!;
 
-
         [JsonProperty(PropertyName = "amount")]
-        public float Amount { get; set; }
+        public string AmountString
+        {
+            get => $"{Amount}";
+            set
+            {
+                Decimal.TryParse(value, out var parsed);
+                Amount =parsed;
+            }
+        }
+
+        [JsonIgnore]
+        public decimal Amount { get; set; }
 
     }
 }

@@ -1,8 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using Newtonsoft.Json.Linq;
-using TerraSdk.Common;
 
 namespace TerraSdk.Core
 {
@@ -10,7 +6,7 @@ namespace TerraSdk.Core
     {
         public IList<Coin> data;
         private readonly Dictionary<string, Coin> rprDict = new Dictionary<string, Coin>();
-        private readonly Dictionary<string, float> dataDict = new Dictionary<string, float>();
+        private readonly Dictionary<string, decimal> dataDict = new Dictionary<string, decimal>();
 
         public Coins()
         {
@@ -26,11 +22,6 @@ namespace TerraSdk.Core
             }
         }
 
-        //public static Coins FromData(JArray data)
-        //{
-        //    var amounts = data.Select(i => new Coin((string)i["denom"], (float)i["amount"])).ToList();
-        //    return new Coins(amounts);
-        //}
     }
 }
 
