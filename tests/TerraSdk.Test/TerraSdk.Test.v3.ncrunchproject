@@ -4,14 +4,14 @@
       <FixtureTestSelector>
         <FixtureName>TerraSdk.Test.Crypto.Bech32TypeTests</FixtureName>
       </FixtureTestSelector>
-      <NamedTestSelector>
-        <TestName>TerraSdk.Test.Key.RawKeyTests.RawKey_signature</TestName>
-      </NamedTestSelector>
       <FixtureTestSelector>
         <FixtureName>TerraSdk.Test.Core.Bech32ModelTests</FixtureName>
       </FixtureTestSelector>
       <NamedTestSelector>
         <TestName>TerraSdk.Test.Key.KeyTests.AddressFromPublicKey</TestName>
+      </NamedTestSelector>
+      <NamedTestSelector>
+        <TestName>TerraSdk.Test.Key.RawKeyTests.RawKey_derives_correct_key_information</TestName>
       </NamedTestSelector>
     </IgnoredTests>
   </Settings>

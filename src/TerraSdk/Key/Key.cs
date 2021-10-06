@@ -17,6 +17,9 @@ namespace TerraSdk.Key
     public abstract class Key
     {
         private const string BECH32_PUBKEY_DATA_PREFIX = "eb5ae98721";
+        
+        public byte[]? PublicKey { get; set; }
+        public byte[]? PrivateKey { get; set; }
 
         public byte[]? RawAddress { get; set; }
         public byte[]? RawPubKey { get; set; }
@@ -146,25 +149,26 @@ namespace TerraSdk.Key
 
 
 
-        //public async createSignature(tx: StdSignMsg): Promise<StdSignature> {
-        //    const sigBuffer = await this.sign(Buffer.from(tx.toJSON()));
+    //    public StdSignature CreateSignature(StdSignMsg tx)
+    //    {
+    //        var sigBuffer = this.Sign(tx.toJSON().ToByteArrayFromString());
 
-        //    if (!this.publicKey)
-        //    {
-        //        throw new Error(
-        //          'Signature could not be created: Key instance missing publicKey'
-        //        );
-        //    }
+    //        if (!this.publicKey)
+    //        {
+    //            throw new Error(
+    //              'Signature could not be created: Key instance missing publicKey'
+    //            );
+    //}
 
-        //    return StdSignature.fromData({
-        //    signature: sigBuffer.toString('base64'),
-        //      pub_key:
-        //        {
-        //        type: 'tendermint/PubKeySecp256k1',
-        //        value: this.publicKey.toString('base64'),
-        //      },
-        //    });
-        //}
+    //        return StdSignature.fromData({
+    //        signature: sigBuffer.toString('base64'),
+    //          pub_key:
+    //            {
+    //            type: 'tendermint/PubKeySecp256k1',
+    //            value: this.publicKey.toString('base64'),
+    //          },
+    //        });
+    //    }
 
         ///**
         // * Signs a [[StdSignMsg]] and adds the signature to a generated StdTx that is ready to be broadcasted.

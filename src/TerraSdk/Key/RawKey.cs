@@ -4,16 +4,27 @@ namespace TerraSdk.Key
 {
     public class RawKey : Key
     {
+        public RawKey()
+        {
+            
+        }
+        
         public RawKey(byte[] privateKey)
         {
-            PrivateKey = privateKey;
-
-            var publicKey = Secp256K1Manager.GetPublicKey(PrivateKey, true);
-            RawAddress = AddressFromPublicKey(publicKey);
-            RawPubKey = PubKeyFromPublicKey(publicKey);
+            SetPrivate(privateKey);
         }
+        
+        //public byte[] PrivateKey { get; set; }
+        //public byte[] PublicKey { get; set; }
 
-        public byte[] PrivateKey { get; }
+        protected void SetPrivate(byte[] privateKey)
+        {
+            PrivateKey = privateKey;
+            PublicKey = Secp256K1Manager.GetPublicKey(PrivateKey, true);
+
+            RawAddress = AddressFromPublicKey(PublicKey);
+            RawPubKey = PubKeyFromPublicKey(PublicKey);
+        }
 
         public override byte[] Sign(byte[] payload)
         {
