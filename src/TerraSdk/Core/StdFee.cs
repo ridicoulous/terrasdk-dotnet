@@ -1,3 +1,32 @@
+using Newtonsoft.Json;
+using TerraSdk.Core.Bank;
+
+namespace TerraSdk.Core
+{
+    /**
+     * A transaction must include a fee, otherwise it will be rejected.
+     */
+    public class StdFee
+    {
+        [JsonProperty("amount")]
+        public Coins Amount { get; }
+        [JsonProperty("gas"), JsonConverter(typeof(StringJsonConverter))]
+        public int Gas { get; }
+        
+        /**
+         * Creates a new StdFee object.
+         * @param gas gas limit
+         * @param amount amount to be paid to validator
+         */
+        public StdFee(int gas, Coins amount)
+        {
+            Gas = gas;
+            Amount = amount;
+        }
+    }
+}
+
+
 //import { JSONSerializable } from '../util/json';
 //import { Coins } from './Coins';
 //import { Int } from './numeric';
@@ -5,7 +34,7 @@
 ///**
 // * A transaction must include a fee, otherwise it will be rejected.
 // */
-//export class StdFee extends JSONSerializable<StdFee.Data> {
+//export class StdFee extends JSONSerializable<StdFee.MsgData> {
 //  /** Fee amount to be paid */
 //  public readonly amount: Coins;
 
@@ -19,12 +48,12 @@
 //    this.amount = new Coins(amount);
 //  }
 
-//  public static fromData(data: StdFee.Data): StdFee {
+//  public static fromData(data: StdFee.MsgData): StdFee {
 //    const { gas, amount } = data;
 //    return new StdFee(Number.parseInt(gas), Coins.fromData(amount));
 //  }
 
-//  public toData(): StdFee.Data {
+//  public toData(): StdFee.MsgData {
 //    return {
 //      gas: new Int(this.gas).toString(),
 //      amount: this.amount.toData(),
@@ -40,8 +69,8 @@
 //}
 
 //export namespace StdFee {
-//  export interface Data {
+//  export interface MsgData {
 //    gas: string;
-//    amount: Coins.Data;
+//    amount: Coins.MsgData;
 //  }
 //}

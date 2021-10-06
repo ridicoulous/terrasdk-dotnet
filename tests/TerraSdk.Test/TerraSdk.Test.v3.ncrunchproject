@@ -10,15 +10,12 @@
       <NamedTestSelector>
         <TestName>TerraSdk.Test.Key.KeyTests.AddressFromPublicKey</TestName>
       </NamedTestSelector>
-      <NamedTestSelector>
-        <TestName>TerraSdk.Test.Key.RawKeyTests.RawKey_derives_correct_key_information</TestName>
-      </NamedTestSelector>
-      <NamedTestSelector>
-        <TestName>TerraSdk.Test.Key.RawKeyTests.RawKey_signature</TestName>
-      </NamedTestSelector>
       <FixtureTestSelector>
         <FixtureName>TerraSdk.Test.Core.AccountTests</FixtureName>
       </FixtureTestSelector>
+      <NamedTestSelector>
+        <TestName>TerraSdk.Test.Key.MsgSendTests.MsgSend_deserializes_correctly</TestName>
+      </NamedTestSelector>
     </IgnoredTests>
   </Settings>
 </ProjectConfiguration>

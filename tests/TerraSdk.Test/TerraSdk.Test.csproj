@@ -7,13 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Core\CoinsTests.cs" />
-    <Compile Remove="Core\CoinTests.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Core\CoinsTests.cs" />
-    <None Include="Core\CoinTests.cs" />
+    <Resource Include="Key\RawKey_StdSignMsg.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +32,9 @@
 
   <ItemGroup>
     <None Update="Cases\test1.hcl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Key\RawKey_StdSignMsg.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

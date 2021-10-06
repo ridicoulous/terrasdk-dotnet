@@ -2,9 +2,8 @@ using System.Collections.Generic;
 
 namespace TerraSdk.Core
 {
-    public class Coins
+    public class Coins: List<Coin>
     {
-        public IList<Coin> data;
         private readonly Dictionary<string, Coin> rprDict = new Dictionary<string, Coin>();
         private readonly Dictionary<string, decimal> dataDict = new Dictionary<string, decimal>();
 
@@ -14,7 +13,7 @@ namespace TerraSdk.Core
 
         public Coins(IList<Coin> amounts)
         {
-            data = amounts;
+            this.AddRange(amounts);
             foreach (var amount in amounts)
             {
                 rprDict.Add(amount.Denom, amount);
@@ -42,7 +41,7 @@ namespace TerraSdk.Core
 // *
 // */
 //export class Coins
-//  extends JSONSerializable<Coins.Data>
+//  extends JSONSerializable<Coins.MsgData>
 //  implements Numeric<Coins>
 //{
 //  private _coins: Coins.ReprDict;
@@ -160,7 +159,7 @@ namespace TerraSdk.Core
 //    this._coins[denom] = val;
 //  }
 
-//  public static fromData(data: Coins.Data | null): Coins {
+//  public static fromData(data: Coins.MsgData | null): Coins {
 //    return new Coins((data ?? []).map(Coin.fromData));
 //  }
 
@@ -173,7 +172,7 @@ namespace TerraSdk.Core
 //    );
 //  }
 
-//  public toData(): Coins.Data {
+//  public toData(): Coins.MsgData {
 //    return this.toArray().map(c => c.toData());
 //  }
 
@@ -244,7 +243,7 @@ namespace TerraSdk.Core
 
 //export namespace Coins {
 //  export type Input = Coins.DataDict | Coin[] | Coins | string;
-//  export type Data = Coin.Data[];
+//  export type MsgData = Coin.MsgData[];
 //  export type DataDict = {
 //    [denom: string]: Numeric.Input;
 //  };

@@ -11,61 +11,77 @@ namespace TerraSdk.Core.Bank.Msgs
      */
     public class MsgSend : Msg
     {
-        private const string Type = "bank/MsgSend";
-
+       
+        private static string type ="bank/MsgSend";
         public MsgSend(AccAddress fromAccAddress, AccAddress toAccAddress, Coins coins)
         {
-            FromAccAddress = fromAccAddress;
-            ToAccAddress = toAccAddress;
-            Coins = coins;
-        }
-
-        public AccAddress FromAccAddress { get; }
-        public AccAddress ToAccAddress { get; }
-        public Coins Coins { get; }
-
-        public static MsgSend FromData(Data data)
-        {
-            if (data.Type != Type)
+            Value = new MsgValue
             {
-                throw new Exception("Invalid data type!");
+                FromAccAddress = fromAccAddress,
+                ToAccAddress = toAccAddress,
+                Coins = coins
+            };
+        }
+        
+        public static MsgSend FromData(Core.MsgData msgData)
+        {
+            if (msgData.Type != type)
+            {
+                throw new Exception("Invalid msgData type!");
             }
 
             var serializer = new JsonSerializer();
-            var p = (DataValue)serializer.Deserialize(new JTokenReader((JToken)data.Value), typeof(DataValue));
+            var p = (MsgSend)serializer.Deserialize(new JTokenReader((JToken)msgData.Value), typeof(MsgSend));
 
             if (p == null)
             {
-                throw new Exception("Invalid data content!");
+                throw new Exception("Invalid msgData content!");
             }
 
-            return new MsgSend(new AccAddress(p.FromAddress), new AccAddress(p.ToAddress), new Coins(p.Amount));
+            return p;
         }
 
-        public Data ToData()
+        public override MsgData ToData()
         {
-            return new Data
+            return new MsgData
             {
                 Type = Type,
-                Value = new DataValue
-                {
-                    FromAddress = FromAccAddress.Value,
-                    ToAddress = ToAccAddress.Value,
-                    Amount = Coins.data
-                }
+                Value = this
             };
         }
 
-        public class DataValue
+        [JsonProperty("type")]
+        public string Type => type;
+
+        [JsonProperty("value")]
+        public MsgValue Value { get; }
+
+        public class MsgValue
         {
+            // JSON
+            [JsonProperty("amount")]
+            public Coins Coins { get; internal set; }
+
+            [JsonIgnore]
+            public AccAddress FromAccAddress { get; internal set; }
+
             [JsonProperty("from_address")]
-            public string FromAddress { get; set; } = null!;
+            public string FromAddress
+            {
+                get => FromAccAddress.Value;
+                set => FromAccAddress = new AccAddress(value);
+            }
+
+            [JsonIgnore]
+            public AccAddress ToAccAddress { get; internal set; }
 
             [JsonProperty("to_address")]
-            public string ToAddress { get; set; } = null!;
+            public string ToAddress
+            {
+                get => ToAccAddress.Value;
+                set => ToAccAddress = new AccAddress(value);
+            }
 
-            [JsonProperty("amount")]
-            public IList<Coin> Amount { get; set; } = null!;
         }
     }
 }

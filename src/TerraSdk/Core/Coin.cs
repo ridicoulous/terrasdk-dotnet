@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using TerraSdk.Core.Bank;
 
 /**
  * Captures `sdk.Coin` and `sdk.DecCoin` from Cosmos SDK. A composite value that combines
@@ -12,7 +13,6 @@ namespace TerraSdk.Core
 
     public class Coin
     {
-        private string amountString;
 
         /// <summary>
         /// Initializes a new instance of the Coin class.
@@ -34,23 +34,14 @@ namespace TerraSdk.Core
             Amount = amount;
         }
 
+        [JsonProperty(PropertyName = "amount"), JsonConverter(typeof(StringJsonConverter))]
+        public decimal Amount { get; set; }
 
         [JsonProperty(PropertyName = "denom")]
         public string Denom { get; set; } = null!;
 
-        [JsonProperty(PropertyName = "amount")]
-        public string AmountString
-        {
-            get => $"{Amount}";
-            set
-            {
-                Decimal.TryParse(value, out var parsed);
-                Amount =parsed;
-            }
-        }
 
-        [JsonIgnore]
-        public decimal Amount { get; set; }
+
 
     }
 }
@@ -61,7 +52,7 @@ namespace TerraSdk.Core
 //    this.amount = Numeric.parse(amount);
 //  }
 
-//  public static fromData(data: Coin.Data): Coin {
+//  public static fromData(data: Coin.MsgData): Coin {
 //    const { denom, amount } = data;
 //    return new Coin(denom, amount);
 //  }
@@ -95,7 +86,7 @@ namespace TerraSdk.Core
 //    return new Coin(this.denom, new Dec(this.amount));
 //  }
 
-//  public toData(): Coin.Data {
+//  public toData(): Coin.MsgData {
 //    const { denom, amount } = this;
 //    return {
 //      denom,
@@ -198,7 +189,7 @@ namespace TerraSdk.Core
 //}
 
 //export namespace Coin {
-//  export interface Data {
+//  export interface MsgData {
 //    denom: Denom;
 //    amount: string;
 //  }

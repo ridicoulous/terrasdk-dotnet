@@ -1,5 +1,6 @@
 ﻿#nullable enable
 using System;
+using Newtonsoft.Json;
 using TerraSdk.Common;
 using TerraSdk.Common.Helpers;
 using TerraSdk.Core;
@@ -147,30 +148,38 @@ namespace TerraSdk.Key
         // *
         // * @param tx sign-message of the transaction to sign
         // */
+        public StdSignature CreateSignature(StdSignMsg tx)
+        {
+            var json = JsonConvert.SerializeObject(tx, Formatting.None);
+            var jsonBytes = json.ToByteArrayFromString();
+            jsonBytes.DumpHex();
+            var sigBuffer = this.Sign(jsonBytes);
+
+            //if (!this.publicKey)
+            //{
+            //    throw new Error(
+            //      'Signature could not be created: Key instance missing publicKey'
+            //    );
+            //}
+
+            //return StdSignature.fromData({
+            //signature: sigBuffer.toString('base64'),
+            //          pub_key:
+            //    {
+            //    type: 'tendermint/PubKeySecp256k1',
+            //            value: this.publicKey.toString('base64'),
+            //          },
+            //        });
+            return new StdSignature(sigBuffer);
+
+        }
 
 
 
+        //    public StdSignature CreateSignature(StdSignMsg tx)
+        //    {
 
-    //    public StdSignature CreateSignature(StdSignMsg tx)
-    //    {
-    //        var sigBuffer = this.Sign(tx.toJSON().ToByteArrayFromString());
-
-    //        if (!this.publicKey)
-    //        {
-    //            throw new Error(
-    //              'Signature could not be created: Key instance missing publicKey'
-    //            );
-    //}
-
-    //        return StdSignature.fromData({
-    //        signature: sigBuffer.toString('base64'),
-    //          pub_key:
-    //            {
-    //            type: 'tendermint/PubKeySecp256k1',
-    //            value: this.publicKey.toString('base64'),
-    //          },
-    //        });
-    //    }
+        //    }
 
         ///**
         // * Signs a [[StdSignMsg]] and adds the signature to a generated StdTx that is ready to be broadcasted.

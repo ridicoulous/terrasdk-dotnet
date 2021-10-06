@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace TerraSdk.Core
 {
-    public class Msg
+    public abstract class Msg
     {
-
+        public abstract MsgData ToData();
     }
+
+
+
 }

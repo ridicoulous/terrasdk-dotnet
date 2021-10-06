@@ -36,7 +36,7 @@ namespace TerraSdk.Test.Key
             Output.WriteLine("Input JSON:");
             Output.WriteLine(json);
 
-            var data = JsonConvert.DeserializeObject<Data>(json);
+            var data = JsonConvert.DeserializeObject<MsgData>(json);
 
             var send = MsgSend.FromData(data);
 

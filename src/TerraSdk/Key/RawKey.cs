@@ -1,26 +1,35 @@
-﻿using TerraSdk.Crypto.Ecdsa;
+﻿using System;
+using NBitcoin.Secp256k1;
+using TerraSdk.Common;
+using TerraSdk.Common.Helpers;
+using TerraSdk.Crypto.Ecdsa;
 
 namespace TerraSdk.Key
 {
     public class RawKey : Key
     {
+        private ECPrivKey ecPrivateKey;
+
         public RawKey()
         {
-            
         }
-        
+
         public RawKey(byte[] privateKey)
         {
             SetPrivate(privateKey);
         }
-        
+
         //public byte[] PrivateKey { get; set; }
         //public byte[] PublicKey { get; set; }
 
         protected void SetPrivate(byte[] privateKey)
         {
             PrivateKey = privateKey;
-            PublicKey = Secp256K1Manager.GetPublicKey(PrivateKey, true);
+
+            ecPrivateKey = Context.Instance.CreateECPrivKey(privateKey);
+
+            //PublicKey = Secp256K1Manager.GetPublicKey(PrivateKey, true);
+            PublicKey = ecPrivateKey.CreatePubKey().ToBytes();
 
             RawAddress = AddressFromPublicKey(PublicKey);
             RawPubKey = PubKeyFromPublicKey(PublicKey);
@@ -28,16 +37,27 @@ namespace TerraSdk.Key
 
         public override byte[] Sign(byte[] payload)
         {
-            var (signature, _) = EcdsaSign(payload);
-            return signature;
+            var hash = Sha256Manager.GetHash(payload);
+
+            Console.WriteLine(hash.ToHexFromByteArray());
+
+             ecPrivateKey.TrySignECDSA(hash, out var signature);
+            
+       
+
+            // var (signature, _) = EcdsaSign(payload);
+            var n = new byte[64];
+            signature.WriteCompactToSpan(n);
+
+            return n;
         }
 
         // ReSharper disable once UnusedTupleComponentInReturnValue
         private ( byte[] signature, int recId) EcdsaSign(byte[] payload)
         {
             var hash = Sha256Manager.GetHash(payload);
-            var signature = Secp256K1Manager.SignCompact(hash, PrivateKey, out var recId);
-            return (signature, recId);
+            ecPrivateKey.TrySignECDSA(hash, null, out var recId, out var signature);
+            return (signature?.ToDER(), recId);
         }
     }
 }
