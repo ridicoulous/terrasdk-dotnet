@@ -34,9 +34,18 @@
       <FixtureTestSelector>
         <FixtureName>TerraSdk.Test.Crypto.Bech32.Bech32TypeTests</FixtureName>
       </FixtureTestSelector>
-      <FixtureTestSelector>
-        <FixtureName>TerraSdk.Test.Crypto.Bip32.Ed25519HdKeyTests</FixtureName>
-      </FixtureTestSelector>
+      <NamedTestSelector>
+        <TestName>TerraSdk.Test.Crypto.Bip32.Ed25519HdKeyTests.TestValidKey</TestName>
+      </NamedTestSelector>
+      <NamedTestSelector>
+        <TestName>TerraSdk.Test.Crypto.Bip32.Ed25519HdKeyTests.TestHdKey3</TestName>
+      </NamedTestSelector>
+      <NamedTestSelector>
+        <TestName>TerraSdk.Test.Crypto.Bip32.Ed25519HdKeyTests.TestHdKey2</TestName>
+      </NamedTestSelector>
+      <NamedTestSelector>
+        <TestName>TerraSdk.Test.Crypto.Bip32.Ed25519HdKeyTests.TestHdKey1</TestName>
+      </NamedTestSelector>
     </IgnoredTests>
   </Settings>
 </ProjectConfiguration>

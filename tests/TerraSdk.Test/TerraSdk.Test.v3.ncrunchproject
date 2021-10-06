@@ -10,6 +10,9 @@
       <FixtureTestSelector>
         <FixtureName>TerraSdk.Test.Core.Bech32ModelTests</FixtureName>
       </FixtureTestSelector>
+      <NamedTestSelector>
+        <TestName>TerraSdk.Test.Key.KeyTests.AddressFromPublicKey</TestName>
+      </NamedTestSelector>
     </IgnoredTests>
   </Settings>
 </ProjectConfiguration>

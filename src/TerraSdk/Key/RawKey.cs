@@ -7,8 +7,8 @@ namespace TerraSdk.Key
         public RawKey(byte[] privateKey)
         {
             PrivateKey = privateKey;
-            var publicKey = Secp256K1Manager.GetPublicKey(PrivateKey, true);
 
+            var publicKey = Secp256K1Manager.GetPublicKey(PrivateKey, true);
             RawAddress = AddressFromPublicKey(publicKey);
             RawPubKey = PubKeyFromPublicKey(publicKey);
         }
