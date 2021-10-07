@@ -16,6 +16,18 @@ namespace TerraSdk.Test.Key
 {
     public class RawKeyTests : TestBase
     {
+        public RawKeyTests(ITestOutputHelper output) : base(output)
+        {
+        }
+        public class Data
+        {
+            public string Mnemonic { get; set; }
+            public string AccAddress { get; set; }
+            public string AccPubKey { get; set; }
+            public string ValAddress { get; set; }
+            public string ValPubKey { get; set; }
+        }
+        
         [Fact]
         public void RawKey_derives_correct_key_information()
         {
@@ -79,7 +91,7 @@ namespace TerraSdk.Test.Key
             var fee = new StdFee(46467, new Coins(new List<Coin> { new("uluna", 698) }));
             var stdSignMsg = new StdSignMsg("columbus-3-testnet", 45, 0, fee, new [] {msgSend});
 
-            var dataOutJson = JsonConvert.SerializeObject(stdSignMsg, Formatting.None);
+            var dataOutJson = stdSignMsg.ToJson();
 
             Output.WriteLine("Generated JSON:");
             Output.WriteLine(dataOutJson.FormatJson());
@@ -88,54 +100,14 @@ namespace TerraSdk.Test.Key
             
             Assert.True(JToken.DeepEquals(JToken.Parse(dataOutJson), JToken.Parse(dataOutJson)));
             Assert.Equal(testJson.FormatJson(Formatting.None), dataOutJson);
-
-
+            
             var jsonBytes = dataOutJson.ToByteArrayFromString();
             Assert.Equal("7b226163636f756e745f6e756d626572223a223435222c22636861696e5f6964223a22636f6c756d6275732d332d746573746e6574222c22666565223a7b22616d6f756e74223a5b7b22616d6f756e74223a22363938222c2264656e6f6d223a22756c756e61227d5d2c22676173223a223436343637227d2c226d656d6f223a22222c226d736773223a5b7b2274797065223a2262616e6b2f4d736753656e64222c2276616c7565223a7b22616d6f756e74223a5b7b22616d6f756e74223a22313030303030303030222c2264656e6f6d223a22756c756e61227d5d2c2266726f6d5f61646472657373223a227465727261316e336733376473646c763772797166746c6b6566386d6867716a346e793770387637386c6737222c22746f5f61646472657373223a227465727261317767326d6c7278646d6e6e6b6b796b677167347a6e6b7938366e797274633435713333367976227d7d5d2c2273657175656e6365223a2230227d", jsonBytes.ToHexFromByteArray());
 
             var signature = rk.CreateSignature(stdSignMsg);
           
-            Assert.Equal("FJKAXRxNB5ruqukhVqZf3S/muZEUmZD10fVmWycdVIxVWiCXXFsUy2VY2jINEOUGNwfrqEZsT2dUfAvWj8obLg==", Convert.ToBase64String(signature.Value));
- 
-            //var mk = new MnemonicKey({
-            //      mnemonic:
-            //      'island relax shop such yellow opinion find know caught erode blue dolphin behind coach tattoo light focus snake common size analyst imitate employ walnut',
-            //  });
-            //  const rk = new RawKey(mk.privateKey);
-            //  const { accAddress
-            //  } = rk;
-
-            //  const msgSend = new MsgSend(
-            //          accAddress,
-            //          'terra1wg2mlrxdmnnkkykgqg4znky86nyrtc45q336yv',
-            //          new Coins({ uluna: '100000000' })
-            //      );
-
-            //  const fee = new StdFee(46467, new Coins({ uluna: '698' }));
-            //  const stdSignMsg = new StdSignMsg('columbus-3-testnet', 45, 0, fee, [
-            //      msgSend,
-
-            //  ]);
-
-            //  const { signature } = await rk.createSignature(stdSignMsg);
-            //  expect(signature).toEqual(
-            //      'FJKAXRxNB5ruqukhVqZf3S/muZEUmZD10fVmWycdVIxVWiCXXFsUy2VY2jINEOUGNwfrqEZsT2dUfAvWj8obLg=='
-            //  );
+            Assert.Equal("FJKAXRxNB5ruqukhVqZf3S/muZEUmZD10fVmWycdVIxVWiCXXFsUy2VY2jINEOUGNwfrqEZsT2dUfAvWj8obLg==", signature.Signature);
         }
 
-
-
-        public class Data
-        {
-            public string Mnemonic { get; set; }
-            public string AccAddress { get; set; }
-            public string AccPubKey { get; set; }
-            public string ValAddress { get; set; }
-            public string ValPubKey { get; set; }
-        }
-
-        public RawKeyTests(ITestOutputHelper output) : base(output)
-        {
-        }
     }
 }

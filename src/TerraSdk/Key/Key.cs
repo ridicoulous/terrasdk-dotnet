@@ -133,7 +133,7 @@ namespace TerraSdk.Key
         //    }
         //}
 
-        public Key(byte[] publicKey)
+        protected Key(byte[] publicKey)
         {
             this.RawAddress = AddressFromPublicKey(publicKey);
             this.RawPubKey = PubKeyFromPublicKey(publicKey);
@@ -150,37 +150,18 @@ namespace TerraSdk.Key
         // */
         public StdSignature CreateSignature(StdSignMsg tx)
         {
-            var json = JsonConvert.SerializeObject(tx, Formatting.None);
+            var json = tx.ToJson();
             var jsonBytes = json.ToByteArrayFromString();
-            jsonBytes.DumpHex();
             var sigBuffer = this.Sign(jsonBytes);
 
-            //if (!this.publicKey)
-            //{
-            //    throw new Error(
-            //      'Signature could not be created: Key instance missing publicKey'
-            //    );
-            //}
+            if (PublicKey == null )
+            {
+                throw new Exception("Signature could not be created: Key instance missing publicKey");
+            }
 
-            //return StdSignature.fromData({
-            //signature: sigBuffer.toString('base64'),
-            //          pub_key:
-            //    {
-            //    type: 'tendermint/PubKeySecp256k1',
-            //            value: this.publicKey.toString('base64'),
-            //          },
-            //        });
-            return new StdSignature(sigBuffer);
-
+            return new StdSignature(Convert.ToBase64String(sigBuffer), new PublicKey("tendermint/PubKeySecp256k1", Convert.ToBase64String(PublicKey)));
         }
-
-
-
-        //    public StdSignature CreateSignature(StdSignMsg tx)
-        //    {
-
-        //    }
-
+        
         ///**
         // * Signs a [[StdSignMsg]] and adds the signature to a generated StdTx that is ready to be broadcasted.
         // * @param tx

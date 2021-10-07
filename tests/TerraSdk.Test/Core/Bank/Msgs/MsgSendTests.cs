@@ -42,7 +42,7 @@ namespace TerraSdk.Test.Key
 
             var toData = send.ToData();
 
-            var dataOutJson = JsonConvert.SerializeObject(toData);
+            var dataOutJson = toData.ToJson();
 
             Output.WriteLine("Output JSON:");
             Output.WriteLine(dataOutJson.FormatJson());

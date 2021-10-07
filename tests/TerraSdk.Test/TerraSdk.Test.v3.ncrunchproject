@@ -13,6 +13,9 @@
       <FixtureTestSelector>
         <FixtureName>TerraSdk.Test.Core.AccountTests</FixtureName>
       </FixtureTestSelector>
+      <FixtureTestSelector>
+        <FixtureName>TerraSdk.Test.Key.MsgSendTests</FixtureName>
+      </FixtureTestSelector>
     </IgnoredTests>
   </Settings>
 </ProjectConfiguration>

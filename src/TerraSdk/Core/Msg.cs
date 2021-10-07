@@ -4,19 +4,17 @@ using Newtonsoft.Json.Linq;
 
 namespace TerraSdk.Core
 {
-    public abstract class Msg : IMsg
+    public class Msg
     {
-        protected static string InternalType;
-
         [JsonProperty("type")]
-        public string Type => InternalType;
+        public string Type { get; init; }
 
         [JsonProperty("value")]
         public object Value { get; init; }
 
-        protected static T1 InternalFromData<T1, T2>(MsgData msgData) where T1 : IMsg, new()
+        protected static T1 InternalFromData<T1, T2>(MsgData msgData, string type) where T1 : Msg, new()
         {
-            if (msgData.Type != InternalType)
+            if (msgData.Type != type)
             {
                 throw new Exception("Invalid msgData type!");
             }
@@ -24,6 +22,7 @@ namespace TerraSdk.Core
             var serializer = new JsonSerializer();
             var p = new T1
             {
+                Type = msgData.Type,
                 Value = (T2)serializer.Deserialize(new JTokenReader((JToken)msgData.Value), typeof(T2))
             };
 

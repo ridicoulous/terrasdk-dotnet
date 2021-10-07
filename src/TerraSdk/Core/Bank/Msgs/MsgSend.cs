@@ -6,19 +6,17 @@ namespace TerraSdk.Core.Bank.Msgs
     /**
      * A basic message for sending [[Coins]] between Terra accounts.
      */
-    public class MsgSend : Msg, IMsg
+    public class MsgSend : Msg
     {
-        static MsgSend()
-        {
-            InternalType = "bank/MsgSend";
-        }
+    
+        static string InternalType = "bank/MsgSend";
 
         public MsgSend()
         {
         }
-
         public MsgSend(AccAddress fromAccAddress, AccAddress toAccAddress, Coins coins)
         {
+            Type = InternalType;
             Value = new MsgValue
             {
                 FromAccAddress = fromAccAddress,
@@ -29,12 +27,11 @@ namespace TerraSdk.Core.Bank.Msgs
 
         public static MsgSend FromData(MsgData msgData)
         {
-            return InternalFromData<MsgSend, MsgValue>(msgData);
+            return InternalFromData<MsgSend, MsgValue>(msgData, InternalType);
         }
 
         public class MsgValue
         {
-            // JSON
             [JsonProperty("amount")]
             public Coins Coins { get; internal set; }
 
@@ -45,7 +42,7 @@ namespace TerraSdk.Core.Bank.Msgs
             public string FromAddress
             {
                 get => FromAccAddress.Value;
-                set => FromAccAddress = new AccAddress(value);
+                internal set => FromAccAddress = new AccAddress(value);
             }
 
             [JsonIgnore]
@@ -55,7 +52,7 @@ namespace TerraSdk.Core.Bank.Msgs
             public string ToAddress
             {
                 get => ToAccAddress.Value;
-                set => ToAccAddress = new AccAddress(value);
+                internal set => ToAccAddress = new AccAddress(value);
             }
         }
     }

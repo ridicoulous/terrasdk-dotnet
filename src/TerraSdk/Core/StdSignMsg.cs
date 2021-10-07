@@ -15,8 +15,7 @@ namespace TerraSdk.Core
         public int AccountNumber { get; }
         [JsonProperty("chain_id")]
         public string ChainId { get; }
-
-   
+        
         [JsonProperty("fee")]
         public StdFee Fee { get; }
 
@@ -26,11 +25,11 @@ namespace TerraSdk.Core
         [JsonProperty("msgs")]
         public Msg[] Msgs { get; }
 
-        
         [JsonProperty("sequence"), JsonConverter(typeof(StringJsonConverter))]
         public int Sequence { get; }
-        //[JsonProperty("timeout_height"), JsonConverter(typeof(StringJsonConverter))]
-        [JsonIgnore]
+        
+        [JsonProperty("timeout_height"), JsonConverter(typeof(StringJsonConverter))]
+        //[JsonIgnore]
         public int? TimeoutHeight{ get; }
 
   

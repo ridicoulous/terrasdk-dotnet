@@ -10,6 +10,19 @@ namespace TerraSdk.Common.Helpers
             return JsonConvert.SerializeObject(parsedJson, formatting);
         }
 
+        public static string ToJson(this object obj)
+        {
+            return JsonConvert.SerializeObject(obj, new JsonSerializerSettings()
+            {
+                Formatting = Formatting.None,
+                NullValueHandling = NullValueHandling.Ignore
+            });
+        }
+
+        public static T FromJson<T>(this string json)
+        {
+            return JsonConvert.DeserializeObject<T>(json);
+        }
 
     }
 }

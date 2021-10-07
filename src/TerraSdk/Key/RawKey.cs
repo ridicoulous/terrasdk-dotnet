@@ -1,6 +1,5 @@
 ﻿using System;
 using NBitcoin.Secp256k1;
-using TerraSdk.Common;
 using TerraSdk.Common.Helpers;
 using TerraSdk.Crypto.Ecdsa;
 
@@ -41,11 +40,7 @@ namespace TerraSdk.Key
 
             Console.WriteLine(hash.ToHexFromByteArray());
 
-             ecPrivateKey.TrySignECDSA(hash, out var signature);
-            
-       
-
-            // var (signature, _) = EcdsaSign(payload);
+            ecPrivateKey.TrySignECDSA(hash, out var signature);
             var n = new byte[64];
             signature.WriteCompactToSpan(n);
 

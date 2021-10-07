@@ -18,7 +18,16 @@ namespace TerraSdk.Common
 
         public static string DumpString(this object obj)
         {
-            return JsonConvert.SerializeObject(obj, Formatting.Indented);
+            if (obj is string)
+            {
+                return obj.ToString();
+            }
+
+            return JsonConvert.SerializeObject(obj, new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore, 
+                Formatting = Formatting.Indented
+            });
         }
 
     }
