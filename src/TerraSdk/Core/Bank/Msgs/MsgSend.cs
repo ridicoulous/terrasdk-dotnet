@@ -13,6 +13,12 @@ namespace TerraSdk.Core.Bank.Msgs
     {
        
         private static string type ="bank/MsgSend";
+
+        private MsgSend()
+        {
+            
+        }
+
         public MsgSend(AccAddress fromAccAddress, AccAddress toAccAddress, Coins coins)
         {
             Value = new MsgValue
@@ -31,7 +37,11 @@ namespace TerraSdk.Core.Bank.Msgs
             }
 
             var serializer = new JsonSerializer();
-            var p = (MsgSend)serializer.Deserialize(new JTokenReader((JToken)msgData.Value), typeof(MsgSend));
+            var p = new MsgSend()
+            {
+                Value = (MsgValue)serializer.Deserialize(new JTokenReader((JToken)msgData.Value), typeof(MsgValue))
+            };
+                
 
             if (p == null)
             {
@@ -46,7 +56,7 @@ namespace TerraSdk.Core.Bank.Msgs
             return new MsgData
             {
                 Type = Type,
-                Value = this
+                Value = Value
             };
         }
 
@@ -54,7 +64,7 @@ namespace TerraSdk.Core.Bank.Msgs
         public string Type => type;
 
         [JsonProperty("value")]
-        public MsgValue Value { get; }
+        public MsgValue Value { get; private set;  }
 
         public class MsgValue
         {

@@ -13,9 +13,6 @@
       <FixtureTestSelector>
         <FixtureName>TerraSdk.Test.Core.AccountTests</FixtureName>
       </FixtureTestSelector>
-      <NamedTestSelector>
-        <TestName>TerraSdk.Test.Key.MsgSendTests.MsgSend_deserializes_correctly</TestName>
-      </NamedTestSelector>
     </IgnoredTests>
   </Settings>
 </ProjectConfiguration>
