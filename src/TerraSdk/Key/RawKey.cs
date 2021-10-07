@@ -1,6 +1,5 @@
 ﻿using System;
 using NBitcoin.Secp256k1;
-using TerraSdk.Common.Helpers;
 using TerraSdk.Crypto.Ecdsa;
 
 namespace TerraSdk.Key
@@ -17,10 +16,7 @@ namespace TerraSdk.Key
         {
             SetPrivate(privateKey);
         }
-
-        //public byte[] PrivateKey { get; set; }
-        //public byte[] PublicKey { get; set; }
-
+        
         protected void SetPrivate(byte[] privateKey)
         {
             PrivateKey = privateKey;
@@ -37,22 +33,15 @@ namespace TerraSdk.Key
         public override byte[] Sign(byte[] payload)
         {
             var hash = Sha256Manager.GetHash(payload);
-
-            Console.WriteLine(hash.ToHexFromByteArray());
-
             ecPrivateKey.TrySignECDSA(hash, out var signature);
             var n = new byte[64];
+            if (signature == null)
+            {
+                throw new Exception("No signature created!");
+            }
             signature.WriteCompactToSpan(n);
-
             return n;
         }
 
-        // ReSharper disable once UnusedTupleComponentInReturnValue
-        private ( byte[] signature, int recId) EcdsaSign(byte[] payload)
-        {
-            var hash = Sha256Manager.GetHash(payload);
-            ecPrivateKey.TrySignECDSA(hash, null, out var recId, out var signature);
-            return (signature?.ToDER(), recId);
-        }
     }
 }

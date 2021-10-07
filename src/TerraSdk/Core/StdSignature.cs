@@ -27,10 +27,12 @@ namespace TerraSdk.Core
             PublicKey = publicKey;
         }
 
-        [JsonProperty("signature")]
-        public string Signature { get; set; }
 
         [JsonProperty("pub_key")]
         public PublicKey PublicKey { get; init; }
+
+        [JsonProperty("signature")]
+        public string Signature { get; set; }
+
     }
 }

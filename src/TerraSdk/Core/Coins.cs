@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using TerraSdk.Common.Helpers;
 
 namespace TerraSdk.Core
 {
@@ -13,13 +15,34 @@ namespace TerraSdk.Core
 
         public Coins(IList<Coin> amounts)
         {
-            this.AddRange(amounts);
+         
             foreach (var amount in amounts)
             {
+                Add(amount);
                 rprDict.Add(amount.Denom, amount);
                 dataDict.Add(amount.Denom, amount.Amount);
             }
         }
+
+        public Coins(IDictionary<string, decimal> amounts)
+        {
+            foreach (var item in amounts)
+            {
+                var coin = new Coin(item.Key, item.Value);
+                Add(coin);
+                rprDict.Add(item.Key, coin);
+                dataDict.Add(item.Key, item.Value);
+            }
+        }
+
+        public static Coins From(params Coin[] coins)
+        {
+            return new Coins(coins);
+
+        }
+
+
+
 
     }
 }

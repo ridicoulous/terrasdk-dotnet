@@ -152,7 +152,7 @@ namespace TerraSdk.Key
         {
             var json = tx.ToJson();
             var jsonBytes = json.ToByteArrayFromString();
-            var sigBuffer = this.Sign(jsonBytes);
+            var sigBuffer = Sign(jsonBytes);
 
             if (PublicKey == null )
             {
@@ -161,14 +161,15 @@ namespace TerraSdk.Key
 
             return new StdSignature(Convert.ToBase64String(sigBuffer), new PublicKey("tendermint/PubKeySecp256k1", Convert.ToBase64String(PublicKey)));
         }
-        
+
         ///**
         // * Signs a [[StdSignMsg]] and adds the signature to a generated StdTx that is ready to be broadcasted.
         // * @param tx
         // */
-        //public async signTx(tx: StdSignMsg): Promise<StdTx> {
-        //    const sig = await this.createSignature(tx);
-        //    return new StdTx(tx.msgs, tx.fee, [sig], tx.memo, tx.timeout_height);
-        //}
+        public StdTx SignTx(StdSignMsg tx)
+        {
+            var sig = CreateSignature(tx);
+            return new StdTx(tx.Msgs, tx.Fee, new  [] {sig}, tx.Memo, tx.TimeoutHeight);
     }
+}
 }

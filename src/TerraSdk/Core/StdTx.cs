@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using TerraSdk.Core.Bank;
 
 namespace TerraSdk.Core
 {
@@ -21,7 +22,7 @@ namespace TerraSdk.Core
         //     * @param memo optional note
         //     * @param timeout_height optional tx timeout
         //     */
-        public StdTx(Msg[] msg, StdFee fee, StdSignature[] signatures, string memo, string timeoutHeight)
+        public StdTx(Msg[] msg, StdFee fee, StdSignature[] signatures, string memo, int? timeoutHeight)
         {
             Type = InternalType;
             Value = new MsgValue
@@ -43,18 +44,18 @@ namespace TerraSdk.Core
         {
             [JsonProperty("fee")]
             public StdFee Fee { get; internal set; }
-
+            [JsonProperty("memo")]
+            public string Memo { get; internal set; }
             [JsonProperty("msg")]
             public Msg[] Msg { get; internal set; }
             
             [JsonProperty("signatures")]
             public StdSignature[] Signatures { get; internal set; }
 
-            [JsonProperty("memo")]
-            public string Memo { get; internal set; }
 
-            [JsonProperty("timeout_height")]
-            public string TimeoutHeight { get; internal set; }
+
+            [JsonProperty("timeout_height"), JsonConverter(typeof(StringJsonConverter))]
+            public int? TimeoutHeight { get; internal set; }
         }
     }
 }

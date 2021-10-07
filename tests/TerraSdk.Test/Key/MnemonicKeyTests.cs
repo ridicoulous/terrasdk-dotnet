@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using TerraSdk.Common;
 using TerraSdk.Common.Helpers;
 using TerraSdk.Core;
 using TerraSdk.Core.Account;
 using TerraSdk.Core.Bank.Msgs;
 using TerraSdk.Key;
+using TerraSdk.Test.Utils;
 using Xunit;
 using Xunit.Abstractions;
+using ExtensionsForTesting = TerraSdk.Common.ExtensionsForTesting;
 
 namespace TerraSdk.Test.Key
 {
@@ -156,8 +157,42 @@ namespace TerraSdk.Test.Key
 
             var signature = JsonConvert.DeserializeObject<StdSignature>(signatureJson);
             var stdTx = new StdTx(new Msg[] { msgSend }, fee, new[] { signature }, null, null);
-            stdTx.ToData().Dump();
+            ExtensionsForTesting.Dump(stdTx.ToData());
         }
+
+        [Fact]
+        public void MnemonicKey_multisend()
+        {
+            var key = new MnemonicKey("spatial fantasy weekend romance entire million celery final moon solid route theory way hockey north trigger advice balcony melody fabric alter bullet twice push");
+
+            var i1 = new MsgMultiSend.Io(key.AccAddress, Coins.From(new Coin( "uluna", 1000000 ), new Coin( "usdr", 1000000 )));
+
+            var o1 = new MsgMultiSend.Io("terra12dazwl3yq6nwrce052ah3fudkarglsgvacyvl9", Coins.From(new Coin("uluna", 500000)));
+            var o2 = new MsgMultiSend.Io("terra1ptdx6akgk7wwemlk5j73artt5t6j8am08ql3qv", Coins.From(new Coin("uluna", 500000), new Coin("usdr",1000000)));
+
+            var msgMultiSend = new MsgMultiSend(new []{i1}, new[]{o1,o2});
+
+            //msgMultiSend.ToData().Dump();
+
+            var fee = new StdFee(100000, Coins.From( new Coin ("uluna", 1500), new Coin( "usdr", 1000) ));
+            var stdSignMsg = new StdSignMsg("columbus-3-testnet", 47, 0, fee, new Msg[] { msgMultiSend },"1234");
+
+            var testJson = File.ReadAllText("../../../Key/Mnemonic_StdSignMsg.json");
+
+            CompareExtensions.JsonCompareObj(testJson,stdSignMsg.ToJson());
+            Assert.Equal(testJson.FormatJson(), stdSignMsg.ToJson().FormatJson());
+            
+            var tx = key.SignTx(stdSignMsg);
+
+            // ExtensionsForTesting.Dump(tx.ToData());
+
+            var newSig = ((StdTx.MsgValue)tx.Value).Signatures[0].Signature;
+
+
+            Assert.Equal("YA/ToXLxuuAOQlpm5trbIUu2zv5NfBmeHz2jmXgNrt8jP+odukerfri3DUXAJuhETAMHVVV78t7Q4xC0j+CVkA==", newSig);
+
+        }
+
     }
 
 }

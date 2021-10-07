@@ -1,0 +1,65 @@
+{
+  "account_number": "47",
+  "chain_id": "columbus-3-testnet",
+  "fee": {
+    "amount": [
+      {
+        "amount": "1500",
+        "denom": "uluna"
+      },
+      {
+        "amount": "1000",
+        "denom": "usdr"
+      }
+    ],
+    "gas": "100000"
+  },
+  "memo": "1234",
+  "msgs": [
+    {
+      "type": "bank/MsgMultiSend",
+      "value": {
+        "inputs": [
+          {
+            "address": "terra1gn37dh0jl4zu4fp48d8y4c0hqs9cel83x7st7v",
+            "coins": [
+              {
+                "amount": "1000000",
+                "denom": "uluna"
+              },
+              {
+                "amount": "1000000",
+                "denom": "usdr"
+              }
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "address": "terra12dazwl3yq6nwrce052ah3fudkarglsgvacyvl9",
+            "coins": [
+              {
+                "amount": "500000",
+                "denom": "uluna"
+              }
+            ]
+          },
+          {
+            "address": "terra1ptdx6akgk7wwemlk5j73artt5t6j8am08ql3qv",
+            "coins": [
+              {
+                "amount": "500000",
+                "denom": "uluna"
+              },
+              {
+                "amount": "1000000",
+                "denom": "usdr"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "sequence": "0"
+}
