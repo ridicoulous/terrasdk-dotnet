@@ -3,12 +3,12 @@ using TerraSdk.Core.Bank.Msgs;
 
 namespace TerraSdk.Core
 {
-    public class MsgData
+    public class MsgData: IMsg
     {
         [JsonProperty("type")]
         public string Type { get; set; }
 
         [JsonProperty("value")]
-        public object Value { get; set; }
+        public object Value { get; init; }
     }
 }
