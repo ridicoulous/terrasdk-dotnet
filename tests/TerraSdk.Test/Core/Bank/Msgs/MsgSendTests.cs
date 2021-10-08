@@ -6,7 +6,7 @@ using TerraSdk.Core.Bank.Msgs;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace TerraSdk.Test.Key
+namespace TerraSdk.Test.Core.Bank.Msgs
 {
     public class MsgSendTests : TestBase
     {
