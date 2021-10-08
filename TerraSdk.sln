@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TerraSdk.Crypto", "src\Terr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TerraSdk.Test.Crypto", "tests\TerraSdk.Test.Crypto\TerraSdk.Test.Crypto.csproj", "{FEC4BB3C-755A-4DE5-9445-48B6A95DA8C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TerraSdk.Common", "src\TerraSdk.Common\TerraSdk.Common.csproj", "{58AFBBBE-67FE-495F-B9EE-8CAC3B7C22F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TerraSdk.Common", "src\TerraSdk.Common\TerraSdk.Common.csproj", "{58AFBBBE-67FE-495F-B9EE-8CAC3B7C22F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
