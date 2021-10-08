@@ -20,12 +20,8 @@ namespace TerraSdk.Key
         protected void SetPrivate(byte[] privateKey)
         {
             PrivateKey = privateKey;
-
             ecPrivateKey = Context.Instance.CreateECPrivKey(privateKey);
-
-            //PublicKey = Secp256K1Manager.GetPublicKey(PrivateKey, true);
             PublicKey = ecPrivateKey.CreatePubKey().ToBytes();
-
             RawAddress = AddressFromPublicKey(PublicKey);
             RawPubKey = PubKeyFromPublicKey(PublicKey);
         }
