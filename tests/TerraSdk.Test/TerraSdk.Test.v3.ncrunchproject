@@ -70,6 +70,12 @@
       <FixtureTestSelector>
         <FixtureName>TerraSdk.Test.Core.Bank.Msgs.MsgSendTests</FixtureName>
       </FixtureTestSelector>
+      <FixtureTestSelector>
+        <FixtureName>TerraSdk.Test.Client.SigningTests</FixtureName>
+      </FixtureTestSelector>
+      <FixtureTestSelector>
+        <FixtureName>TerraSdk.Test.Client.ClientTests</FixtureName>
+      </FixtureTestSelector>
     </IgnoredTests>
   </Settings>
 </ProjectConfiguration>

@@ -8,19 +8,19 @@ namespace TerraSdk.Core.Bank
     {
         public StringJsonConverter() { }
 
-        private readonly Type[] types;
+        private readonly Type[]? types;
 
         public StringJsonConverter(params Type[] types)
         {
             this.types = types;
         }
 
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
         {
-            writer.WriteValue(value.ToString());
+            writer.WriteValue(value?.ToString());
         }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override object ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
         {
             throw new NotImplementedException("Unnecessary because CanRead is false. The type will skip the converter.");
         }

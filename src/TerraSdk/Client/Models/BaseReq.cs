@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 using TerraSdk.Common.Serialization;
+using TerraSdk.Core;
 
 namespace TerraSdk.Client.Models
 {
@@ -21,7 +22,7 @@ namespace TerraSdk.Client.Models
         [JsonProperty("fees")]
         public IList<Coin>? Fees { get; set; }
         [JsonProperty("gas_prices")]
-        public IList<DecCoin>? GasPrices { get; set; }
+        public IList<Coin>? GasPrices { get; set; }
         [JsonProperty("gas")]
         public string? Gas { get; set; }
         [JsonProperty("gas_adjustment")]
@@ -31,7 +32,7 @@ namespace TerraSdk.Client.Models
         {
         }
 
-        public BaseReq(string @from, string? memo, string chainId, ulong accountNumber, ulong sequence, IList<Coin>? fees, IList<DecCoin>? gasPrices, string? gas, string? gasAdjustment)
+        public BaseReq(string @from, string? memo, string chainId, ulong accountNumber, ulong sequence, IList<Coin>? fees, IList<Coin>? gasPrices, string? gas, string? gasAdjustment)
         {
             From = @from;
             Memo = memo;

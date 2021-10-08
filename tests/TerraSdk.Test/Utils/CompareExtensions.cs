@@ -7,7 +7,7 @@ namespace TerraSdk.Test.Utils
 {
     public static class CompareExtensions
     {
-        public static void ShouldCompareTo<T1, T2>(this T1 actual, T2 expected, CompareLogic compareLogic = null)
+        public static void ShouldCompareTo<T1, T2>(this T1 actual, T2 expected, CompareLogic? compareLogic = null)
         {
             compareLogic = compareLogic ?? new CompareLogic { Config = new ComparisonConfig { MaxDifferences = 100 } };
 

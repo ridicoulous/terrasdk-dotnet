@@ -20,7 +20,7 @@ namespace TerraSdk.Key
 
         }
 
-        public MnemonicKey(string mnemonic = null, int? coinType =330, int? account = 0, int? index = 0)
+        public MnemonicKey(string? mnemonic = null, int? coinType =330, int? account = 0, int? index = 0)
         {
             var bip39 = new Bip39();
 

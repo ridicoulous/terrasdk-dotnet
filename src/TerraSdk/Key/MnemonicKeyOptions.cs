@@ -5,7 +5,7 @@
         /**
          * Space-separated list of words for the mnemonic key.
          */
-        public string Mnemonic { get; set; }
+        public string? Mnemonic { get; set; }
 
         /**
        * BIP44 account number.

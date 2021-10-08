@@ -4,6 +4,20 @@
 		<Nullable>enable</Nullable>
   </PropertyGroup>
 	<ItemGroup>
+	  <Compile Remove="Client\Endpoints\Distribution.cs" />
+	  <Compile Remove="Client\Endpoints\Governance.cs" />
+	  <Compile Remove="Client\Endpoints\IDistribution.cs" />
+	  <Compile Remove="Client\Endpoints\IGovernance.cs" />
+	  <Compile Remove="Client\Endpoints\IMint.cs" />
+	  <Compile Remove="Client\Endpoints\ISlashing.cs" />
+	  <Compile Remove="Client\Endpoints\IStaking.cs" />
+	  <Compile Remove="Client\Endpoints\Mint.cs" />
+	  <Compile Remove="Client\Endpoints\Slashing.cs" />
+	  <Compile Remove="Client\Endpoints\Staking.cs" />
+	  <Compile Remove="Client\Models\Coin.cs" />
+	  <Compile Remove="Client\Models\DecCoin.cs" />
+	</ItemGroup>
+	<ItemGroup>
 	  <PackageReference Include="Flurl" Version="3.0.2" />
 	  <PackageReference Include="Flurl.Http" Version="3.2.0" />
 	  <PackageReference Include="NBitcoin" Version="6.0.10" />

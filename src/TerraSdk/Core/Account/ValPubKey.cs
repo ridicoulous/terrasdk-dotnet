@@ -1,4 +1,5 @@
-﻿using TerraSdk.Crypto.Bech32;
+﻿using System.Diagnostics;
+using TerraSdk.Crypto.Bech32;
 
 namespace TerraSdk.Core.Account
 {
@@ -7,7 +8,7 @@ namespace TerraSdk.Core.Account
      */
     public class ValPubKey
     {
-        public string Value { get; private set; }
+        public string? Value { get; private set; }
 
         /**
          * Checks if a string is a Terra validator pubkey
@@ -18,8 +19,9 @@ namespace TerraSdk.Core.Account
             return Validate(Value);
         }
 
-        public bool Validate(string value)
+        public bool Validate(string? value)
         {
+            Debug.Assert(value != null, nameof(value) + " != null");
             return Bech32Helper.CheckPrefixAndLength("terravaloperpub", value, 54);
         }
 

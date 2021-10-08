@@ -7,6 +7,20 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Client\BroadcastingTxsTests.cs" />
+	  <Compile Remove="Client\Endpoints\AuthTests.cs" />
+	  <Compile Remove="Client\Endpoints\DistributionTests.cs" />
+	  <Compile Remove="Client\Endpoints\GaiaRestTest.cs" />
+	  <Compile Remove="Client\Endpoints\GovernanceTests.cs" />
+	  <Compile Remove="Client\Endpoints\MintTests.cs" />
+	  <Compile Remove="Client\Endpoints\SlashingTests.cs" />
+	  <Compile Remove="Client\Endpoints\StakingTests.cs" />
+	  <Compile Remove="Client\Endpoints\TendermintRpcTest.cs" />
+	  <Compile Remove="Client\Endpoints\TransactionsTest.cs" />
+	  <Compile Remove="Client\SigningTests.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Resource Include="Key\RawKey_StdSignMsg.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Resource>
@@ -41,6 +55,9 @@
 	<ItemGroup>
 		<None Update="Cases\test1.hcl">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Client\TestConfiguration.yml">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 		<None Update="Core\StdTx.data.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

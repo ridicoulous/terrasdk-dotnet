@@ -8,7 +8,7 @@ using Xunit.Abstractions;
 
 namespace TerraSdk.Test.Core.Bank.Msgs
 {
-    public class MsgSendTests : TestBase
+    public class MsgSendTests : BaseTest
     {
         public MsgSendTests(ITestOutputHelper output) : base(output)
         {

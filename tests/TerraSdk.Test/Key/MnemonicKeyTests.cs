@@ -13,7 +13,7 @@ using ExtensionsForTesting = TerraSdk.Common.ExtensionsForTesting;
 
 namespace TerraSdk.Test.Key
 {
-    public class MnemonicKeyTests : TestBase
+    public class MnemonicKeyTests : BaseTest
     {
         public MnemonicKeyTests(ITestOutputHelper output) : base(output)
         {

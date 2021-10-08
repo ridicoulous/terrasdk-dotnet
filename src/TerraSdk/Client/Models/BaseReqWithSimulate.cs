@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
+using TerraSdk.Core;
 
 namespace TerraSdk.Client.Models
 {
@@ -12,7 +13,7 @@ namespace TerraSdk.Client.Models
         {
         }
 
-        public BaseReqWithSimulate(string @from, string? memo, string chainId, ulong accountNumber, ulong sequence, IList<Coin>? fees, IList<DecCoin>? gasPrices, string? gas, string? gasAdjustment, bool simulate) : base(@from, memo, chainId, accountNumber, sequence, fees, gasPrices, gas, gasAdjustment)
+        public BaseReqWithSimulate(string @from, string? memo, string chainId, ulong accountNumber, ulong sequence, IList<Coin>? fees, IList<Coin>? gasPrices, string? gas, string? gasAdjustment, bool simulate) : base(@from, memo, chainId, accountNumber, sequence, fees, gasPrices, gas, gasAdjustment)
         {
             Simulate = simulate;
         }

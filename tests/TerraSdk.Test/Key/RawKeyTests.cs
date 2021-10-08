@@ -12,7 +12,7 @@ using Xunit.Abstractions;
 
 namespace TerraSdk.Test.Key
 {
-    public class RawKeyTests : TestBase
+    public class RawKeyTests : BaseTest
     {
         public RawKeyTests(ITestOutputHelper output) : base(output)
         {

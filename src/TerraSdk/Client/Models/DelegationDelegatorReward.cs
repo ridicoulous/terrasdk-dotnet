@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using TerraSdk.Core;
 
 namespace TerraSdk.Client.Models
 {
@@ -13,7 +14,7 @@ namespace TerraSdk.Client.Models
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "reward")]
-        public IList<DecCoin> Reward { get; set; } = null!;
+        public IList<Coin> Reward { get; set; } = null!;
 
         /// <summary>
         /// Initializes a new instance of the DelegationDelegatorReward class.
@@ -25,7 +26,7 @@ namespace TerraSdk.Client.Models
         /// <summary>
         /// Initializes a new instance of the DelegationDelegatorReward class.
         /// </summary>
-        public DelegationDelegatorReward(string validatorAddress, IList<DecCoin> reward)
+        public DelegationDelegatorReward(string validatorAddress, IList<Coin> reward)
         {
             ValidatorAddress = validatorAddress;
             Reward = reward;

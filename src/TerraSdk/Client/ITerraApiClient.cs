@@ -8,6 +8,9 @@ using TerraSdk.Client.Crypto;
 using TerraSdk.Client.Endpoints;
 using TerraSdk.Client.Models;
 using TerraSdk.Common.Serialization;
+using TerraSdk.Core;
+using StdFee = TerraSdk.Client.Models.StdFee;
+using StdTx = TerraSdk.Client.Models.StdTx;
 
 namespace TerraSdk.Client
 {
@@ -18,11 +21,11 @@ namespace TerraSdk.Client
         ITransactions Transactions { get; }
         IAuth Auth { get; }
         IBank Bank { get; }
-        IStaking Staking { get; }
-        IGovernance Governance { get; }
-        ISlashing Slashing { get; }
-        IDistribution Distribution { get; }
-        IMint Mint { get; }
+        //IStaking Staking { get; }
+        //IGovernance Governance { get; }
+        //ISlashing Slashing { get; }
+        //IDistribution Distribution { get; }
+        //IMint Mint { get; }
         
         HttpClient HttpClient { get; }
         ISerializer Serializer { get; }
@@ -58,7 +61,7 @@ namespace TerraSdk.Client
             return SignAndBroadcastStdTxAsync(tx, new[] {new SignerWithAddress(fromAddress, privateKey, passphrase)}, mode, cancellationToken);
         }
 
-        public async Task<BaseReq> CreateBaseReq(string @from, string? memo, IList<Coin>? fees, IList<DecCoin>? gasPrices, string? gas, string? gasAdjustment, CancellationToken cancellationToken = default)
+        public async Task<BaseReq> CreateBaseReq(string @from, string? memo, IList<Coin>? fees, IList<Coin>? gasPrices, string? gas, string? gasAdjustment, CancellationToken cancellationToken = default)
         {
             var chainTask = GaiaRest.GetNodeInfoAsync(cancellationToken);
             var accountTask = Auth.GetAuthAccountByAddressAsync(from, cancellationToken);

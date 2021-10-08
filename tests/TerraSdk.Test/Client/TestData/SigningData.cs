@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using TerraSdk.Client.Models;
 using TerraSdk.Common.Extensions;
+using TerraSdk.Core;
+using StdFee = TerraSdk.Client.Models.StdFee;
 
 namespace TerraSdk.Test.Client.TestData
 {

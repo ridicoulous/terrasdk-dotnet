@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using TerraSdk.Client.Models;
+using TerraSdk.Core;
 
 namespace TerraSdk.Client.Endpoints
 {
@@ -20,7 +21,7 @@ namespace TerraSdk.Client.Endpoints
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<ResponseWithHeight<IList<Coin>>> GetBankBalancesByAddressAsync(string address, CancellationToken cancellationToken = default);
+        Task<ResponseWithHeight<IList<Coin>>> GetBalanceAsync(string address, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get the account balances.
@@ -28,6 +29,6 @@ namespace TerraSdk.Client.Endpoints
         /// <param name='address'>
         /// Account address in bech32 format.
         /// </param>
-        ResponseWithHeight<IList<Coin>> GetBankBalancesByAddress(string address);
+
     }
 }

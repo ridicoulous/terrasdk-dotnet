@@ -10,7 +10,7 @@ using Xunit.Abstractions;
 
 namespace TerraSdk.Test.Client
 {
-    public class ClientTests : BaseTest
+    public class ClientTests : BaseTestClient
     {
         public ClientTests(ITestOutputHelper outputHelper) : base(outputHelper)
         {

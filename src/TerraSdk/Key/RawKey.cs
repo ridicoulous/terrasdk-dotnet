@@ -6,7 +6,7 @@ namespace TerraSdk.Key
 {
     public class RawKey : Key
     {
-        private ECPrivKey ecPrivateKey;
+        private ECPrivKey? ecPrivateKey;
 
         public RawKey()
         {

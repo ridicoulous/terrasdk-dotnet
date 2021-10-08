@@ -8,7 +8,7 @@ using Xunit.Abstractions;
 
 namespace TerraSdk.Test.Client
 {
-    public class SigningTests : BaseTest
+    public class SigningTests : BaseTestClient
     {
         public SigningTests(ITestOutputHelper outputHelper) : base(outputHelper)
         {

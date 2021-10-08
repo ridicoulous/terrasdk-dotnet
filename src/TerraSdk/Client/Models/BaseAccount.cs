@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using TerraSdk.Core;
 
 namespace TerraSdk.Client.Models
 {

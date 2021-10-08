@@ -7,7 +7,7 @@ using Xunit.Abstractions;
 
 namespace TerraSdk.Test.Core
 {
-    public class StdSignatureTests : TestBase
+    public class StdSignatureTests : BaseTest
     {
         public StdSignatureTests(ITestOutputHelper output) : base(output)
         {

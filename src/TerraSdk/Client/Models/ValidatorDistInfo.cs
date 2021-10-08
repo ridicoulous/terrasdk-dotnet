@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using TerraSdk.Core;
 
 namespace TerraSdk.Client.Models
 {
@@ -15,7 +16,7 @@ namespace TerraSdk.Client.Models
         /// <summary>
         /// Initializes a new instance of the ValidatorDistInfo class.
         /// </summary>
-        public ValidatorDistInfo(string operatorAddress, IList<DecCoin> selfBondRewards, IList<DecCoin> valCommission)
+        public ValidatorDistInfo(string operatorAddress, IList<Coin> selfBondRewards, IList<Coin> valCommission)
         {
             OperatorAddress = operatorAddress;
             SelfBondRewards = selfBondRewards;
@@ -30,12 +31,12 @@ namespace TerraSdk.Client.Models
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "self_bond_rewards")]
-        public IList<DecCoin> SelfBondRewards { get; set; } = null!;
+        public IList<Coin> SelfBondRewards { get; set; } = null!;
 
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "val_commission")]
-        public IList<DecCoin> ValCommission { get; set; } = null!;
+        public IList<Coin> ValCommission { get; set; } = null!;
 
     }
 }

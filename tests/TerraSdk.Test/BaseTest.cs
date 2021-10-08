@@ -5,11 +5,11 @@ using Xunit.Abstractions;
 
 namespace TerraSdk.Test
 {
-    public abstract class TestBase
+    public abstract class BaseTest
     {
         protected ITestOutputHelper Output;
 
-        protected TestBase(ITestOutputHelper output)
+        protected BaseTest(ITestOutputHelper output)
         {
             var converter = new Converter(output);
             Console.SetOut(converter);
@@ -18,23 +18,23 @@ namespace TerraSdk.Test
 
         private class Converter : TextWriter
         {
-            private readonly ITestOutputHelper _output;
+            private readonly ITestOutputHelper output;
 
             public Converter(ITestOutputHelper output)
             {
-                _output = output;
+                this.output = output;
             }
 
             public override Encoding Encoding => Encoding.ASCII;
 
-            public override void WriteLine(string message)
+            public override void WriteLine(string? message)
             {
-                _output.WriteLine(message);
+                output.WriteLine(message);
             }
 
-            public override void WriteLine(string format, params object[] args)
+            public override void WriteLine(string? format, params object[] args)
             {
-                _output.WriteLine(format, args);
+                output.WriteLine(format, args);
             }
 
             public override void Write(char value)

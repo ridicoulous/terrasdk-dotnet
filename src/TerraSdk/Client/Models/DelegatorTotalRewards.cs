@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using TerraSdk.Core;
 
 namespace TerraSdk.Client.Models
 {
@@ -13,7 +14,7 @@ namespace TerraSdk.Client.Models
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "total")]
-        public IList<DecCoin> Total { get; set; } = null!;
+        public IList<Coin> Total { get; set; } = null!;
         
         /// <summary>
         /// Initializes a new instance of the DelegatorTotalRewards class.
@@ -25,7 +26,7 @@ namespace TerraSdk.Client.Models
         /// <summary>
         /// Initializes a new instance of the DelegatorTotalRewards class.
         /// </summary>
-        public DelegatorTotalRewards(IList<DelegationDelegatorReward> rewards, IList<DecCoin> total)
+        public DelegatorTotalRewards(IList<DelegationDelegatorReward> rewards, IList<Coin> total)
         {
             Rewards = rewards;
             Total = total;
