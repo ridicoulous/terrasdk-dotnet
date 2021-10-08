@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using JsonSubTypes;
 using Newtonsoft.Json;
 
-namespace TerraSdk.Client.Api.Serialization
+namespace TerraSdk.Common.Serialization
 {
     /// <summary>
     /// Information about how to create converter for polymorphic json data using discriminator strategy.

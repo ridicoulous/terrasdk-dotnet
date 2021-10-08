@@ -6,8 +6,8 @@ using System.Security.Cryptography;
 using System.Text;
 using NaCl;
 using NBitcoin.Secp256k1;
-using TerraSdk.Client.Api.Extensions;
 using TerraSdk.Client.Api.Models;
+using TerraSdk.Common.Extensions;
 
 namespace TerraSdk.Client.Api.Crypto
 {

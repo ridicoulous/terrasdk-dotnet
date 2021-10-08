@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Runtime.Serialization;
 
-namespace TerraSdk.Client.Api.Extensions
+namespace TerraSdk.Common.Extensions
 {
     public static class EnumExtensions
     {

@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using Flurl.Http.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using TerraSdk.Client.Api.Extensions;
+using TerraSdk.Common.Extensions;
 
-namespace TerraSdk.Client.Api.Serialization
+namespace TerraSdk.Common.Serialization
 {
-    internal class NewtownJsonSerializer : ISerializer
+    public class NewtownJsonSerializer : ISerializer
     {
         private readonly JsonSerializerSettings _settings;
 

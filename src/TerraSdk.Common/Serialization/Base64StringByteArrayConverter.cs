@@ -1,16 +1,16 @@
 ﻿using System;
 using Newtonsoft.Json;
-using TerraSdk.Client.Api.Extensions;
+using TerraSdk.Common.Extensions;
 
-namespace TerraSdk.Client.Api.Serialization
+namespace TerraSdk.Common.Serialization
 {
-    public class HexStringByteArrayConverter : Newtonsoft.Json.JsonConverter
+    public class Base64StringByteArrayConverter : JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
         {
             var array = value as byte[];
 
-            serializer.Serialize(writer, array.ToHexString());
+            serializer.Serialize(writer, array.ToBase64String());
         }
 
 
@@ -18,7 +18,7 @@ namespace TerraSdk.Client.Api.Serialization
         {
             var deserializedString = serializer.Deserialize<string>(reader);
 
-            return ByteArrayExtensions.ParseHexString(deserializedString);
+            return ByteArrayExtensions.ParseBase64(deserializedString);
         }
 
 

@@ -4,11 +4,10 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using TaskTupleAwaiter;
 using TerraSdk.Client.Api.Crypto;
 using TerraSdk.Client.Api.Endpoints;
 using TerraSdk.Client.Api.Models;
-using TerraSdk.Client.Api.Serialization;
+using TerraSdk.Common.Serialization;
 
 namespace TerraSdk.Client.Api
 {

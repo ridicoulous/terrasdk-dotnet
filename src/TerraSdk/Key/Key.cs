@@ -1,7 +1,5 @@
 ﻿#nullable enable
 using System;
-using Newtonsoft.Json;
-using TerraSdk.Common;
 using TerraSdk.Common.Helpers;
 using TerraSdk.Core;
 using TerraSdk.Core.Account;

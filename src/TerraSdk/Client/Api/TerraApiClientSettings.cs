@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 using TerraSdk.Client.Api.Callbacks;
 using TerraSdk.Client.Api.Crypto;
 using TerraSdk.Client.Api.Models;
-using TerraSdk.Client.Api.Serialization;
+using TerraSdk.Common.Serialization;
 
 namespace TerraSdk.Client.Api
 {

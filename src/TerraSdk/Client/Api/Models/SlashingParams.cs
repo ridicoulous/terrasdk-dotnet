@@ -1,5 +1,5 @@
-﻿using ExtendedNumerics;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using TerraSdk.Common.Types.BigDecimal;
 
 namespace TerraSdk.Client.Api.Models
 {

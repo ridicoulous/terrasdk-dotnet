@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using ExtendedNumerics;
 using Flurl.Http;
 using TerraSdk.Client.Api.Models;
+using TerraSdk.Common.Extensions;
+using TerraSdk.Common.Types.BigDecimal;
 
 namespace TerraSdk.Client.Api.Endpoints
 {

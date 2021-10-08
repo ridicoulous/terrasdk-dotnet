@@ -1,5 +1,4 @@
-﻿using System.Net.NetworkInformation;
-using KellermanSoftware.CompareNetObjects;
+﻿using KellermanSoftware.CompareNetObjects;
 using Newtonsoft.Json.Linq;
 using TerraSdk.Common.Helpers;
 using Xunit;
@@ -32,6 +31,5 @@ namespace TerraSdk.Test.Utils
         {
             Assert.Equal(json1.FormatJson(), json2.FormatJson());
         }
-
     }
 }

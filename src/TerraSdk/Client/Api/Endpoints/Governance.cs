@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Flurl.Http;
 using TerraSdk.Client.Api.Models;
+using TerraSdk.Common.Extensions;
 
 namespace TerraSdk.Client.Api.Endpoints
 {

@@ -1,8 +1,8 @@
 using System;
 using System.Numerics;
-using ExtendedNumerics;
 using Newtonsoft.Json;
-using TerraSdk.Client.Api.Serialization;
+using TerraSdk.Common.Serialization;
+using TerraSdk.Common.Types.BigDecimal;
 
 namespace TerraSdk.Client.Api.Models
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TerraSdk.Client.Api.Extensions
+namespace TerraSdk.Common.Extensions
 {
     public static class LongExtensions
     {

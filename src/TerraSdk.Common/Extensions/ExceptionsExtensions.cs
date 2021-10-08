@@ -1,7 +1,8 @@
 ﻿using System;
 using Flurl.Http;
+using TerraSdk.Common.Exceptions;
 
-namespace TerraSdk.Client.Api.Extensions
+namespace TerraSdk.Common.Extensions
 {
     public static class ExceptionsExtensions
     {

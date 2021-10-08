@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 using TerraSdk.Client.Api.Models;
-using TerraSdk.Client.Api.Serialization;
+using TerraSdk.Common.Serialization;
 
 namespace TerraSdk.Client.Api.Crypto
 {

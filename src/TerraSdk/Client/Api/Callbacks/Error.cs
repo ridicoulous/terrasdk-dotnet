@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Net.Http;
+using Flurl.Http;
 
 namespace TerraSdk.Client.Api.Callbacks
 {
     public class Error
     {
         /// <summary>The HttpRequestMessage associated with this call.</summary>
-        public HttpRequestMessage Request { get; set; }
+        public IFlurlRequest Request { get; set; }
         /// <summary>
         /// HttpResponseMessage associated with the call if the call completed, otherwise null.
         /// </summary>
-        public HttpResponseMessage? Response { get; set; }
+        public IFlurlResponse Response { get; set; }
         /// <summary>DateTime the moment the request was sent.</summary>
         public DateTime StartedUtc { get; set; }
         /// <summary>DateTime the moment a response was received.</summary>
@@ -25,7 +26,7 @@ namespace TerraSdk.Client.Api.Callbacks
         /// </summary>
         public bool Handled { get; set; }
 
-        internal Error(HttpRequestMessage request, HttpResponseMessage? response, DateTime startedUtc, DateTime? endedUtc, Exception exception, bool handled)
+        internal Error(IFlurlRequest request, IFlurlResponse response, DateTime startedUtc, DateTime? endedUtc, Exception exception, bool handled)
         {
             Request = request;
             Response = response;

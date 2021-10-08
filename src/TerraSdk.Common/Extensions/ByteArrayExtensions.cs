@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
-namespace TerraSdk.Client.Api.Extensions
+namespace TerraSdk.Common.Extensions
 {
     public static class ByteArrayExtensions
     {

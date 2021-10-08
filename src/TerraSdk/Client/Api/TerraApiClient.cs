@@ -8,10 +8,10 @@ using Newtonsoft.Json;
 using TerraSdk.Client.Api.Callbacks;
 using TerraSdk.Client.Api.Crypto;
 using TerraSdk.Client.Api.Endpoints;
-using TerraSdk.Client.Api.Extensions;
-using TerraSdk.Client.Api.Flurl;
-using TerraSdk.Client.Api.Serialization;
-using ISerializer = TerraSdk.Client.Api.Serialization.ISerializer;
+using TerraSdk.Common.Extensions;
+using TerraSdk.Common.Flurl;
+using TerraSdk.Common.Serialization;
+using ISerializer = TerraSdk.Common.Serialization.ISerializer;
 
 namespace TerraSdk.Client.Api
 {

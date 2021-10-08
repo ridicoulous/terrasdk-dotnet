@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
+using TerraSdk.Common.Exceptions;
 
-namespace TerraSdk.Client.Api.Serialization
+namespace TerraSdk.Common.Serialization
 {
     public class TypeValueConverter<TBaseType> : JsonConverter<TBaseType> where TBaseType: class
     {
         private readonly bool _dontWriteTypeValue = false;
         private string _registerTypeHint = "";
         internal readonly Dictionary<Type, string> TypeToJsonName = new Dictionary<Type, string>();
-        internal readonly Dictionary<string, Type> JsonNameToType = new Dictionary<string, Type>();
+        public readonly Dictionary<string, Type> JsonNameToType = new Dictionary<string, Type>();
 
         public TypeValueConverter(bool dontWriteTypeValue = default)
         {

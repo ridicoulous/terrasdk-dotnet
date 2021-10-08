@@ -2,17 +2,17 @@
 using System.Net.Http;
 using Flurl.Http;
 
-namespace TerraSdk.Client.Api
+namespace TerraSdk.Common.Exceptions
 {
     public class TerraHttpException : Exception
     {
         /// <summary>The HttpRequestMessage associated with this call.</summary>
-        public HttpRequestMessage Request { get; }
+        public IFlurlRequest Request { get; }
 
         /// <summary>
         /// HttpResponseMessage associated with the call if the call completed, otherwise null.
         /// </summary>
-        public HttpResponseMessage? Response { get; }
+        public IFlurlResponse Response { get; }
 
         /// <summary>DateTime the moment the request was sent.</summary>
         public DateTime StartedUtc { get; }
@@ -29,7 +29,7 @@ namespace TerraSdk.Client.Api
             Response = innerException.Call.Response;
             EndedUtc = innerException.Call.EndedUtc;
             StartedUtc = innerException.Call.StartedUtc;
-            Url = innerException.Call.FlurlRequest.Url;
+            Url = innerException.Call.Request.Url;
         }
     }
 }

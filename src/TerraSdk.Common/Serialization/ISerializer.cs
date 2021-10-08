@@ -1,7 +1,7 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace TerraSdk.Client.Api.Serialization
+namespace TerraSdk.Common.Serialization
 {
     public interface ISerializer
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Numerics;
 using Newtonsoft.Json;
-using TerraSdk.Client.Api.Serialization;
+using TerraSdk.Common.Serialization;
 
 namespace TerraSdk.Client.Api.Models
 {

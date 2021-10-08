@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using TerraSdk.Core.Bank.Msgs;
 
 namespace TerraSdk.Core
 {

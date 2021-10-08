@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TerraSdk.Client.Api.Extensions
+namespace TerraSdk.Common.Extensions
 {
     internal static class EnumerableExtensions
     {

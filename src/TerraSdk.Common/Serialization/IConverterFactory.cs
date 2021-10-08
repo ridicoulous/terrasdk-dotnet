@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace TerraSdk.Client.Api.Serialization
+namespace TerraSdk.Common.Serialization
 {
     public interface IConverterFactory
     {

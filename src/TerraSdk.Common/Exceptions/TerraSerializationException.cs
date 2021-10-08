@@ -1,7 +1,7 @@
 ﻿using System;
 using Flurl.Http;
 
-namespace TerraSdk.Client.Api
+namespace TerraSdk.Common.Exceptions
 {
     public class TerraSerializationException : Exception
     {

@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using ExtendedNumerics;
 using TerraSdk.Client.Api.Models;
+using TerraSdk.Common.Types.BigDecimal;
 
 namespace TerraSdk.Client.Api.Endpoints
 {

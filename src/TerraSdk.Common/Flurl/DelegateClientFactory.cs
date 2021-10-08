@@ -2,9 +2,9 @@
 using System.Net.Http;
 using Flurl.Http.Configuration;
 
-namespace TerraSdk.Client.Api.Flurl
+namespace TerraSdk.Common.Flurl
 {
-    internal class DelegateClientFactory : DefaultHttpClientFactory
+    public class DelegateClientFactory : DefaultHttpClientFactory
     {
         private Func<HttpMessageHandler, HttpClient>? _httpClientFactory;
         private Func<HttpMessageHandler>? _messageHandlerFactory;

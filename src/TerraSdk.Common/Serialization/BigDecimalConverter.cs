@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Globalization;
-using ExtendedNumerics;
 using Newtonsoft.Json;
+using TerraSdk.Common.Types.BigDecimal;
 
-namespace TerraSdk.Client.Api.Serialization
+namespace TerraSdk.Common.Serialization
 {
     public class BigDecimalConverter : JsonConverter
     {

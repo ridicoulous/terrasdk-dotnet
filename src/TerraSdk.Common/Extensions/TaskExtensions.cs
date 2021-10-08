@@ -1,9 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Flurl.Http;
+using TerraSdk.Common.Exceptions;
 
-namespace TerraSdk.Client.Api.Extensions
+namespace TerraSdk.Common.Extensions
 {
-    internal static class TaskExtensions
+    public static class TaskExtensions
     {
         public static T Sync<T>(this Task<T> task)
         {
