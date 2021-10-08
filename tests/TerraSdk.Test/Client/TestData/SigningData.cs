@@ -2,34 +2,26 @@
 using TerraSdk.Client.Models;
 using TerraSdk.Common.Extensions;
 using TerraSdk.Core;
-using StdFee = TerraSdk.Client.Models.StdFee;
+using TerraSdk.Core.Account;
+using TerraSdk.Core.Bank.Msgs;
+
 
 namespace TerraSdk.Test.Client.TestData
 {
     public class SigningData
     {
-        public static StdSignDoc StdSignDoc()
+        public static StdSignMsg StdSignDoc()
         {
-            return new StdSignDoc()
+            return new StdSignMsg(
+                "test_chain", 
+                13, 
+                17, 
+                new StdFee(100000, new Coins(new List<Coin>())), 
+                new []
             {
-                Fee = new StdFee(100000, new List<Coin>()),
-                Memo = "test_memo",
-                Sequence = 17,
-                AccountNumber = 13,
-                ChainId = "test_chain",
-                Messages = new List<IMsg>()
-                {
-                    new MsgSend()
-                    {
-                        FromAddress = "Terra1qypqxpq9qcuhfwyx",
-                        ToAddress = "Terra1v4nxw5wt6j7",
-                        Amount = new List<Coin>()
-                        {
-                            new Coin("foocoin", 10)
-                        }
-                    }
-                }
-            };
+                new MsgSend(new AccAddress("Terra1qypqxpq9qcuhfwyx"), new AccAddress("Terra1v4nxw5wt6j7"), Coins.From(new Coin("foocoin", 10))) {}
+            });
+
         }
 
         public static byte[] StdSignDocBytes() => ByteArrayExtensions.ParseHexString(

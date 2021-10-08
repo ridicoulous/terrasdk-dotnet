@@ -8,6 +8,7 @@ using NaCl;
 using NBitcoin.Secp256k1;
 using TerraSdk.Client.Models;
 using TerraSdk.Common.Extensions;
+using TerraSdk.Core;
 
 namespace TerraSdk.Client.Crypto
 {

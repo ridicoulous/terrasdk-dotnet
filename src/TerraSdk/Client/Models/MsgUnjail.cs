@@ -1,11 +1,12 @@
 ﻿using Newtonsoft.Json;
+using TerraSdk.Core;
 
 namespace TerraSdk.Client.Models
 {
     /// <summary>
     /// MsgUnjail - for unjailing jailed validator.
     /// </summary>
-    public class MsgUnjail : IMsg
+    public class MsgUnjail : Msg
     {
         /// <summary>
         /// Address of the validator operator.

@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using TerraSdk.Common.Serialization;
+using TerraSdk.Core;
 
 namespace TerraSdk.Client.Models
 {
@@ -17,7 +18,7 @@ namespace TerraSdk.Client.Models
         /// Initializes a new instance of the
         /// BroadcastTxBody class.
         /// </summary>
-        public BroadcastTxBody(ITx tx, BroadcastTxMode mode)
+        public BroadcastTxBody(StdTx tx, BroadcastTxMode mode)
         {
             Tx = tx;
             Mode = mode;
@@ -27,7 +28,7 @@ namespace TerraSdk.Client.Models
         /// </summary>
         [JsonProperty(PropertyName = "tx")]
         [JsonConverter(typeof(TypeValueConverter<ITx>), true)]
-        public ITx Tx { get; set; } = null!;
+        public StdTx Tx { get; set; } = null!;
 
         /// <summary>
         /// </summary>

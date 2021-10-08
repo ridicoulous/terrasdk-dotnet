@@ -106,8 +106,8 @@ namespace TerraSdk.Test.Key
         {
             var receiverAddr = "terra1ptdx6akgk7wwemlk5j73artt5t6j8am08ql3qv";
             var multisigAddr = "terra16ddrexknvk2e443jsnle4n6s2ewjc6z3mjcu6d";
-            var multisigAccountNumber = 46;
-            var multisigSequenceNumber = 0;
+            var multisigAccountNumber = (ulong)46;
+            var multisigSequenceNumber = (ulong)0;
 
             var a1Key = new MnemonicKey("swamp increase solar renew twelve easily possible pig ostrich harvest more indicate lion denial kind target small dumb mercy under proud arrive gentle field");
             Assert.Equal("terra12dazwl3yq6nwrce052ah3fudkarglsgvacyvl9", a1Key.AccAddress.Value);

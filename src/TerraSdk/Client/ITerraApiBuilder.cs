@@ -1,6 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 using TerraSdk.Client.Models;
+using TerraSdk.Core;
 
 namespace TerraSdk.Client
 {
@@ -40,7 +41,7 @@ namespace TerraSdk.Client
         /// </summary>
         /// <typeparam name="T">Type which might be used where <see cref="IMsg"/> is used.</typeparam>
         /// <param name="jsonName">Value of the type discriminator.</param>
-        ITerraApiBuilder RegisterMsgType<T>(string jsonName) where T : IMsg;
+        ITerraApiBuilder RegisterMsgType<T>(string jsonName) where T : Msg;
 
         /// <summary>
         /// Adds a possible subtype of the <see cref="IAccount"/> so it can be serialized

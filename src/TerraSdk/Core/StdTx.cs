@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using TerraSdk.Client.Models;
 using TerraSdk.Core.Bank;
 
 namespace TerraSdk.Core
@@ -13,6 +14,7 @@ namespace TerraSdk.Core
 
         public StdTx()
         {
+
         }
 
         //    /**
@@ -51,9 +53,7 @@ namespace TerraSdk.Core
             
             [JsonProperty("signatures")]
             public StdSignature[] Signatures { get; internal set; }
-
-
-
+            
             [JsonProperty("timeout_height"), JsonConverter(typeof(StringJsonConverter))]
             public int? TimeoutHeight { get; internal set; }
         }

@@ -4,7 +4,7 @@ using TerraSdk.Core;
 
 namespace TerraSdk.Client.Models
 {
-    public class MsgSubmitProposal : IMsg
+    public class MsgSubmitProposal : Msg
     {
         [JsonProperty("content")]
         public IProposalContent Content { get; set; } = null!;

@@ -5,7 +5,7 @@ using TerraSdk.Core;
 
 namespace TerraSdk.Client.Models
 {
-    public class MsgCreateValidator : IMsg
+    public class MsgCreateValidator : Msg
     {
         [JsonProperty("description")]
         public ValidatorDescription Description { get; set; } = null!;

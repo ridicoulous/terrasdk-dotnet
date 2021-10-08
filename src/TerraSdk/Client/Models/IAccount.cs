@@ -1,4 +1,6 @@
-﻿namespace TerraSdk.Client.Models
+﻿using TerraSdk.Core;
+
+namespace TerraSdk.Client.Models
 {
     public interface IAccount
     {

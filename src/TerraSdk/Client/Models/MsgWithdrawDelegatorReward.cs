@@ -1,11 +1,12 @@
 ﻿using Newtonsoft.Json;
+using TerraSdk.Core;
 
 namespace TerraSdk.Client.Models
 {
     /// <summary>
     /// Msg struct for delegation withdraw from a single validator.
     /// </summary>
-    public class MsgWithdrawDelegatorReward : IMsg
+    public class MsgWithdrawDelegatorReward : Msg
     {
         [JsonProperty("delegator_address")]
         public string DelegatorAddress { get; set; } = null!;

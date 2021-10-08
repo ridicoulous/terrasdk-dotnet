@@ -1,11 +1,12 @@
 ﻿using Newtonsoft.Json;
+using TerraSdk.Core;
 
 namespace TerraSdk.Client.Models
 {
     /// <summary>
     /// MsgVerifyInvariant - message struct to verify a particular invariance.
     /// </summary>
-    public class MsgVerifyInvariant : IMsg
+    public class MsgVerifyInvariant : Msg
     {
         [JsonProperty("sender")]
         public string Sender { get; set; } = null!;

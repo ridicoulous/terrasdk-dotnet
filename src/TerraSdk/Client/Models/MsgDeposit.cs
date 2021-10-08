@@ -5,7 +5,7 @@ using TerraSdk.Core;
 
 namespace TerraSdk.Client.Models
 {
-    public class MsgDeposit : IMsg
+    public class MsgDeposit : Msg
     {
         /// <summary>
         /// ID of the proposal.

@@ -1,9 +1,10 @@
 ﻿using Newtonsoft.Json;
 using TerraSdk.Common.Serialization;
+using TerraSdk.Core;
 
 namespace TerraSdk.Client.Models
 {
-    public class MsgVote : IMsg
+    public class MsgVote : Msg
     {
         /// <summary>
         /// ID of the proposal.

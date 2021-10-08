@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using TerraSdk.Common.Extensions;
 
 namespace TerraSdk.Core
 {
@@ -23,6 +24,12 @@ namespace TerraSdk.Core
         {
   
             Signature= signature;
+            PublicKey = publicKey;
+        }
+
+        public StdSignature(byte[] signedBytes, PublicKey publicKey)
+        {
+            Signature = signedBytes.ToBase64String();
             PublicKey = publicKey;
         }
 

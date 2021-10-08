@@ -2,6 +2,8 @@
 using System.Collections.Immutable;
 using Newtonsoft.Json;
 using TerraSdk.Client.Models;
+using TerraSdk.Core;
+using TerraSdk.Core.Bank.Msgs;
 
 namespace TerraSdk.Client
 {
@@ -53,7 +55,7 @@ namespace TerraSdk.Client
             return Configure(s => s.TxConverter.AddType<T>(jsonName));
         }
 
-        public ITerraApiBuilder RegisterMsgType<T>(string jsonName) where T : IMsg
+        public ITerraApiBuilder RegisterMsgType<T>(string jsonName) where T : Msg
         {
             return Configure(s => s.MsgConverter.AddType<T>(jsonName));
         }

@@ -7,6 +7,7 @@ using TerraSdk.Client.Callbacks;
 using TerraSdk.Client.Crypto;
 using TerraSdk.Client.Models;
 using TerraSdk.Common.Serialization;
+using TerraSdk.Core;
 
 namespace TerraSdk.Client
 {
@@ -101,7 +102,7 @@ namespace TerraSdk.Client
         
         internal TypeValueConverter<ITx> TxConverter { get; } = new TypeValueConverter<ITx>($"Call {nameof(ITerraApiBuilder)}.{nameof(ITerraApiBuilder.RegisterTxType)} to register discriminator/type pair.");
         
-        internal TypeValueConverter<IMsg> MsgConverter { get; } = new TypeValueConverter<IMsg>($"Call {nameof(ITerraApiBuilder)}.{nameof(ITerraApiBuilder.RegisterMsgType)} to register discriminator/type pair.");
+        internal TypeValueConverter<Msg> MsgConverter { get; } = new TypeValueConverter<Msg>($"Call {nameof(ITerraApiBuilder)}.{nameof(ITerraApiBuilder.RegisterMsgType)} to register discriminator/type pair.");
 
         internal TypeValueConverter<IAccount> AccountConverter { get; } = new TypeValueConverter<IAccount>($"Call {nameof(ITerraApiBuilder)}.{nameof(ITerraApiBuilder.RegisterAccountType)} to register discriminator/type pair.");
         

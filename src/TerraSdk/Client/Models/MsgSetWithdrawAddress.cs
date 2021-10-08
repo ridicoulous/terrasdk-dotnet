@@ -1,11 +1,12 @@
 ﻿using Newtonsoft.Json;
+using TerraSdk.Core;
 
 namespace TerraSdk.Client.Models
 {
     /// <summary>
     /// Msg for changing the withdraw address for a delegator (or validator self-delegation).
     /// </summary>
-    public class MsgSetWithdrawAddress : IMsg
+    public class MsgSetWithdrawAddress : Msg
     {
         [JsonProperty("delegator_address")]
         public string DelegatorAddress { get; set; } = null!;

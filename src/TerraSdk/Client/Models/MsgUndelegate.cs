@@ -6,7 +6,7 @@ namespace TerraSdk.Client.Models
     /// <summary>
     /// MsgUndelegate - struct for unbonding transactions.
     /// </summary>
-    public class MsgUndelegate : IMsg
+    public class MsgUndelegate : Msg
     {
         [JsonProperty("delegator_address")]
         public string DelegatorAddress { get; set; } = null!;

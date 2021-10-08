@@ -16,6 +16,14 @@
 	  <Compile Remove="Client\Endpoints\Staking.cs" />
 	  <Compile Remove="Client\Models\Coin.cs" />
 	  <Compile Remove="Client\Models\DecCoin.cs" />
+	  <Compile Remove="Client\Models\IMsg.cs" />
+	  <Compile Remove="Client\Models\MsgMultiSend.cs" />
+	  <Compile Remove="Client\Models\MsgSend.cs" />
+	  <Compile Remove="Client\Models\PublicKey.cs" />
+	  <Compile Remove="Client\Models\StdFee.cs" />
+	  <Compile Remove="Client\Models\StdSignature.cs" />
+	  <Compile Remove="Client\Models\StdSignDoc.cs" />
+	  <Compile Remove="Client\Models\StdTx.cs" />
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="Flurl" Version="3.0.2" />

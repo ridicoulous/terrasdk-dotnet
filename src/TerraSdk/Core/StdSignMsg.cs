@@ -12,7 +12,7 @@ namespace TerraSdk.Core
     public class StdSignMsg 
     {
         [JsonProperty("account_number"), JsonConverter(typeof(StringJsonConverter))]
-        public int AccountNumber { get; }
+        public ulong AccountNumber { get; }
         [JsonProperty("chain_id")]
         public string ChainId { get; }
         
@@ -26,7 +26,7 @@ namespace TerraSdk.Core
         public Msg[] Msgs { get; }
 
         [JsonProperty("sequence"), JsonConverter(typeof(StringJsonConverter))]
-        public int Sequence { get; }
+        public ulong Sequence { get; }
         
         [JsonProperty("timeout_height"), JsonConverter(typeof(StringJsonConverter))]
         //[JsonIgnore]
@@ -43,7 +43,7 @@ namespace TerraSdk.Core
          * @param msgs list of messages to include
          * @param memo optional note
          */
-        public StdSignMsg(string chainId, int accountNumber, int sequence, StdFee fee, Msg[] msgs, string memo = "", int? timeoutHeight=null)
+        public StdSignMsg(string chainId, ulong accountNumber, ulong sequence, StdFee fee, Msg[] msgs, string memo = "", int? timeoutHeight=null)
         {
 
             ChainId = chainId;

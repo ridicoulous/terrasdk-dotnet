@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using TerraSdk.Client.Crypto;
@@ -9,8 +10,9 @@ using TerraSdk.Client.Endpoints;
 using TerraSdk.Client.Models;
 using TerraSdk.Common.Serialization;
 using TerraSdk.Core;
-using StdFee = TerraSdk.Client.Models.StdFee;
-using StdTx = TerraSdk.Client.Models.StdTx;
+using TerraSdk.Core.Account;
+using TerraSdk.Core.Bank.Msgs;
+
 
 namespace TerraSdk.Client
 {
@@ -45,18 +47,8 @@ namespace TerraSdk.Client
         /// <param name="cancellationToken"></param>
         public Task<BroadcastTxResult> SendAsync(string fromAddress, string toAddress, IList<Coin> coins, BroadcastTxMode mode, StdFee fee, string privateKey, string passphrase, string memo = "" , CancellationToken cancellationToken = default)
         {
-            var msg = new MsgSend()
-            {
-                FromAddress = fromAddress,
-                ToAddress = toAddress,
-                Amount = coins,
-            };
-            var tx = new StdTx()
-            {
-                Msg = new List<IMsg>() { msg },
-                Memo = memo,
-                Fee = fee,
-            };
+            var msg = new MsgSend(new AccAddress(fromAddress),new AccAddress(toAddress), new Coins(coins) ) {};
+            var tx = new StdTx(new []{ msg },fee,new StdSignature[]{} ,memo ,null) { };
 
             return SignAndBroadcastStdTxAsync(tx, new[] {new SignerWithAddress(fromAddress, privateKey, passphrase)}, mode, cancellationToken);
         }

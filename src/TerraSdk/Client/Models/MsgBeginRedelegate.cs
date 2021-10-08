@@ -3,7 +3,7 @@ using TerraSdk.Core;
 
 namespace TerraSdk.Client.Models
 {
-    public class MsgBeginRedelegate : IMsg
+    public class MsgBeginRedelegate : Msg
     {
         [JsonProperty("delegator_address")]
         public string DelegatorAddress { get; set; } = null!;
