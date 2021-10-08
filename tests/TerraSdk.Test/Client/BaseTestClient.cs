@@ -177,7 +177,7 @@ namespace TerraSdk.Test.Client
             //Assert.NotEmpty(delegateMsg.ValidatorAddress);
         }
 
-        public async Task InitializeAsync()
+        public Task InitializeAsync()
         {
         //    var client = CreateSilentClient(Configuration.LocalBaseUrl).CreateClient();
         //    var proposals = await client.Governance.GetProposalsAsync(depositor: Configuration.LocalAccount1Address);
@@ -195,6 +195,9 @@ namespace TerraSdk.Test.Client
         //    await CreateVoteNo(client);
         //    await CreateVoteAbstain(client);
         //    await CreateVoteYes(client);
+
+        return Task.FromResult(true);
+
         }
 
         //private async Task CreateVoteAbstain(ITerraApiClient client)

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Diagnostics;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TerraSdk.Common.Helpers;
 using TerraSdk.Core;
@@ -30,11 +31,12 @@ namespace TerraSdk.Test.Core
             Output.WriteLine(signatureJson);
 
             var data = JsonConvert.DeserializeObject<StdSignature>(signatureJson);
-            var dataOutJson = data.ToJson();
+            var dataOutJson = data?.ToJson();
 
             Output.WriteLine("Output JSON:");
-            Output.WriteLine(dataOutJson.FormatJson());
+            Output.WriteLine(dataOutJson?.FormatJson());
 
+            Debug.Assert(dataOutJson != null, nameof(dataOutJson) + " != null");
             Assert.True(JToken.DeepEquals(JToken.Parse(signatureJson), JToken.Parse(dataOutJson)));
         }
     }

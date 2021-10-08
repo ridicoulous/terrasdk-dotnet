@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Diagnostics;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TerraSdk.Common.Helpers;
 using TerraSdk.Core;
@@ -38,6 +39,7 @@ namespace TerraSdk.Test.Core.Bank.Msgs
 
             var data = JsonConvert.DeserializeObject<MsgData>(json);
 
+            Debug.Assert(data != null, nameof(data) + " != null");
             var send = MsgSend.FromData(data);
 
             var toData = send.ToData();

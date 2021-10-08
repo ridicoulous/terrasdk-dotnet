@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using Newtonsoft.Json;
 using TerraSdk.Common.Helpers;
@@ -21,11 +22,11 @@ namespace TerraSdk.Test.Key
 
         public class Data
         {
-            public string Mnemonic { get; set; }
-            public string AccAddress { get; set; }
-            public string AccPubKey { get; set; }
-            public string ValAddress { get; set; }
-            public string ValPubKey { get; set; }
+            public string? Mnemonic { get; set; }
+            public string? AccAddress { get; set; }
+            public string? AccPubKey { get; set; }
+            public string? ValAddress { get; set; }
+            public string? ValPubKey { get; set; }
         }
 
         [Fact]
@@ -155,6 +156,7 @@ namespace TerraSdk.Test.Key
             }".FormatJson();
 
             var signature = JsonConvert.DeserializeObject<StdSignature>(signatureJson);
+            Debug.Assert(signature != null, nameof(signature) + " != null");
             var stdTx = new StdTx(new Msg[] { msgSend }, fee, new[] { signature }, null, null);
             ExtensionsForTesting.Dump(stdTx.ToData());
         }

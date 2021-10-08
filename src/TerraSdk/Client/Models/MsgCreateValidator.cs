@@ -26,7 +26,7 @@ namespace TerraSdk.Client.Models
         public string PubKey { get; set; } = null!;
         
         [JsonProperty("value")]
-        public IList<Coin> Value { get; set; } = null!;
+        public IList<Coin>? Value { get; set; } = null!;
 
         public MsgCreateValidator()
         {

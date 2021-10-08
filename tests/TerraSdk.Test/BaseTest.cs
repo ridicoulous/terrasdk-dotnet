@@ -32,7 +32,7 @@ namespace TerraSdk.Test
                 output.WriteLine(message);
             }
 
-            public override void WriteLine(string? format, params object[] args)
+            public override void WriteLine(string? format, params object?[] args)
             {
                 output.WriteLine(format, args);
             }

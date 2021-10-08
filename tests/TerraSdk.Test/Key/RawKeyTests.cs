@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -19,11 +20,11 @@ namespace TerraSdk.Test.Key
         }
         public class Data
         {
-            public string Mnemonic { get; set; }
-            public string AccAddress { get; set; }
-            public string AccPubKey { get; set; }
-            public string ValAddress { get; set; }
-            public string ValPubKey { get; set; }
+            public string? Mnemonic { get; set; }
+            public string? AccAddress { get; set; }
+            public string? AccPubKey { get; set; }
+            public string? ValAddress { get; set; }
+            public string? ValPubKey { get; set; }
         }
         
         [Fact]
@@ -69,6 +70,7 @@ namespace TerraSdk.Test.Key
                 // ExtensionsForTesting.Dump(exm);
 
                 var mk = new MnemonicKey(new MnemonicKeyOptions { Mnemonic = exm.Mnemonic });
+                Debug.Assert(mk.PrivateKey != null, "mk.PrivateKey != null");
                 var rk = new RawKey(mk.PrivateKey);
 
                 Assert.Equal(exm.AccAddress, rk.AccAddress.Value);
@@ -82,6 +84,7 @@ namespace TerraSdk.Test.Key
         public void RawKey_signature()
         {
             var mk = new MnemonicKey(new MnemonicKeyOptions { Mnemonic = "island relax shop such yellow opinion find know caught erode blue dolphin behind coach tattoo light focus snake common size analyst imitate employ walnut" });
+            Debug.Assert(mk.PrivateKey != null, "mk.PrivateKey != null");
             var rk = new RawKey(mk.PrivateKey);
             var accAddress = rk.AccAddress;
 

@@ -24,7 +24,7 @@ namespace TerraSdk.Core
         //     * @param memo optional note
         //     * @param timeout_height optional tx timeout
         //     */
-        public StdTx(Msg[] msg, StdFee fee, StdSignature[] signatures, string memo, int? timeoutHeight)
+        public StdTx(Msg[] msg, StdFee fee, StdSignature[] signatures, string? memo, int? timeoutHeight)
         {
             Type = InternalType;
             Value = new MsgValue
