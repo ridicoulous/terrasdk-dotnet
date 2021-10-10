@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using TerraSdk.Client.Models;
 using TerraSdk.Core.Bank;
 
 namespace TerraSdk.Core

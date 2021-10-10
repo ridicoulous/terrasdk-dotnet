@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TerraSdk.Client.Models;
+using TerraSdk.Client.ModelsOld;
 using TerraSdk.Common.Serialization;
 using TerraSdk.Core;
 

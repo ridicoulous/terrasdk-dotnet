@@ -1,6 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
-using TerraSdk.Client.Models;
+using TerraSdk.Client.ModelsOld;
 using TerraSdk.Core;
 
 namespace TerraSdk.Client

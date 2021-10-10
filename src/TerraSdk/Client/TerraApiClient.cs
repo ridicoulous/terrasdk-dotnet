@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using TerraSdk.Client.Callbacks;
 using TerraSdk.Client.Crypto;
 using TerraSdk.Client.Endpoints;
+using TerraSdk.Client.Endpoints.Bank;
 using TerraSdk.Common.Extensions;
 using TerraSdk.Common.Flurl;
 using TerraSdk.Common.Serialization;
@@ -29,7 +30,7 @@ namespace TerraSdk.Client
             TendermintRpc = new TendermintRPC(GetClient);
             Transactions = new Transactions(GetClient);
             Auth = new Auth(GetClient);
-            Bank = new Bank(GetClient);
+            BankApiService = new BankApiService(GetClient);
             //Staking = new Staking(GetClient);
             //Governance = new Governance(GetClient);
             //Slashing = new Slashing(GetClient);
@@ -43,7 +44,7 @@ namespace TerraSdk.Client
         public ITendermintRPC TendermintRpc { get; }
         public ITransactions Transactions { get; }
         public IAuth Auth { get; }
-        public IBank Bank { get; }
+        public IBankApiService BankApiService { get; }
         //public IStaking Staking { get; }
         //public IGovernance Governance { get; }
         //public ISlashing Slashing { get; }

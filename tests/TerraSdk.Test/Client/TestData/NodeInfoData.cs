@@ -1,4 +1,4 @@
-﻿using TerraSdk.Client.Models;
+﻿using TerraSdk.Client.ModelsOld;
 
 namespace TerraSdk.Test.Client.TestData
 {

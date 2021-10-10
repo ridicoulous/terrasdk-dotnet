@@ -1,6 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
-using TerraSdk.Client.Models;
+using TerraSdk.Client.ModelsOld;
 
 namespace TerraSdk.Client.Endpoints
 {

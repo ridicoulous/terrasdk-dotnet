@@ -3,7 +3,7 @@
 describe('LCDClient', () => {
   it('runs', async () => {
     // const terra = new LCDClient({
-    //   chainID: 'columbus-5',
+    //   chainID: 'columbus-4',
     //   URL: 'https://lcd.terra.dev',
     // });
   });

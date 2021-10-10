@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using TerraSdk.Client.Callbacks;
 using TerraSdk.Client.Crypto;
-using TerraSdk.Client.Models;
+using TerraSdk.Client.ModelsOld;
 using TerraSdk.Common.Serialization;
 using TerraSdk.Core;
 

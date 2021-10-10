@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Immutable;
 using Newtonsoft.Json;
-using TerraSdk.Client.Models;
+using TerraSdk.Client.ModelsOld;
 using TerraSdk.Core;
 using TerraSdk.Core.Bank.Msgs;
 
@@ -9,11 +9,11 @@ namespace TerraSdk.Client
 {
     public class TerraApiBuilder : ITerraApiBuilder
     {
-        private readonly ImmutableList<Action<TerraApiClientSettings>> _settingConfigurators = ImmutableList.Create<Action<TerraApiClientSettings>>();
+        private readonly ImmutableList<Action<TerraApiClientSettings>> settingConfigurators = ImmutableList.Create<Action<TerraApiClientSettings>>();
 
         internal TerraApiBuilder(ImmutableList<Action<TerraApiClientSettings>> settingConfigurators)
         {
-            _settingConfigurators = settingConfigurators;
+            this.settingConfigurators = settingConfigurators;
         }
 
         public TerraApiBuilder()
@@ -23,7 +23,7 @@ namespace TerraSdk.Client
         public ITerraApiClient CreateClient()
         {
             var settings = new TerraApiClientSettings();
-            foreach (var configurator in _settingConfigurators)
+            foreach (var configurator in settingConfigurators)
             {
                 configurator(settings);
             }
@@ -33,7 +33,7 @@ namespace TerraSdk.Client
 
         public ITerraApiBuilder Configure(Action<TerraApiClientSettings> configurator)
         {
-            return new TerraApiBuilder(_settingConfigurators.Add(configurator));
+            return new TerraApiBuilder(settingConfigurators.Add(configurator));
         }
 
         public ITerraApiBuilder UseAuthorization(string username, string password)

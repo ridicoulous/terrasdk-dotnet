@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using TerraSdk.Client.Models;
+using TerraSdk.Client.ModelsOld;
 using TerraSdk.Common.Extensions;
 
 namespace TerraSdk.Test.Client.TestData

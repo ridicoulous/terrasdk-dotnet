@@ -7,7 +7,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using TerraSdk.Client.Crypto;
 using TerraSdk.Client.Endpoints;
-using TerraSdk.Client.Models;
+using TerraSdk.Client.Endpoints.Bank;
+using TerraSdk.Client.ModelsOld;
 using TerraSdk.Common.Serialization;
 using TerraSdk.Core;
 using TerraSdk.Core.Account;
@@ -22,7 +23,7 @@ namespace TerraSdk.Client
         ITendermintRPC TendermintRpc { get; }
         ITransactions Transactions { get; }
         IAuth Auth { get; }
-        IBank Bank { get; }
+        IBankApiService BankApiService { get; }
         //IStaking Staking { get; }
         //IGovernance Governance { get; }
         //ISlashing Slashing { get; }

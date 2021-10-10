@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using TerraSdk.Client.Models;
 using TerraSdk.Common.Extensions;
 using TerraSdk.Core;
 using TerraSdk.Core.Account;
