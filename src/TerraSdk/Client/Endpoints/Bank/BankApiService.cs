@@ -23,11 +23,11 @@ namespace TerraSdk.Client.Endpoints.Bank
                 .WrapExceptions();
         }
 
-        public Task<Supply> GetTotalSupplyAsync(CancellationToken cancellationToken = default)
+        public Task<Balance> GetTotalSupplyAsync(CancellationToken cancellationToken = default)
         {
             return clientGetter()
-                .Request("bank", "total")
-                .GetJsonAsync<Supply>(cancellationToken)
+                .Request("cosmos","bank", "v1beta1", "supply")
+                .GetJsonAsync<Balance>(cancellationToken)
                 .WrapExceptions();
         }
     }

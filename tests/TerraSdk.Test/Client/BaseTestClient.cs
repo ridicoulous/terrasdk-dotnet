@@ -21,7 +21,7 @@ namespace TerraSdk.Test.Client
         public ITestOutputHelper OutputHelper { get; }
         public TestConfiguration Configuration { get; }
 
-        protected IFlurlResponse? LastResponse { get; set; }
+        protected string? LastResponseJson { get; set; }
 
         public Task InitializeAsync()
         {
@@ -84,7 +84,7 @@ namespace TerraSdk.Test.Client
                             await WriteContent(response.ResponseMessage.Content);
                         }
 
-                        LastResponse = afterCall?.Response;
+                     
                     };
                     s.OnBeforeCallAsync = async beforeCall =>
                     {
@@ -122,6 +122,7 @@ namespace TerraSdk.Test.Client
                 try
                 {
                     var contentString = await content.ReadAsStringAsync();
+                    LastResponseJson = contentString;
                     WriteLineCutIfTooLong(contentString, "Content is too long, cutting");
                 }
                 catch (ObjectDisposedException)

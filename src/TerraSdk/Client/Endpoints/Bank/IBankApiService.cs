@@ -21,12 +21,8 @@ namespace TerraSdk.Client.Endpoints.Bank
         Task<Balance> GetBalanceAsync(string address, CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Get the account balances.
+        /// Get the total supply.
         /// </summary>
-        /// <param name='address'>
-        /// Account address in bech32 format.
-        /// </param>
-
-        Task<Supply> GetTotalSupplyAsync(CancellationToken cancellationToken = default);
+        Task<Balance> GetTotalSupplyAsync(CancellationToken cancellationToken = default);
     }
 }

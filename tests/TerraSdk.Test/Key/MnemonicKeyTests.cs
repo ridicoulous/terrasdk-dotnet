@@ -69,7 +69,7 @@ namespace TerraSdk.Test.Key
 
             foreach (var exm in examples)
             {
-                // ExtensionsForTesting.Dump(exm);
+                // ExtensionsForTesting.DumpToConsole(exm);
 
                 var mk = new MnemonicKey(new MnemonicKeyOptions { Mnemonic = exm.Mnemonic });
 
@@ -173,7 +173,7 @@ namespace TerraSdk.Test.Key
 
             var msgMultiSend = new MsgMultiSend(new []{i1}, new[]{o1,o2});
 
-            //msgMultiSend.ToData().Dump();
+            //msgMultiSend.ToData().DumpToConsole();
 
             var fee = new StdFee(100000, Coins.From( new Coin ("uluna", 1500), new Coin( "usdr", 1000) ));
             var stdSignMsg = new StdSignMsg("columbus-3-testnet", 47, 0, fee, new Msg[] { msgMultiSend },"1234");
@@ -185,7 +185,7 @@ namespace TerraSdk.Test.Key
             
             var tx = key.SignTx(stdSignMsg);
 
-            // ExtensionsForTesting.Dump(tx.ToData());
+            // ExtensionsForTesting.DumpToConsole(tx.ToData());
 
             var newSig = ((StdTx.MsgValue)tx.Value).Signatures[0].Signature;
 

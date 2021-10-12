@@ -2,6 +2,7 @@
 using System.Text.Json;
 using System.Threading.Tasks;
 using TerraSdk.Client;
+using TerraSdk.Common;
 using TerraSdk.Common.Exceptions;
 using TerraSdk.Common.Helpers;
 using TerraSdk.Test.Utils;
@@ -30,8 +31,7 @@ namespace TerraSdk.Test.Client.Endpoints
         {
      
             var balance = await client.BankApiService.GetBalanceAsync("terra1wg2mlrxdmnnkkykgqg4znky86nyrtc45q336yv");
-            balance.Dump();
-
+            balance.DumpToConsole();
             Assert.NotNull(balance);
 
         }

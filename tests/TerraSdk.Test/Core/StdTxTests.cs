@@ -17,16 +17,16 @@ namespace TerraSdk.Test.Core
         public void StdTx_deserializes()
         {
             var stdTxData = File.ReadAllText("../../../Core/StdTx.data.json");
-            // stdTxData.Dump();
+            // stdTxData.DumpToConsole();
             var msgDatas = stdTxData.FromJson<MsgData[]>();
             foreach (var msgData in msgDatas)
             {
                 // Output.WriteLine("Test JSON");
-                // msgData.Dump();
+                // msgData.DumpToConsole();
                 var stdTx = StdTx.FromData(msgData);
                 var dataOutput = stdTx.ToData();
                 // Output.WriteLine("Output JSON");
-                //dataOutput.Dump();
+                //dataOutput.DumpToConsole();
 
                 CompareExtensions.CompareObj(msgData, dataOutput);
             }

@@ -1,24 +1,24 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
 using Xunit.Abstractions;
 
 namespace TerraSdk.Test.Utils
 {
     public static class ExtensionsForTesting
     {
-        public static void Dump(this object obj)
+        public static void DumpToConsole(this object obj)
         {
-            Console.WriteLine(obj.DumpString());
+            Console.WriteLine(obj.DumpToString());
         }
 
-        public static string DumpString(this object obj)
+        public static string DumpToString(this object obj)
         {
             return JsonConvert.SerializeObject(obj, Formatting.Indented);
         }
 
-        public static void Dump(this ITestOutputHelper console, object obj)
+        public static void DumpToConsole(this ITestOutputHelper console, object obj)
         {
-            Console.WriteLine(obj.DumpString());
+            Console.WriteLine(obj.DumpToString());
         }
     }
 }

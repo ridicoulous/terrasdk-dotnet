@@ -67,7 +67,7 @@ namespace TerraSdk.Test.Key
 
             foreach (var exm in examples)
             {
-                // ExtensionsForTesting.Dump(exm);
+                // ExtensionsForTesting.DumpToConsole(exm);
 
                 var mk = new MnemonicKey(new MnemonicKeyOptions { Mnemonic = exm.Mnemonic });
                 Debug.Assert(mk.PrivateKey != null, "mk.PrivateKey != null");
