@@ -15,6 +15,27 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TerraSdk.Test.Crypto", "tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TerraSdk.Common", "src\TerraSdk.Common\TerraSdk.Common.csproj", "{58AFBBBE-67FE-495F-B9EE-8CAC3B7C22F7}"
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "terra.js", "src\terra.js\", "{5C358473-8A8A-45BF-9DA8-B4D4AC99FA20}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_61705"
+		Debug.AspNetCompiler.PhysicalPath = "src\terra.js\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_61705\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_61705"
+		Release.AspNetCompiler.PhysicalPath = "src\terra.js\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_61705\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "61705"
+		SlnRelativePath = "src\terra.js\"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +66,10 @@ Global
 		{58AFBBBE-67FE-495F-B9EE-8CAC3B7C22F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58AFBBBE-67FE-495F-B9EE-8CAC3B7C22F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58AFBBBE-67FE-495F-B9EE-8CAC3B7C22F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C358473-8A8A-45BF-9DA8-B4D4AC99FA20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C358473-8A8A-45BF-9DA8-B4D4AC99FA20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C358473-8A8A-45BF-9DA8-B4D4AC99FA20}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C358473-8A8A-45BF-9DA8-B4D4AC99FA20}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
