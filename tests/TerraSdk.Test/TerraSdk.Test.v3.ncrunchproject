@@ -11,9 +11,6 @@
         <TestName>TerraSdk.Test.Key.KeyTests.AddressFromPublicKey</TestName>
       </NamedTestSelector>
       <FixtureTestSelector>
-        <FixtureName>TerraSdk.Test.Core.AccountTests</FixtureName>
-      </FixtureTestSelector>
-      <FixtureTestSelector>
         <FixtureName>TerraSdk.Test.Key.MsgSendTests</FixtureName>
       </FixtureTestSelector>
       <FixtureTestSelector>
@@ -75,6 +72,12 @@
       </FixtureTestSelector>
       <FixtureTestSelector>
         <FixtureName>TerraSdk.Test.Client.ClientTests</FixtureName>
+      </FixtureTestSelector>
+      <FixtureTestSelector>
+        <FixtureName>TerraSdk.Test.Client.Serialization.HexStringByteArrayConverterTest</FixtureName>
+      </FixtureTestSelector>
+      <FixtureTestSelector>
+        <FixtureName>TerraSdk.Test.Core.AccountTests</FixtureName>
       </FixtureTestSelector>
     </IgnoredTests>
   </Settings>

@@ -46,6 +46,7 @@
       <NamedTestSelector>
         <TestName>TerraSdk.Test.Crypto.Bip32.Ed25519HdKeyTests.TestHdKey1</TestName>
       </NamedTestSelector>
+      <AllTestsSelector />
     </IgnoredTests>
   </Settings>
 </ProjectConfiguration>
