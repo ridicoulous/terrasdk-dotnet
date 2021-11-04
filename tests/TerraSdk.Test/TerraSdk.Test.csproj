@@ -49,6 +49,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\src\TerraSdk.Common\TerraSdk.Common.csproj" />
 		<ProjectReference Include="..\..\src\TerraSdk\TerraSdk.csproj" />
 	</ItemGroup>
 
@@ -68,10 +69,6 @@
 		<None Update="Key\RawKey_StdSignMsg.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Client\" />
 	</ItemGroup>
 
 </Project>

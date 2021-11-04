@@ -21,7 +21,7 @@ namespace TerraSdk.ClientOld.Endpoints
             return _clientGetter()
                 .Request("syncing")
                 .GetJsonAsync<NodeSyncingStatus>(cancellationToken: cancellationToken)
-                .WrapExceptions();
+                .WrapExceptionsOld();
         }
 
         public NodeSyncingStatus GetSyncing()
@@ -34,7 +34,7 @@ namespace TerraSdk.ClientOld.Endpoints
             return _clientGetter()
                 .Request("blocks", "latest")
                 .GetJsonAsync<BlockQuery>(cancellationToken)
-                .WrapExceptions();
+                .WrapExceptionsOld();
         }
 
         public BlockQuery GetLatestBlock()
@@ -47,7 +47,7 @@ namespace TerraSdk.ClientOld.Endpoints
             return _clientGetter()
                 .Request("blocks", height)
                 .GetJsonAsync<BlockQuery>(cancellationToken)
-                .WrapExceptions();
+                .WrapExceptionsOld();
         }
 
         public BlockQuery GetBlockByHeight(long height)
@@ -60,7 +60,7 @@ namespace TerraSdk.ClientOld.Endpoints
             return _clientGetter()
                 .Request("validatorsets", "latest")
                 .GetJsonAsync<ResponseWithHeight<ValidatorSet>>(cancellationToken: cancellationToken)
-                .WrapExceptions();
+                .WrapExceptionsOld();
         }
 
         public ResponseWithHeight<ValidatorSet> GetLatestValidatorSet()
@@ -73,7 +73,7 @@ namespace TerraSdk.ClientOld.Endpoints
             return _clientGetter()
                 .Request("validatorsets", height)
                 .GetJsonAsync<ResponseWithHeight<ValidatorSet>>(cancellationToken: cancellationToken)
-                .WrapExceptions();
+                .WrapExceptionsOld();
         }
 
         public ResponseWithHeight<ValidatorSet> GetValidatorSetByHeight(long height)

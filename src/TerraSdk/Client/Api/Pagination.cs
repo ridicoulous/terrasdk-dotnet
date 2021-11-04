@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using TerraSdk.Core.Bank;
 
-namespace TerraSdk.ClientOld.Model
+namespace TerraSdk.Client.Api
 {
     public class Pagination
     {

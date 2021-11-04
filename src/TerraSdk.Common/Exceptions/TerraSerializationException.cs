@@ -1,5 +1,6 @@
 ﻿using System;
 using Flurl.Http;
+using RestClient.Net;
 
 namespace TerraSdk.Common.Exceptions
 {
@@ -12,5 +13,15 @@ namespace TerraSdk.Common.Exceptions
         public TerraSerializationException(FlurlParsingException ex) : base(ex.Message, ex)
         {
         }
+
+
+        public TerraSerializationException(DeserializationException ex) : base(ex.Message, ex)
+        {
+        }
+
+
+        
+
+
     }
 }

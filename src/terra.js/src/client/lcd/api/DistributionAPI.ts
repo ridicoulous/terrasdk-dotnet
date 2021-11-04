@@ -1,3 +1,4 @@
+/// <reference path="distributionapi.spec.ts" />
 import { BaseAPI } from './BaseAPI';
 import { Coins, AccAddress, Dec, ValAddress } from '../../../core';
 import { APIParams } from '../APIRequester';

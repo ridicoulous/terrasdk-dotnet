@@ -28,7 +28,7 @@ namespace TerraSdk.ClientOld.Endpoints
                 .SetQueryParam("tx.minheight", minHeight)
                 .SetQueryParam("tx.maxheight", maxHeight)
                 .GetJsonAsync<PaginatedTxs>(cancellationToken)
-                .WrapExceptions();
+                .WrapExceptionsOld();
         }
 
         public PaginatedTxs GetSearch(string? messageAction, string? messageSender, int? page = default, int? limit = default,
@@ -42,7 +42,7 @@ namespace TerraSdk.ClientOld.Endpoints
             return _clientGetter()
                 .Request("txs", hash.ToHexString())
                 .GetJsonAsync<TxResponse>(cancellationToken)
-                .WrapExceptions();
+                .WrapExceptionsOld();
         }
 
         public TxResponse GetByHash(byte[] hash)
@@ -56,7 +56,7 @@ namespace TerraSdk.ClientOld.Endpoints
                 .Request("txs")
                 .PostJsonAsync(txBroadcast, cancellationToken)
                 .ReceiveJson<BroadcastTxResult>()
-                .WrapExceptions();
+                .WrapExceptionsOld();
         }
 
         public BroadcastTxResult PostBroadcast(BroadcastTxBody txBroadcast)
@@ -70,7 +70,7 @@ namespace TerraSdk.ClientOld.Endpoints
                 .Request("txs", "encode")
                 .PostJsonAsync(tx, cancellationToken)
                 .ReceiveJson<EncodeTxResponse>()
-                .WrapExceptions();
+                .WrapExceptionsOld();
         }
     }
 }

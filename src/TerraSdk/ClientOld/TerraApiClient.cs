@@ -5,10 +5,10 @@ using System.Threading;
 using Flurl.Http;
 using Flurl.Http.Configuration;
 using Newtonsoft.Json;
+using TerraSdk.Client.Api.Bank;
 using TerraSdk.ClientOld.Callbacks;
 using TerraSdk.ClientOld.Crypto;
 using TerraSdk.ClientOld.Endpoints;
-using TerraSdk.ClientOld.Endpoints.Bank;
 using TerraSdk.Common.Extensions;
 using TerraSdk.Common.Flurl;
 using TerraSdk.Common.Serialization;
@@ -30,7 +30,7 @@ namespace TerraSdk.ClientOld
             TendermintRpc = new TendermintRPC(GetClient);
             Transactions = new Transactions(GetClient);
             Auth = new Auth(GetClient);
-            BankApiService = new BankApiService(GetClient);
+            //BankApiService = new BankApiService(GetClient);
             //Staking = new Staking(GetClient);
             //Governance = new Governance(GetClient);
             //Slashing = new Slashing(GetClient);
@@ -78,7 +78,7 @@ namespace TerraSdk.ClientOld
                     {
                         s.OnError = call =>
                         {
-                            var error = new Error(call.Request, call.Response, call.StartedUtc, call.EndedUtc, call.Exception.WrapException(), call.ExceptionHandled);
+                            var error = new Error(call.Request, call.Response, call.StartedUtc, call.EndedUtc, call.Exception.WrapExceptionOld(), call.ExceptionHandled);
                             _settings.OnError(error);
                             call.ExceptionHandled = error.Handled;
                         };
@@ -87,7 +87,7 @@ namespace TerraSdk.ClientOld
                     {
                         s.OnErrorAsync = async call =>
                         {
-                            var error = new Error(call.Request, call.Response, call.StartedUtc, call.EndedUtc, call.Exception.WrapException(), call.ExceptionHandled);
+                            var error = new Error(call.Request, call.Response, call.StartedUtc, call.EndedUtc, call.Exception.WrapExceptionOld(), call.ExceptionHandled);
                             await _settings.OnErrorAsync(error);
                             call.ExceptionHandled = error.Handled;
                         };

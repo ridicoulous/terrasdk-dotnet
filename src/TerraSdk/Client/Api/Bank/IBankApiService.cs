@@ -1,7 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace TerraSdk.ClientOld.Endpoints.Bank
+namespace TerraSdk.Client.Api.Bank
 {
 
     /// <summary>
@@ -18,11 +18,11 @@ namespace TerraSdk.ClientOld.Endpoints.Bank
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<Balance> GetBalanceAsync(string address, CancellationToken cancellationToken = default);
+        Task<BalanceResponse> GetBalanceAsync(string address, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get the total supply.
         /// </summary>
-        Task<Balance> GetTotalSupplyAsync(CancellationToken cancellationToken = default);
+        Task<BalanceResponse> GetTotalSupplyAsync(CancellationToken cancellationToken = default);
     }
 }

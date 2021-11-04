@@ -21,7 +21,7 @@ namespace TerraSdk.ClientOld.Endpoints
             return _clientGetter()
                 .Request("auth", "accounts", address)
                 .GetJsonAsync<ResponseWithHeight<IAccount>>(cancellationToken: cancellationToken)
-                .WrapExceptions();
+                .WrapExceptionsOld();
         }
 
         public ResponseWithHeight<IAccount> GetAuthAccountByAddress(string address)

@@ -21,12 +21,12 @@ namespace TerraSdk.ClientOld.Endpoints
             var client = _clientGetter();
             return client.Request("node_info")
                 .GetJsonAsync<NodeStatus>(cancellationToken: cancellationToken)
-                .WrapExceptions();
+                .WrapExceptionsOld();
         }
         
         public Task<NodeStatus> GetNodeInfoAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
-            return InternalGetNodeInfoAsync(cancellationToken).WrapExceptions();
+            return InternalGetNodeInfoAsync(cancellationToken).WrapExceptionsOld();
         }
 
         public NodeStatus GetNodeInfo()

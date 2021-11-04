@@ -14,6 +14,7 @@ namespace TerraSdk.Test.ClientOld.Endpoints
         public BankTests(ITestOutputHelper outputHelper) : base(outputHelper)
         {
             client = CreateClient("https://bombay-lcd.terra.dev/");
+            
         }
 
         ~BankTests()
@@ -37,7 +38,7 @@ namespace TerraSdk.Test.ClientOld.Endpoints
         public async Task Balance_invalid_account()
         {
             
-            var ex = await Assert.ThrowsAsync<TerraHttpException>(async () =>
+            var ex = await Assert.ThrowsAsync<TerraHttpExceptionOld>(async () =>
             {
                 var balance = await client.BankApiService.GetBalanceAsync("1234");
 

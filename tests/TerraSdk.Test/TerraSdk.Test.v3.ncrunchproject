@@ -79,6 +79,12 @@
       <FixtureTestSelector>
         <FixtureName>TerraSdk.Test.Core.AccountTests</FixtureName>
       </FixtureTestSelector>
+      <FixtureTestSelector>
+        <FixtureName>TerraSdk.Test.ClientOld.Endpoints.BankTests</FixtureName>
+      </FixtureTestSelector>
+      <FixtureTestSelector>
+        <FixtureName>TerraSdk.Test.ClientOld.Serialization.HexStringByteArrayConverterTest</FixtureName>
+      </FixtureTestSelector>
     </IgnoredTests>
   </Settings>
 </ProjectConfiguration>
