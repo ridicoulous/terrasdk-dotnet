@@ -5,15 +5,24 @@ using Xunit.Abstractions;
 
 namespace TerraSdk.Test
 {
-    public abstract class BaseTest
+    public abstract class BaseTest : IDisposable
     {
+        private readonly Converter converter;
+        private readonly TextWriter originalConsoleOut;
         protected ITestOutputHelper Output;
 
         protected BaseTest(ITestOutputHelper output)
         {
-            var converter = new Converter(output);
+            originalConsoleOut = Console.Out;
+            converter = new Converter(output);
             Console.SetOut(converter);
             Output = output;
+        }
+
+        public void Dispose()
+        {
+            Console.SetOut(originalConsoleOut);
+            converter.Dispose();
         }
 
         private class Converter : TextWriter
@@ -39,7 +48,8 @@ namespace TerraSdk.Test
 
             public override void Write(char value)
             {
-                throw new NotSupportedException("This text writer only supports WriteLine(string) and WriteLine(string, params object[]).");
+                throw new NotSupportedException(
+                    "This text writer only supports WriteLine(string) and WriteLine(string, params object[]).");
             }
         }
     }
