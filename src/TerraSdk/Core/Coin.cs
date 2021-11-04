@@ -1,4 +1,7 @@
+using System.Numerics;
 using Newtonsoft.Json;
+using TerraSdk.Common.Serialization;
+using TerraSdk.Common.Types.BigDecimal;
 using TerraSdk.Core.Bank;
 
 /**
@@ -27,14 +30,14 @@ namespace TerraSdk.Core
         * @param denom denomination
         * @param amount coin's amount
         */  
-        public Coin(string denom, decimal amount)
+        public Coin(string denom, BigInteger amount)
         {
             Denom = denom;
             Amount = amount;
         }
 
-        [JsonProperty(PropertyName = "amount"), JsonConverter(typeof(StringJsonConverter))]
-        public decimal Amount { get; set; }
+        [JsonProperty(PropertyName = "amount"),       JsonConverter(typeof(StringNumberConverter))]
+        public BigInteger Amount { get; set; }
 
         [JsonProperty(PropertyName = "denom")]
         public string Denom { get; set; } = null!;

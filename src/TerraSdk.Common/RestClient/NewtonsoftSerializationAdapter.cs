@@ -1,13 +1,34 @@
 ﻿using System.Text;
 using Newtonsoft.Json;
 using RestClient.Net;
+using TerraSdk.Common.Serialization;
 
 namespace TerraSdk.Common.RestClient
 {
     public class NewtonsoftSerializationAdapter : ISerializationAdapter
     {
+        public NewtonsoftSerializationAdapter()
+        {
+
+            JsonConvert.DefaultSettings = JsonSerializerSettings;
+            
+        }
+
+        private JsonSerializerSettings JsonSerializerSettings()
+        {
+            var jsonSerializerSettings = new JsonSerializerSettings()
+            {
+                DateFormatHandling = DateFormatHandling.IsoDateFormat,
+            };
+
+            jsonSerializerSettings.Converters.Add(new BigDecimalConverter());
+
+            return jsonSerializerSettings;
+        }
+
+
         #region Implementation
-        public TResponseBody? Deserialize<TResponseBody>(byte[] responseData, IHeadersCollection? responseHeaders)
+            public TResponseBody? Deserialize<TResponseBody>(byte[] responseData, IHeadersCollection? responseHeaders)
         {
             //Note: on some services the headers should be checked for encoding 
             var markup = Encoding.UTF8.GetString(responseData);

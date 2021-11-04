@@ -85,6 +85,12 @@
       <FixtureTestSelector>
         <FixtureName>TerraSdk.Test.ClientOld.Serialization.HexStringByteArrayConverterTest</FixtureName>
       </FixtureTestSelector>
+      <NamedTestSelector>
+        <TestName>TerraSdk.Test.Client.Api.BankTests.Balance_invalid_account</TestName>
+      </NamedTestSelector>
+      <NamedTestSelector>
+        <TestName>TerraSdk.Test.Client.Api.BankTests.Balance_total_supply</TestName>
+      </NamedTestSelector>
     </IgnoredTests>
   </Settings>
 </ProjectConfiguration>
