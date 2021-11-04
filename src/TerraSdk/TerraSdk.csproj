@@ -4,26 +4,26 @@
 		<Nullable>enable</Nullable>
   </PropertyGroup>
 	<ItemGroup>
-	  <Compile Remove="Client\Endpoints\Distribution.cs" />
-	  <Compile Remove="Client\Endpoints\Governance.cs" />
-	  <Compile Remove="Client\Endpoints\IDistribution.cs" />
-	  <Compile Remove="Client\Endpoints\IGovernance.cs" />
-	  <Compile Remove="Client\Endpoints\IMint.cs" />
-	  <Compile Remove="Client\Endpoints\ISlashing.cs" />
-	  <Compile Remove="Client\Endpoints\IStaking.cs" />
-	  <Compile Remove="Client\Endpoints\Mint.cs" />
-	  <Compile Remove="Client\Endpoints\Slashing.cs" />
-	  <Compile Remove="Client\Endpoints\Staking.cs" />
-	  <Compile Remove="Client\ModelsOld\Coin.cs" />
-	  <Compile Remove="Client\ModelsOld\DecCoin.cs" />
-	  <Compile Remove="Client\ModelsOld\IMsg.cs" />
-	  <Compile Remove="Client\ModelsOld\MsgMultiSend.cs" />
-	  <Compile Remove="Client\ModelsOld\MsgSend.cs" />
-	  <Compile Remove="Client\ModelsOld\PublicKey.cs" />
-	  <Compile Remove="Client\ModelsOld\StdFee.cs" />
-	  <Compile Remove="Client\ModelsOld\StdSignature.cs" />
-	  <Compile Remove="Client\ModelsOld\StdSignDoc.cs" />
-	  <Compile Remove="Client\ModelsOld\StdTx.cs" />
+	  <Compile Remove="ClientOld\Endpoints\Distribution.cs" />
+	  <Compile Remove="ClientOld\Endpoints\Governance.cs" />
+	  <Compile Remove="ClientOld\Endpoints\IDistribution.cs" />
+	  <Compile Remove="ClientOld\Endpoints\IGovernance.cs" />
+	  <Compile Remove="ClientOld\Endpoints\IMint.cs" />
+	  <Compile Remove="ClientOld\Endpoints\ISlashing.cs" />
+	  <Compile Remove="ClientOld\Endpoints\IStaking.cs" />
+	  <Compile Remove="ClientOld\Endpoints\Mint.cs" />
+	  <Compile Remove="ClientOld\Endpoints\Slashing.cs" />
+	  <Compile Remove="ClientOld\Endpoints\Staking.cs" />
+	  <Compile Remove="ClientOld\ModelsOld\Coin.cs" />
+	  <Compile Remove="ClientOld\ModelsOld\DecCoin.cs" />
+	  <Compile Remove="ClientOld\ModelsOld\IMsg.cs" />
+	  <Compile Remove="ClientOld\ModelsOld\MsgMultiSend.cs" />
+	  <Compile Remove="ClientOld\ModelsOld\MsgSend.cs" />
+	  <Compile Remove="ClientOld\ModelsOld\PublicKey.cs" />
+	  <Compile Remove="ClientOld\ModelsOld\StdFee.cs" />
+	  <Compile Remove="ClientOld\ModelsOld\StdSignature.cs" />
+	  <Compile Remove="ClientOld\ModelsOld\StdSignDoc.cs" />
+	  <Compile Remove="ClientOld\ModelsOld\StdTx.cs" />
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="Flurl" Version="3.0.2" />
@@ -43,5 +43,8 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\TerraSdk.Common\TerraSdk.Common.csproj" />
 	  <ProjectReference Include="..\TerraSdk.Crypto\TerraSdk.Crypto.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Client\" />
 	</ItemGroup>
 </Project>
