@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using TerraSdk.Common.Types.BigDecimal;
 
-namespace TerraSdk.ClientOld.ModelsOld
+namespace TerraSdk.Client.Api.Distribution
 {
     public class DistributionParams
     {
