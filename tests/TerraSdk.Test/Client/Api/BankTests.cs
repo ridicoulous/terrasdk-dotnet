@@ -23,10 +23,14 @@ namespace TerraSdk.Test.Client.Api
 
         }
 
-        ~BankTests()
+        public override void Dispose()
         {
             client.Dispose();
+            base.Dispose();
         }
+
+
+  
 
 
         [Fact]

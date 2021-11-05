@@ -11,5 +11,10 @@ namespace TerraSdk.Test.Client
 
         }
 
+        public override void Dispose()
+        {
+            base.Dispose();
+        }
+
     }
 }

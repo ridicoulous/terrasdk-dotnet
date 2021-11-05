@@ -19,7 +19,7 @@ namespace TerraSdk.Test
             Output = output;
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             Console.SetOut(originalConsoleOut);
             converter.Dispose();
