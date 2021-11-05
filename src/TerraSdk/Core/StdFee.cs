@@ -8,11 +8,6 @@ namespace TerraSdk.Core
      */
     public class StdFee
     {
-        [JsonProperty("amount")]
-        public Coins Amount { get; }
-        [JsonProperty("gas"), JsonConverter(typeof(StringJsonConverter))]
-        public int Gas { get; }
-        
         /**
          * Creates a new StdFee object.
          * @param gas gas limit
@@ -23,6 +18,12 @@ namespace TerraSdk.Core
             Gas = gas;
             Amount = amount;
         }
+
+        [JsonProperty("amount")] public Coins Amount { get; }
+
+        [JsonProperty("gas")]
+        [JsonConverter(typeof(StringJsonConverter))]
+        public int Gas { get; }
     }
 }
 

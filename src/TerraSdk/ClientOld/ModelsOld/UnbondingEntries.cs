@@ -5,14 +5,14 @@ namespace TerraSdk.ClientOld.ModelsOld
     public class UnbondingEntries
     {
         /// <summary>
-        /// Initializes a new instance of the UnbondingEntries class.
+        ///     Initializes a new instance of the UnbondingEntries class.
         /// </summary>
         public UnbondingEntries()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the UnbondingEntries class.
+        ///     Initializes a new instance of the UnbondingEntries class.
         /// </summary>
         public UnbondingEntries(string initialBalance, string balance, string creationHeight, string minTime)
         {
@@ -41,6 +41,5 @@ namespace TerraSdk.ClientOld.ModelsOld
         /// </summary>
         [JsonProperty(PropertyName = "min_time")]
         public string MinTime { get; set; } = null!;
-
     }
 }

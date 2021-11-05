@@ -7,14 +7,14 @@ namespace TerraSdk.ClientOld.ModelsOld
         public EvidenceData()
         {
         }
-        
+
         public EvidenceData(object? evidence)
         {
             Evidence = evidence;
         }
 
         /// <summary>
-        /// In v0.37.8 evidence is just object without any fields.
+        ///     In v0.37.8 evidence is just object without any fields.
         /// </summary>
         [JsonProperty("evidence")]
         public object? Evidence { get; set; }

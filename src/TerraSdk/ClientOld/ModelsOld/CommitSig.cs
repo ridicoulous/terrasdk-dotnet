@@ -7,14 +7,15 @@ namespace TerraSdk.ClientOld.ModelsOld
     public class CommitSig
     {
         /// <summary>
-        /// Initializes a new instance of the CommitSig
-        /// class.
+        ///     Initializes a new instance of the CommitSig
+        ///     class.
         /// </summary>
         public CommitSig()
         {
         }
 
-        public CommitSig(byte[] validatorAddress, int validatorIndex, long height, int round, DateTimeOffset timestamp, SignedMsgType? type, BlockID blockId, byte[] signature)
+        public CommitSig(byte[] validatorAddress, int validatorIndex, long height, int round, DateTimeOffset timestamp, SignedMsgType? type,
+            BlockID blockId, byte[] signature)
         {
             ValidatorAddress = validatorAddress;
             ValidatorIndex = validatorIndex;
@@ -67,6 +68,5 @@ namespace TerraSdk.ClientOld.ModelsOld
         [JsonProperty(PropertyName = "signature")]
         [JsonConverter(typeof(Base64StringByteArrayConverter))]
         public byte[] Signature { get; set; } = null!;
-
     }
 }

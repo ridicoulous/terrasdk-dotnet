@@ -6,14 +6,14 @@ namespace TerraSdk.ClientOld.ModelsOld
     public class PaginatedQueryTxs
     {
         /// <summary>
-        /// Initializes a new instance of the PaginatedQueryTxs class.
+        ///     Initializes a new instance of the PaginatedQueryTxs class.
         /// </summary>
         public PaginatedQueryTxs()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the PaginatedQueryTxs class.
+        ///     Initializes a new instance of the PaginatedQueryTxs class.
         /// </summary>
         public PaginatedQueryTxs(double? totalCount, double? count, double? pageNumber, double? pageTotal, double? limit, IList<TxQuery> txs)
         {
@@ -54,6 +54,5 @@ namespace TerraSdk.ClientOld.ModelsOld
         /// </summary>
         [JsonProperty(PropertyName = "txs")]
         public IList<TxQuery> Txs { get; set; } = null!;
-
     }
 }

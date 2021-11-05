@@ -5,14 +5,14 @@ namespace TerraSdk.ClientOld.ModelsOld
     public class BlockHeaderVersion
     {
         /// <summary>
-        /// Initializes a new instance of the BlockHeaderVersion class.
+        ///     Initializes a new instance of the BlockHeaderVersion class.
         /// </summary>
         public BlockHeaderVersion()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the BlockHeaderVersion class.
+        ///     Initializes a new instance of the BlockHeaderVersion class.
         /// </summary>
         public BlockHeaderVersion(ulong block, ulong app)
         {

@@ -4,9 +4,7 @@
 		<Nullable>enable</Nullable>
   </PropertyGroup>
 	<ItemGroup>
-	  <Compile Remove="ClientOld\Endpoints\Distribution.cs" />
 	  <Compile Remove="ClientOld\Endpoints\Governance.cs" />
-	  <Compile Remove="ClientOld\Endpoints\IDistribution.cs" />
 	  <Compile Remove="ClientOld\Endpoints\IGovernance.cs" />
 	  <Compile Remove="ClientOld\Endpoints\IMint.cs" />
 	  <Compile Remove="ClientOld\Endpoints\ISlashing.cs" />
@@ -15,7 +13,6 @@
 	  <Compile Remove="ClientOld\Endpoints\Slashing.cs" />
 	  <Compile Remove="ClientOld\Endpoints\Staking.cs" />
 	  <Compile Remove="ClientOld\ModelsOld\Coin.cs" />
-	  <Compile Remove="ClientOld\ModelsOld\DecCoin.cs" />
 	  <Compile Remove="ClientOld\ModelsOld\IMsg.cs" />
 	  <Compile Remove="ClientOld\ModelsOld\MsgMultiSend.cs" />
 	  <Compile Remove="ClientOld\ModelsOld\MsgSend.cs" />
@@ -48,6 +45,20 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="ClientOld\Model\" />
-	  <Folder Include="Client\Api\Auth\" />
+	  <Folder Include="Client\Api\Ibc\" />
+	  <Folder Include="Client\Api\IbcTransfer\" />
+	  <Folder Include="Client\Api\Market\" />
+	  <Folder Include="Client\Api\Authz\" />
+	  <Folder Include="Client\Api\Wasm\" />
+	  <Folder Include="Client\Api\Treasury\" />
+	  <Folder Include="Client\Api\Oracle\" />
+	  <Folder Include="Core\FeeGrant\Allowances\" />
+	  <Folder Include="Core\FeeGrant\Msgs\" />
+	  <Folder Include="Core\Ibc\" />
+	  <Folder Include="Core\IbcTransfer\" />
+	  <Folder Include="Core\Market\Msgs\" />
+	  <Folder Include="Core\Oracle\" />
+	  <Folder Include="Core\Treasury\" />
+	  <Folder Include="Core\Wasm\Msgs\" />
 	</ItemGroup>
 </Project>

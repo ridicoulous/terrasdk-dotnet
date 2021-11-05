@@ -1,9 +1,18 @@
 ﻿using System;
 using System.Collections.Immutable;
 using Newtonsoft.Json;
+using TerraSdk.Client.Api.Auth;
+using TerraSdk.Client.Api.Tx;
 using TerraSdk.ClientOld.ModelsOld;
 using TerraSdk.Core;
 using TerraSdk.Core.Bank.Msgs;
+using TerraSdk.Core.Distribution.Msgs;
+using TerraSdk.Core.Distribution.Proposals;
+using TerraSdk.Core.Gov.Msgs;
+using TerraSdk.Core.Gov.Proposals;
+using TerraSdk.Core.Params.Proposals;
+using TerraSdk.Core.Slashing.Msgs;
+using TerraSdk.Core.Upgrade.Proposals;
 
 namespace TerraSdk.ClientOld
 {
@@ -23,11 +32,8 @@ namespace TerraSdk.ClientOld
         public ITerraApiClient CreateClient()
         {
             var settings = new TerraApiClientSettings();
-            foreach (var configurator in settingConfigurators)
-            {
-                configurator(settings);
-            }
-            
+            foreach (var configurator in settingConfigurators) configurator(settings);
+
             return new TerraApiClient(settings);
         }
 
@@ -80,7 +86,7 @@ namespace TerraSdk.ClientOld
             return Configure(configuration =>
             {
                 configuration.TxConverter.AddType<StdTx>("Terra-sdk/StdTx");
-                
+
                 configuration.MsgConverter.AddType<MsgMultiSend>("Terra-sdk/MsgMultiSend");
                 configuration.MsgConverter.AddType<MsgSend>("Terra-sdk/MsgSend");
                 configuration.MsgConverter.AddType<MsgDelegate>("Terra-sdk/MsgDelegate");
@@ -97,7 +103,7 @@ namespace TerraSdk.ClientOld
                 configuration.MsgConverter.AddType<MsgCreateValidator>("Terra-sdk/MsgCreateValidator");
 
                 configuration.AccountConverter.AddType<BaseAccount>("Terra-sdk/Account");
-                
+
                 configuration.ProposalContentConverter.AddType<TextProposal>("Terra-sdk/TextProposal");
                 configuration.ProposalContentConverter.AddType<CommunityPoolSpendProposal>("Terra-sdk/CommunityPoolSpendProposal");
                 configuration.ProposalContentConverter.AddType<SoftwareUpgradeProposal>("Terra-sdk/SoftwareUpgradeProposal");

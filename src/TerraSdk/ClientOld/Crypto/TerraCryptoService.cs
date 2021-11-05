@@ -6,6 +6,8 @@ using System.Security.Cryptography;
 using System.Text;
 using NaCl;
 using NBitcoin.Secp256k1;
+using Org.BouncyCastle.Bcpg;
+using Org.BouncyCastle.Crypto.Generators;
 using TerraSdk.Common.Extensions;
 using TerraSdk.Core;
 
@@ -15,20 +17,16 @@ namespace TerraSdk.ClientOld.Crypto
     {
         private const string Secp256k1 = "secp256k1";
         private const string Secp256k1PublicKeyType = "tendermint/PubKeySecp256k1";
+
         public BinaryPrivateKey ParsePrivateKey(string encodedKey, string? passphrase)
         {
             var (headers, encryptedBytes) = Unarmor(encodedKey);
 
             if (!string.Equals("bcrypt", headers.TryGetOrDefault("kdf")))
-            {
                 throw new NotSupportedException($"Unrecognized armor type: {headers.TryGetOrDefault("kdf")}.");
-            }
 
             var salt = ByteArrayExtensions.ParseHexString(headers.TryGetOrDefault("salt"));
-            if (salt == null)
-            {
-                throw new ArgumentException("Key must contain hex encoded salt.");
-            }
+            if (salt == null) throw new ArgumentException("Key must contain hex encoded salt.");
 
             var key = MakeKeyEncryptionKey(salt, passphrase ?? throw new ArgumentNullException(nameof(passphrase)));
             return new BinaryPrivateKey(headers.TryGetOrDefault("type"), DecryptXsalsa20(encryptedBytes, key));
@@ -42,48 +40,30 @@ namespace TerraSdk.ClientOld.Crypto
 
         public byte[] Sign(byte[] bytesToSign, BinaryPrivateKey key)
         {
-            
-            if (IsSecp256k1(key.Type))
-            {
-                return SignSecp256k1(bytesToSign, key.Value);
-            }
-            
+            if (IsSecp256k1(key.Type)) return SignSecp256k1(bytesToSign, key.Value);
+
             throw new NotSupportedException($"Unknown key type {key.Type}");
         }
 
         public bool VerifySign(byte[] message, byte[] sign, BinaryPublicKey key)
         {
-            if (IsSecp256k1(key.Type))
-            {
-                return IsValidSecp256k1(message, sign, key.Value);
-            }
+            if (IsSecp256k1(key.Type)) return IsValidSecp256k1(message, sign, key.Value);
 
             throw new NotSupportedException($"Unknown key type {key.Type}");
         }
 
         public PublicKey? MakePublicKey(PublicKey? publicKey, BinaryPrivateKey privateKey)
         {
-            if (publicKey?.Type != null && publicKey?.Value != null)
-            {
-                return publicKey;
-            }
-            
+            if (publicKey?.Type != null && publicKey?.Value != null) return publicKey;
+
             if (publicKey?.Value != null)
-            {
                 if (IsSecp256k1(publicKey.Type))
                 {
                     var parsedKey = ParseSecp256k1PublicKey(publicKey);
-                    if (parsedKey != null)
-                    {
-                        return parsedKey;
-                    } 
+                    if (parsedKey != null) return parsedKey;
                 }
-            }
-            
-            if (IsSecp256k1(privateKey.Type))
-            {
-                return MakeSecp256k1PublicKey(privateKey.Value);
-            }
+
+            if (IsSecp256k1(privateKey.Type)) return MakeSecp256k1PublicKey(privateKey.Value);
 
             return null;
         }
@@ -92,8 +72,7 @@ namespace TerraSdk.ClientOld.Crypto
         {
             byte[]? keyBytes = null;
             //todo: try to parse bech32 from publicKey.Value
-            if(keyBytes == null)
-            {
+            if (keyBytes == null)
                 try
                 {
                     keyBytes = ByteArrayExtensions.ParseBase64(publicKey.Value);
@@ -103,10 +82,7 @@ namespace TerraSdk.ClientOld.Crypto
                     // ignored
                 }
 
-            }
-            
             if (keyBytes == null)
-            {
                 try
                 {
                     keyBytes = ByteArrayExtensions.ParseBase64(publicKey.Value);
@@ -115,18 +91,15 @@ namespace TerraSdk.ClientOld.Crypto
                 {
                     // ignored
                 }
-            }
 
-            if (keyBytes == null)
-            {
-                return null;
-            }
+            if (keyBytes == null) return null;
 
-            if(Context.Instance.TryCreatePubKey(keyBytes, out var compressed, out var ecPublicKey))
+            if (Context.Instance.TryCreatePubKey(keyBytes, out var compressed, out var ecPublicKey))
             {
                 var compressedBytes = ecPublicKey!.ToBytes(true);
                 return new PublicKey(Secp256k1PublicKeyType, compressedBytes.ToBase64String());
             }
+
             return null;
         }
 
@@ -146,14 +119,10 @@ namespace TerraSdk.ClientOld.Crypto
         private bool IsValidSecp256k1(byte[] message, byte[] sign, byte[] keyValue)
         {
             if (!Context.Instance.TryCreatePubKey(keyValue, out var key))
-            {
                 throw new ArgumentException($"{Convert.ToBase64String(keyValue)} is not valid {Secp256k1} public key");
-            }
 
             if (!SecpECDSASignature.TryCreateFromCompact(sign, out var secpEcdsaSignature))
-            {
                 throw new ArgumentException($"Sign parameter is not a valid compact {Secp256k1} signature.");
-            }
 
             using var sha = new SHA256Managed();
             return key!.SigVerify(secpEcdsaSignature!, sha.ComputeHash(message));
@@ -172,24 +141,22 @@ namespace TerraSdk.ClientOld.Crypto
 
         private static byte[] DecryptXsalsa20(byte[] encryptedBytes, byte[] key)
         {
-            var secretbox = new NaCl.XSalsa20Poly1305(key);
+            var secretbox = new XSalsa20Poly1305(key);
             var decrypted = new byte[encryptedBytes.Length - XSalsa20Poly1305.NonceLength - XSalsa20Poly1305.TagLength];
             var encryptedSpan = encryptedBytes.AsSpan();
-            if(!secretbox.TryDecrypt(decrypted, encryptedSpan[XSalsa20Poly1305.NonceLength..], encryptedSpan[..XSalsa20Poly1305.NonceLength]))
-            {
+            if (!secretbox.TryDecrypt(decrypted, encryptedSpan[XSalsa20Poly1305.NonceLength..], encryptedSpan[..XSalsa20Poly1305.NonceLength]))
                 throw new Exception("Failed to decrypt.");
-            }
 
             return decrypted[^32..];
         }
 
         private static byte[] MakeKeyEncryptionKey(byte[] salt, string passphrase)
         {
-            var bcrypted = 
-                Org.BouncyCastle.Crypto.Generators.OpenBsdBCrypt.Generate("2a", passphrase.ToCharArray(), salt, 12);
+            var bcrypted =
+                OpenBsdBCrypt.Generate("2a", passphrase.ToCharArray(), salt, 12);
 
             using var sha = new SHA256Managed();
-            var hashed = sha.ComputeHash( Encoding.UTF8.GetBytes(bcrypted));
+            var hashed = sha.ComputeHash(Encoding.UTF8.GetBytes(bcrypted));
 
             return hashed;
         }
@@ -198,11 +165,11 @@ namespace TerraSdk.ClientOld.Crypto
         {
             var bytes = Encoding.UTF8.GetBytes(input);
             using var inputStream = new MemoryStream(bytes);
-            using var armor = new Org.BouncyCastle.Bcpg.ArmoredInputStream(inputStream);
-            
+            using var armor = new ArmoredInputStream(inputStream);
+
             var headers = armor.GetArmorHeaders()
                 .Select(h => h.Split(": ", StringSplitOptions.RemoveEmptyEntries))
-                .ToDictionary(s => s[0], s => s[1], (IEqualityComparer<string>)StringComparer.OrdinalIgnoreCase);
+                .ToDictionary(s => s[0], s => s[1], StringComparer.OrdinalIgnoreCase);
             using var encryptedBytesStream = new MemoryStream();
             armor.CopyTo(encryptedBytesStream);
             var encryptedBytes = encryptedBytesStream.ToArray();

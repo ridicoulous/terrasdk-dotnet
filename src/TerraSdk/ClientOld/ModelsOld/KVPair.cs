@@ -5,14 +5,14 @@ namespace TerraSdk.ClientOld.ModelsOld
     public class KVPair
     {
         /// <summary>
-        /// Initializes a new instance of the KVPair class.
+        ///     Initializes a new instance of the KVPair class.
         /// </summary>
         public KVPair()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the KVPair class.
+        ///     Initializes a new instance of the KVPair class.
         /// </summary>
         public KVPair(string key, string value)
         {
@@ -29,6 +29,5 @@ namespace TerraSdk.ClientOld.ModelsOld
         /// </summary>
         [JsonProperty(PropertyName = "value")]
         public string Value { get; set; } = null!;
-
     }
 }

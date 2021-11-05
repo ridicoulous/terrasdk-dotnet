@@ -6,14 +6,14 @@ namespace TerraSdk.ClientOld.ModelsOld
     public class TxQueryResult
     {
         /// <summary>
-        /// Initializes a new instance of the TxQueryResult class.
+        ///     Initializes a new instance of the TxQueryResult class.
         /// </summary>
         public TxQueryResult()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the TxQueryResult class.
+        ///     Initializes a new instance of the TxQueryResult class.
         /// </summary>
         public TxQueryResult(string log, string gasWanted, string gasUsed, IList<KVPair> tags)
         {
@@ -42,6 +42,5 @@ namespace TerraSdk.ClientOld.ModelsOld
         /// </summary>
         [JsonProperty(PropertyName = "tags")]
         public IList<KVPair> Tags { get; set; } = null!;
-
     }
 }

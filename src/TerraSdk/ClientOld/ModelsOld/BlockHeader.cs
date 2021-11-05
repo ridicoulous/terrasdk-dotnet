@@ -7,16 +7,18 @@ namespace TerraSdk.ClientOld.ModelsOld
     public class BlockHeader
     {
         /// <summary>
-        /// Initializes a new instance of the BlockHeader class.
+        ///     Initializes a new instance of the BlockHeader class.
         /// </summary>
         public BlockHeader()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the BlockHeader class.
+        ///     Initializes a new instance of the BlockHeader class.
         /// </summary>
-        public BlockHeader(string chainId, long? height, DateTimeOffset time, long? numTxs, BlockID lastBlockId, long? totalTxs, byte[] lastCommitHash, byte[] dataHash, byte[] validatorsHash, byte[] nextValidatorsHash, byte[] consensusHash, byte[] appHash, byte[] lastResultsHash, byte[] evidenceHash, byte[] proposerAddress, BlockHeaderVersion version)
+        public BlockHeader(string chainId, long? height, DateTimeOffset time, long? numTxs, BlockID lastBlockId, long? totalTxs,
+            byte[] lastCommitHash, byte[] dataHash, byte[] validatorsHash, byte[] nextValidatorsHash, byte[] consensusHash, byte[] appHash,
+            byte[] lastResultsHash, byte[] evidenceHash, byte[] proposerAddress, BlockHeaderVersion version)
         {
             ChainId = chainId;
             Height = height;
@@ -57,7 +59,7 @@ namespace TerraSdk.ClientOld.ModelsOld
         public long? NumTxs { get; set; }
 
         /// <summary>
-        /// Prev block info.
+        ///     Prev block info.
         /// </summary>
         [JsonProperty(PropertyName = "last_block_id")]
         public BlockID LastBlockId { get; set; } = null!;
@@ -68,63 +70,63 @@ namespace TerraSdk.ClientOld.ModelsOld
         public long? TotalTxs { get; set; }
 
         /// <summary>
-        /// Hash of block data: commit from validators from the last block.
+        ///     Hash of block data: commit from validators from the last block.
         /// </summary>
         [JsonProperty(PropertyName = "last_commit_hash")]
         [JsonConverter(typeof(HexStringByteArrayConverter))]
         public byte[] LastCommitHash { get; set; } = null!;
 
         /// <summary>
-        /// Hash of block data: transactions.
+        ///     Hash of block data: transactions.
         /// </summary>
         [JsonProperty(PropertyName = "data_hash")]
         [JsonConverter(typeof(HexStringByteArrayConverter))]
         public byte[] DataHash { get; set; } = null!;
 
         /// <summary>
-        /// Hash from the app output from the prev block: validators for the current block.
+        ///     Hash from the app output from the prev block: validators for the current block.
         /// </summary>
         [JsonProperty(PropertyName = "validators_hash")]
         [JsonConverter(typeof(HexStringByteArrayConverter))]
         public byte[] ValidatorsHash { get; set; } = null!;
 
         /// <summary>
-        /// Hash from the app output from the prev block: validators for the next block.
+        ///     Hash from the app output from the prev block: validators for the next block.
         /// </summary>
         [JsonProperty(PropertyName = "next_validators_hash")]
         [JsonConverter(typeof(HexStringByteArrayConverter))]
         public byte[] NextValidatorsHash { get; set; } = null!;
 
         /// <summary>
-        /// Hash from the app output from the prev block: consensus params for current block.
+        ///     Hash from the app output from the prev block: consensus params for current block.
         /// </summary>
         [JsonProperty(PropertyName = "consensus_hash")]
         [JsonConverter(typeof(HexStringByteArrayConverter))]
         public byte[] ConsensusHash { get; set; } = null!;
 
         /// <summary>
-        /// Hash from the app output from the prev block: state after txs from the previous block.
+        ///     Hash from the app output from the prev block: state after txs from the previous block.
         /// </summary>
         [JsonProperty(PropertyName = "app_hash")]
         [JsonConverter(typeof(HexStringByteArrayConverter))]
         public byte[] AppHash { get; set; } = null!;
 
         /// <summary>
-        /// Root hash of all results from the txs from the previous block.
+        ///     Root hash of all results from the txs from the previous block.
         /// </summary>
         [JsonProperty(PropertyName = "last_results_hash")]
         [JsonConverter(typeof(HexStringByteArrayConverter))]
         public byte[] LastResultsHash { get; set; } = null!;
 
         /// <summary>
-        /// Consensus info: evidence included in the block.
+        ///     Consensus info: evidence included in the block.
         /// </summary>
         [JsonProperty(PropertyName = "evidence_hash")]
         [JsonConverter(typeof(HexStringByteArrayConverter))]
         public byte[] EvidenceHash { get; set; } = null!;
 
         /// <summary>
-        /// Consensus info: original proposer of the block.
+        ///     Consensus info: original proposer of the block.
         /// </summary>
         [JsonProperty(PropertyName = "proposer_address")]
         [JsonConverter(typeof(HexStringByteArrayConverter))]

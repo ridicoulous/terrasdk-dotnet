@@ -8,13 +8,12 @@ namespace TerraSdk.ClientOld.ModelsOld
         public BlockData()
         {
         }
-        
+
         public BlockData(IList<string>? transactions)
         {
             Transactions = transactions;
         }
 
-        [JsonProperty(PropertyName = "txs")]
-        public IList<string>? Transactions { get; set; }
+        [JsonProperty(PropertyName = "txs")] public IList<string>? Transactions { get; set; }
     }
 }

@@ -4,20 +4,20 @@ using Newtonsoft.Json;
 namespace TerraSdk.ClientOld.ModelsOld
 {
     /// <summary>
-    /// Commit contains the evidence that a block was committed by a set of validators.
-    /// NOTE: Commit is empty for height 1, but never nil.
+    ///     Commit contains the evidence that a block was committed by a set of validators.
+    ///     NOTE: Commit is empty for height 1, but never nil.
     /// </summary>
     public class BlockLastCommit
     {
         /// <summary>
-        /// Initializes a new instance of the BlockLastCommit class.
+        ///     Initializes a new instance of the BlockLastCommit class.
         /// </summary>
         public BlockLastCommit()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the BlockLastCommit class.
+        ///     Initializes a new instance of the BlockLastCommit class.
         /// </summary>
         public BlockLastCommit(BlockID blockId, IList<CommitSig?>? precommits)
         {
@@ -34,6 +34,5 @@ namespace TerraSdk.ClientOld.ModelsOld
         /// </summary>
         [JsonProperty(PropertyName = "precommits")]
         public IList<CommitSig?>? Precommits { get; set; }
-
     }
 }

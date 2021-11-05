@@ -1,7 +1,7 @@
 namespace TerraSdk.ClientOld.ModelsOld
 {
     /// <summary>
-    /// Common event types.
+    ///     Common event types.
     /// </summary>
     public class EventTypes
     {

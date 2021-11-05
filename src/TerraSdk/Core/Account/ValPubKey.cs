@@ -32,12 +32,12 @@ namespace TerraSdk.Core.Account
         public static ValPubKey FromValAddress(ValAddress address)
         {
             var vals = Bech32.Decode(address.Value);
-            return new ValPubKey { Value = Bech32.Encode("terravaloperpub", vals.words) };
+            return new ValPubKey {Value = Bech32.Encode("terravaloperpub", vals.words)};
         }
 
         public static ValPubKey New(string value)
         {
-            return new ValPubKey { Value = value };
+            return new ValPubKey {Value = value};
         }
     }
 }

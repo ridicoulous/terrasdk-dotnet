@@ -9,10 +9,8 @@ namespace TerraSdk.Core
     // */
     public class StdSignature
     {
-
         public StdSignature()
         {
-            
         }
 
         //  /**
@@ -22,8 +20,7 @@ namespace TerraSdk.Core
         //   */
         public StdSignature(string signature, PublicKey publicKey)
         {
-  
-            Signature= signature;
+            Signature = signature;
             PublicKey = publicKey;
         }
 
@@ -34,11 +31,8 @@ namespace TerraSdk.Core
         }
 
 
-        [JsonProperty("pub_key")]
-        public PublicKey PublicKey { get; init; }
+        [JsonProperty("pub_key")] public PublicKey PublicKey { get; init; }
 
-        [JsonProperty("signature")]
-        public string Signature { get; set; }
-
+        [JsonProperty("signature")] public string Signature { get; set; }
     }
 }

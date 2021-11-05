@@ -18,7 +18,7 @@
 
         public static ValConsAddress New(string value)
         {
-            return new ValConsAddress { Value = value };
+            return new ValConsAddress {Value = value};
         }
     }
 }

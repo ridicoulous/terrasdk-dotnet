@@ -30,12 +30,12 @@ namespace TerraSdk.Core.Account
         public static AccPubKey FromAccAddress(AccAddress address)
         {
             var vals = Bech32.Decode(address.Value);
-            return new AccPubKey { Value = Bech32.Encode("terrapub", vals.words) };
+            return new AccPubKey {Value = Bech32.Encode("terrapub", vals.words)};
         }
 
         public static AccPubKey New(string publicKey)
         {
-            return new AccPubKey { Value = publicKey };
+            return new AccPubKey {Value = publicKey};
         }
     }
 }

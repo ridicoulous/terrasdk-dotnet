@@ -3,18 +3,17 @@ using TerraSdk.Common.Serialization;
 
 namespace TerraSdk.ClientOld.ModelsOld
 {
-
     public class TendermintValidator
     {
         /// <summary>
-        /// Initializes a new instance of the TendermintValidator class.
+        ///     Initializes a new instance of the TendermintValidator class.
         /// </summary>
         public TendermintValidator()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the TendermintValidator class.
+        ///     Initializes a new instance of the TendermintValidator class.
         /// </summary>
         public TendermintValidator(byte[] address, string pubKey, long votingPower, long proposerPriority)
         {
@@ -44,6 +43,5 @@ namespace TerraSdk.ClientOld.ModelsOld
         /// </summary>
         [JsonProperty(PropertyName = "proposer_priority")]
         public long ProposerPriority { get; set; }
-
     }
 }

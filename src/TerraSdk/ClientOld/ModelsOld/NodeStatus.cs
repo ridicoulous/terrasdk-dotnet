@@ -5,18 +5,18 @@ namespace TerraSdk.ClientOld.ModelsOld
     public class NodeStatus
     {
         /// <summary>
-        /// Initializes a new instance of the
-        /// NodeStatus
-        /// class.
+        ///     Initializes a new instance of the
+        ///     NodeStatus
+        ///     class.
         /// </summary>
         public NodeStatus()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// NodeStatus
-        /// class.
+        ///     Initializes a new instance of the
+        ///     NodeStatus
+        ///     class.
         /// </summary>
         public NodeStatus(AplicationVersion applicationVersion, NodeInfo nodeInfo)
         {
@@ -33,6 +33,5 @@ namespace TerraSdk.ClientOld.ModelsOld
         /// </summary>
         [JsonProperty(PropertyName = "node_info")]
         public NodeInfo NodeInfo { get; set; } = null!;
-
     }
 }

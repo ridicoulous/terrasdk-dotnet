@@ -3,14 +3,14 @@ using Newtonsoft.Json;
 namespace TerraSdk.ClientOld.ModelsOld
 {
     /// <summary>
-    /// more information on versions
+    ///     more information on versions
     /// </summary>
     public class OtherVersionsInformation
     {
         /// <summary>
-        /// Initializes a new instance of the
-        /// OtherVersionsInformation
-        /// class.
+        ///     Initializes a new instance of the
+        ///     OtherVersionsInformation
+        ///     class.
         /// </summary>
         public OtherVersionsInformation()
         {

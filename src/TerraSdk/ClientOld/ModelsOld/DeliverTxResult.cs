@@ -3,18 +3,17 @@ using Newtonsoft.Json;
 
 namespace TerraSdk.ClientOld.ModelsOld
 {
-
     public class DeliverTxResult
     {
         /// <summary>
-        /// Initializes a new instance of the DeliverTxResult class.
+        ///     Initializes a new instance of the DeliverTxResult class.
         /// </summary>
         public DeliverTxResult()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the DeliverTxResult class.
+        ///     Initializes a new instance of the DeliverTxResult class.
         /// </summary>
         public DeliverTxResult(int? code, string data, int? gasUsed, int? gasWanted, string info, string log, IList<KVPair> tags)
         {
@@ -61,6 +60,5 @@ namespace TerraSdk.ClientOld.ModelsOld
         /// </summary>
         [JsonProperty(PropertyName = "tags")]
         public IList<KVPair> Tags { get; set; } = null!;
-
     }
 }

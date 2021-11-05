@@ -1,4 +1,5 @@
 ﻿using System;
+using TerraSdk.Client.Api.Tendermint;
 using TerraSdk.ClientOld.ModelsOld;
 using TerraSdk.Common.Extensions;
 

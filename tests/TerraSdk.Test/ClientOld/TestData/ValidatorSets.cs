@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using TerraSdk.Client.Api;
+using TerraSdk.Client.Api.Tendermint;
 using TerraSdk.ClientOld.ModelsOld;
 using TerraSdk.Common.Extensions;
 

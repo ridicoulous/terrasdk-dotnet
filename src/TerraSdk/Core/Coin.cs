@@ -1,8 +1,6 @@
 using System.Numerics;
 using Newtonsoft.Json;
 using TerraSdk.Common.Serialization;
-using TerraSdk.Common.Types.BigDecimal;
-using TerraSdk.Core.Bank;
 
 /**
  * Captures `sdk.Coin` and `sdk.DecCoin` from Cosmos SDK. A composite value that combines
@@ -12,12 +10,10 @@ using TerraSdk.Core.Bank;
 
 namespace TerraSdk.Core
 {
-
     public class Coin
     {
-
         /// <summary>
-        /// Initializes a new instance of the Coin class.
+        ///     Initializes a new instance of the Coin class.
         /// </summary>
         public Coin()
         {
@@ -29,22 +25,18 @@ namespace TerraSdk.Core
         *
         * @param denom denomination
         * @param amount coin's amount
-        */  
+        */
         public Coin(string denom, BigInteger amount)
         {
             Denom = denom;
             Amount = amount;
         }
 
-        [JsonProperty(PropertyName = "amount"),       JsonConverter(typeof(StringNumberConverter))]
+        [JsonProperty(PropertyName = "amount")]
+        [JsonConverter(typeof(StringNumberConverter))]
         public BigInteger Amount { get; set; }
 
-        [JsonProperty(PropertyName = "denom")]
-        public string Denom { get; set; } = null!;
-
-
-
-
+        [JsonProperty(PropertyName = "denom")] public string Denom { get; set; } = null!;
     }
 }
 

@@ -6,14 +6,14 @@ namespace TerraSdk.ClientOld.ModelsOld
     public class UnbondingDelegationPair
     {
         /// <summary>
-        /// Initializes a new instance of the UnbondingDelegationPair class.
+        ///     Initializes a new instance of the UnbondingDelegationPair class.
         /// </summary>
         public UnbondingDelegationPair()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the UnbondingDelegationPair class.
+        ///     Initializes a new instance of the UnbondingDelegationPair class.
         /// </summary>
         public UnbondingDelegationPair(string delegatorAddress, string validatorAddress, IList<UnbondingEntries> entries)
         {
@@ -36,6 +36,5 @@ namespace TerraSdk.ClientOld.ModelsOld
         /// </summary>
         [JsonProperty(PropertyName = "entries")]
         public IList<UnbondingEntries> Entries { get; set; } = null!;
-
     }
 }

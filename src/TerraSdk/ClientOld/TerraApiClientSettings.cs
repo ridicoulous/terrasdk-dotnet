@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using TerraSdk.Client.Api.Auth;
+using TerraSdk.Client.Api.Tx;
 using TerraSdk.ClientOld.Callbacks;
 using TerraSdk.ClientOld.Crypto;
 using TerraSdk.ClientOld.ModelsOld;

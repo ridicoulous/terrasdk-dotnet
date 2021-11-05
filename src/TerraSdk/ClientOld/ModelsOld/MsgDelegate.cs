@@ -5,13 +5,6 @@ namespace TerraSdk.ClientOld.ModelsOld
 {
     public class MsgDelegate : Msg
     {
-        [JsonProperty("delegator_address")]
-        public string DelegatorAddress { get; set; } = null!;
-        [JsonProperty("validator_address")]
-        public string ValidatorAddress { get; set; } = null!;
-        [JsonProperty("amount")]
-        public Coin Amount { get; set; } = null!;
-
         public MsgDelegate()
         {
         }
@@ -22,6 +15,12 @@ namespace TerraSdk.ClientOld.ModelsOld
             ValidatorAddress = validatorAddress;
             Amount = amount;
         }
+
+        [JsonProperty("delegator_address")] public string DelegatorAddress { get; set; } = null!;
+
+        [JsonProperty("validator_address")] public string ValidatorAddress { get; set; } = null!;
+
+        [JsonProperty("amount")] public Coin Amount { get; set; } = null!;
 
         public object SignBytesObject()
         {

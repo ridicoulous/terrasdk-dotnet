@@ -9,43 +9,19 @@ namespace TerraSdk.Core
      * information needed to sign and build a transaction, and can be described as an
      * "unsigned transaction."
      */
-    public class StdSignMsg 
+    public class StdSignMsg
     {
-        [JsonProperty("account_number"), JsonConverter(typeof(StringJsonConverter))]
-        public ulong AccountNumber { get; }
-        [JsonProperty("chain_id")]
-        public string ChainId { get; }
-        
-        [JsonProperty("fee")]
-        public StdFee Fee { get; }
-
-        [JsonProperty("memo")]
-        public string Memo { get; }
-
-        [JsonProperty("msgs")]
-        public Msg[] Msgs { get; }
-
-        [JsonProperty("sequence"), JsonConverter(typeof(StringJsonConverter))]
-        public ulong Sequence { get; }
-        
-        [JsonProperty("timeout_height"), JsonConverter(typeof(StringJsonConverter))]
-        //[JsonIgnore]
-        public int? TimeoutHeight{ get; }
-
-  
         /**
-         *
          * @param chain_id ID of blockchain to submit transaction to
          * @param account_number account number on blockchain
          * @param sequence Sequence number (nonce), number of signed previous transactions by
-         *    account included on the blockchain at time of broadcast.
+         * account included on the blockchain at time of broadcast.
          * @param fee transaction fee
          * @param msgs list of messages to include
          * @param memo optional note
          */
-        public StdSignMsg(string chainId, ulong accountNumber, ulong sequence, StdFee fee, Msg[] msgs, string memo = "", int? timeoutHeight=null)
+        public StdSignMsg(string chainId, ulong accountNumber, ulong sequence, StdFee fee, Msg[] msgs, string memo = "", int? timeoutHeight = null)
         {
-
             ChainId = chainId;
             AccountNumber = accountNumber;
             Sequence = sequence;
@@ -55,7 +31,26 @@ namespace TerraSdk.Core
             TimeoutHeight = timeoutHeight;
         }
 
+        [JsonProperty("account_number")]
+        [JsonConverter(typeof(StringJsonConverter))]
+        public ulong AccountNumber { get; }
 
+        [JsonProperty("chain_id")] public string ChainId { get; }
+
+        [JsonProperty("fee")] public StdFee Fee { get; }
+
+        [JsonProperty("memo")] public string Memo { get; }
+
+        [JsonProperty("msgs")] public Msg[] Msgs { get; }
+
+        [JsonProperty("sequence")]
+        [JsonConverter(typeof(StringJsonConverter))]
+        public ulong Sequence { get; }
+
+        [JsonProperty("timeout_height")]
+        [JsonConverter(typeof(StringJsonConverter))]
+        //[JsonIgnore]
+        public int? TimeoutHeight { get; }
     }
 }
 

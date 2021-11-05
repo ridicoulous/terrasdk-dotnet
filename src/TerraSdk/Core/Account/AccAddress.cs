@@ -7,13 +7,13 @@ namespace TerraSdk.Core.Account
      */
     public class AccAddress
     {
-        public string Value { get; private init; }
-
-        public  AccAddress (string value)
+        public AccAddress(string value)
         {
             Value = value;
         }
-        
+
+        public string Value { get; }
+
         /**
          * Checks if a string is a valid Terra account address.
          *
@@ -37,7 +37,7 @@ namespace TerraSdk.Core.Account
         public static AccAddress FromValAddress(ValAddress address)
         {
             var vals = Bech32.Decode(address.Value);
-            return new AccAddress (Bech32.Encode("terra", vals.words));
+            return new AccAddress(Bech32.Encode("terra", vals.words));
         }
     }
 }

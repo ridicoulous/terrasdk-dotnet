@@ -25,7 +25,7 @@
 
         public static ValConsPubKey New(string type, string value)
         {
-            return new ValConsPubKey { Type = type, Value = value };
+            return new ValConsPubKey {Type = type, Value = value};
         }
     }
 }

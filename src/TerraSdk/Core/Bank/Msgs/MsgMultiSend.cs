@@ -40,19 +40,15 @@ namespace TerraSdk.Core.Bank.Msgs
 
         public class MsgValue
         {
-            [JsonProperty("inputs")]
-            public Io[] Inputs { get; set; }
+            [JsonProperty("inputs")] public Io[] Inputs { get; set; }
 
-            [JsonProperty("outputs")]
-            public Io[] Outputs { get; set; }
+            [JsonProperty("outputs")] public Io[] Outputs { get; set; }
         }
 
         public class Io
         {
-
             public Io()
             {
-                
             }
 
             public Io(string address, Coins coins)
@@ -74,8 +70,7 @@ namespace TerraSdk.Core.Bank.Msgs
             }
 
 
-            [JsonIgnore]
-            private AccAddress AccAddress { get; set; }
+            [JsonIgnore] private AccAddress AccAddress { get; set; }
 
             [JsonProperty("address")]
             public string Address
@@ -84,8 +79,7 @@ namespace TerraSdk.Core.Bank.Msgs
                 internal set => AccAddress = new AccAddress(value);
             }
 
-            [JsonProperty("coins")]
-            public Coins Coins { get; internal set; }
+            [JsonProperty("coins")] public Coins Coins { get; internal set; }
         }
     }
 }

@@ -7,14 +7,14 @@ namespace TerraSdk.ClientOld.ModelsOld
     public class ValidatorDistInfo
     {
         /// <summary>
-        /// Initializes a new instance of the ValidatorDistInfo class.
+        ///     Initializes a new instance of the ValidatorDistInfo class.
         /// </summary>
         public ValidatorDistInfo()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the ValidatorDistInfo class.
+        ///     Initializes a new instance of the ValidatorDistInfo class.
         /// </summary>
         public ValidatorDistInfo(string operatorAddress, IList<Coin> selfBondRewards, IList<Coin> valCommission)
         {
@@ -37,6 +37,5 @@ namespace TerraSdk.ClientOld.ModelsOld
         /// </summary>
         [JsonProperty(PropertyName = "val_commission")]
         public IList<Coin> ValCommission { get; set; } = null!;
-
     }
 }

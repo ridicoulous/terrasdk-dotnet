@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using TerraSdk.Client.Api.Auth;
 using TerraSdk.Core;
 
 namespace TerraSdk.ClientOld.ModelsOld
@@ -7,18 +8,18 @@ namespace TerraSdk.ClientOld.ModelsOld
     public class BaseAccount : IAccount
     {
         /// <summary>
-        /// Initializes a new instance of the
-        /// BaseAccount
-        /// class.
+        ///     Initializes a new instance of the
+        ///     BaseAccount
+        ///     class.
         /// </summary>
         public BaseAccount()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// BaseAccount
-        /// class.
+        ///     Initializes a new instance of the
+        ///     BaseAccount
+        ///     class.
         /// </summary>
         public BaseAccount(ulong accountNumber, string address, IList<Coin> coins, PublicKey publicKey, ulong sequence)
         {

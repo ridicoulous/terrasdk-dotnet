@@ -13,7 +13,6 @@ namespace TerraSdk.Core
 
         public StdTx()
         {
-
         }
 
         //    /**
@@ -35,7 +34,7 @@ namespace TerraSdk.Core
                 TimeoutHeight = timeoutHeight
             };
         }
-        
+
         public static StdTx FromData(MsgData msgData)
         {
             return InternalFromData<StdTx, MsgValue>(msgData, InternalType);
@@ -43,17 +42,16 @@ namespace TerraSdk.Core
 
         public class MsgValue
         {
-            [JsonProperty("fee")]
-            public StdFee Fee { get; internal set; }
-            [JsonProperty("memo")]
-            public string Memo { get; internal set; }
-            [JsonProperty("msg")]
-            public Msg[] Msg { get; internal set; }
-            
-            [JsonProperty("signatures")]
-            public StdSignature[] Signatures { get; internal set; }
-            
-            [JsonProperty("timeout_height"), JsonConverter(typeof(StringJsonConverter))]
+            [JsonProperty("fee")] public StdFee Fee { get; internal set; }
+
+            [JsonProperty("memo")] public string Memo { get; internal set; }
+
+            [JsonProperty("msg")] public Msg[] Msg { get; internal set; }
+
+            [JsonProperty("signatures")] public StdSignature[] Signatures { get; internal set; }
+
+            [JsonProperty("timeout_height")]
+            [JsonConverter(typeof(StringJsonConverter))]
             public int? TimeoutHeight { get; internal set; }
         }
     }

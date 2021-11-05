@@ -1,15 +1,10 @@
 ﻿using Newtonsoft.Json;
+using TerraSdk.Client.Api.Gov;
 
 namespace TerraSdk.ClientOld.ModelsOld
 {
     public class SetWithdrawalAddrRequest
     {
-        [JsonProperty("base_req")]
-        public BaseReq BaseReq { get; set; } = null!;
-        
-        [JsonProperty("withdraw_address")]
-        public string WithdrawAddress { get; set; } = null!;
-
         public SetWithdrawalAddrRequest()
         {
         }
@@ -19,5 +14,9 @@ namespace TerraSdk.ClientOld.ModelsOld
             BaseReq = baseReq;
             WithdrawAddress = withdrawAddress;
         }
+
+        [JsonProperty("base_req")] public BaseReq BaseReq { get; set; } = null!;
+
+        [JsonProperty("withdraw_address")] public string WithdrawAddress { get; set; } = null!;
     }
 }

@@ -5,7 +5,10 @@ using System.Threading;
 using Flurl.Http;
 using Flurl.Http.Configuration;
 using Newtonsoft.Json;
+using TerraSdk.Client.Api.Auth;
 using TerraSdk.Client.Api.Bank;
+using TerraSdk.Client.Api.Tendermint;
+using TerraSdk.Client.Api.Tx;
 using TerraSdk.ClientOld.Callbacks;
 using TerraSdk.ClientOld.Crypto;
 using TerraSdk.ClientOld.Endpoints;
@@ -25,37 +28,47 @@ namespace TerraSdk.ClientOld
         {
             _settings = settings;
             _flurlClient = new Lazy<IFlurlClient>(CreateClient, LazyThreadSafetyMode.ExecutionAndPublication);
-            
+
             GaiaRest = new GaiaREST(GetClient);
-            TendermintRpc = new TendermintRPC(GetClient);
-            Transactions = new Transactions(GetClient);
+            TendermintApiService = new TendermintApiService(GetClient);
+            TransactionsApiService = new TransactionsApiService(GetClient);
             Auth = new Auth(GetClient);
             //BankApiService = new BankApiService(GetClient);
-            //Staking = new Staking(GetClient);
-            //Governance = new Governance(GetClient);
-            //Slashing = new Slashing(GetClient);
+            //StakingApiService = new StakingApiService(GetClient);
+            //GovernanceApiService = new GovernanceApiService(GetClient);
+            //SlashingApiService = new SlashingApiService(GetClient);
             //Distribution = new Distribution(GetClient);
-            //Mint = new Mint(GetClient);
+            //MintApiService = new MintApiService(GetClient);
             var jsonSerializerSettings = JsonSerializerSettings();
             Serializer = new NewtownJsonSerializer(jsonSerializerSettings);
         }
 
         public IGaiaREST GaiaRest { get; }
-        public ITendermintRPC TendermintRpc { get; }
-        public ITransactions Transactions { get; }
+        public ITendermintApiService TendermintApiService { get; }
+        public ITransactionsApiService TransactionsApiService { get; }
         public IAuth Auth { get; }
+
         public IBankApiService BankApiService { get; }
-        //public IStaking Staking { get; }
-        //public IGovernance Governance { get; }
-        //public ISlashing Slashing { get; }
-        //public IDistribution Distribution { get; }
-        //public IMint Mint { get; }
+        //public IStakingApiService StakingApiService { get; }
+        //public IGovernanceApiService GovernanceApiService { get; }
+        //public ISlashingApiService SlashingApiService { get; }
+        //public IDistributionApiService Distribution { get; }
+        //public IMintApiService MintApiService { get; }
 
         public HttpClient HttpClient =>
             _flurlClient?.Value.HttpClient ?? throw new ObjectDisposedException(nameof(TerraApiClient));
 
         public ISerializer Serializer { get; }
         public ICryptoService CryptoService => _settings.CryptoService;
+
+        public void Dispose()
+        {
+            if (_flurlClient?.IsValueCreated == true)
+            {
+                _flurlClient.Value.Dispose();
+                _flurlClient = null;
+            }
+        }
 
         private IFlurlClient GetClient()
         {
@@ -70,46 +83,33 @@ namespace TerraSdk.ClientOld
                     s.ConnectionLeaseTimeout = _settings.ConnectionLeaseTimeout;
                     s.Timeout = _settings.Timeout;
                     if (_settings.HttpClientFactory != null || _settings.CreateMessageHandlerFactory != null)
-                    {
                         s.HttpClientFactory = new DelegateClientFactory(_settings.HttpClientFactory, _settings.CreateMessageHandlerFactory);
-                    }
-                    
+
                     if (_settings.OnError != null)
-                    {
                         s.OnError = call =>
                         {
-                            var error = new Error(call.Request, call.Response, call.StartedUtc, call.EndedUtc, call.Exception.WrapExceptionOld(), call.ExceptionHandled);
+                            var error = new Error(call.Request, call.Response, call.StartedUtc, call.EndedUtc, call.Exception.WrapExceptionOld(),
+                                call.ExceptionHandled);
                             _settings.OnError(error);
                             call.ExceptionHandled = error.Handled;
                         };
-                    }
                     if (_settings.OnErrorAsync != null)
-                    {
                         s.OnErrorAsync = async call =>
                         {
-                            var error = new Error(call.Request, call.Response, call.StartedUtc, call.EndedUtc, call.Exception.WrapExceptionOld(), call.ExceptionHandled);
+                            var error = new Error(call.Request, call.Response, call.StartedUtc, call.EndedUtc, call.Exception.WrapExceptionOld(),
+                                call.ExceptionHandled);
                             await _settings.OnErrorAsync(error);
                             call.ExceptionHandled = error.Handled;
                         };
-                    }
 
-                    if (_settings.OnBeforeCall != null)
-                    {
-                        s.BeforeCall = call => _settings.OnBeforeCall(new BeforeCall(call.Request));
-                    }
-                    if (_settings.OnBeforeCallAsync != null)
-                    {
-                        s.BeforeCallAsync = call => _settings.OnBeforeCallAsync(new BeforeCall(call.Request));
-                    }
+                    if (_settings.OnBeforeCall != null) s.BeforeCall = call => _settings.OnBeforeCall(new BeforeCall(call.Request));
+                    if (_settings.OnBeforeCallAsync != null) s.BeforeCallAsync = call => _settings.OnBeforeCallAsync(new BeforeCall(call.Request));
 
                     if (_settings.OnAfterCall != null)
-                    {
                         s.AfterCall = call => _settings.OnAfterCall(new AfterCall(call.Request, call.Response, call.StartedUtc, call.EndedUtc));
-                    }
                     if (_settings.OnAfterCallAsync != null)
-                    {
-                        s.AfterCallAsync = call => _settings.OnAfterCallAsync(new AfterCall(call.Request, call.Response, call.StartedUtc, call.EndedUtc));
-                    }
+                        s.AfterCallAsync = call =>
+                            _settings.OnAfterCallAsync(new AfterCall(call.Request, call.Response, call.StartedUtc, call.EndedUtc));
 
                     var jsonSerializerSettings = JsonSerializerSettings();
 
@@ -121,53 +121,26 @@ namespace TerraSdk.ClientOld
                 client.HttpClient.BaseAddress = new Uri(_settings.BaseUrl);
             }
 
-            if (_settings.Username != null && _settings.Password != null)
-            {
-                client = client.WithBasicAuth(_settings.Username, _settings.Password);
-            }
+            if (_settings.Username != null && _settings.Password != null) client = client.WithBasicAuth(_settings.Username, _settings.Password);
 
             return client;
         }
 
         private JsonSerializerSettings JsonSerializerSettings()
         {
-            var jsonSerializerSettings = new JsonSerializerSettings()
+            var jsonSerializerSettings = new JsonSerializerSettings
             {
-                DateFormatHandling = DateFormatHandling.IsoDateFormat,
+                DateFormatHandling = DateFormatHandling.IsoDateFormat
             };
 
-            foreach (var converter in _settings.Converters)
-            {
-                jsonSerializerSettings.Converters.Add(converter);
-            }
+            foreach (var converter in _settings.Converters) jsonSerializerSettings.Converters.Add(converter);
 
             jsonSerializerSettings.Converters.Add(new BigDecimalConverter());
-            if (_settings.MsgConverter.JsonNameToType.Any())
-            {
-                jsonSerializerSettings.Converters.Add(_settings.MsgConverter);
-            }
-            if (_settings.TxConverter.JsonNameToType.Any())
-            {
-                jsonSerializerSettings.Converters.Add(_settings.TxConverter);
-            }
-            if (_settings.AccountConverter.JsonNameToType.Any())
-            {
-                jsonSerializerSettings.Converters.Add(_settings.AccountConverter);
-            }
-            if (_settings.ProposalContentConverter.JsonNameToType.Any())
-            {
-                jsonSerializerSettings.Converters.Add(_settings.ProposalContentConverter);
-            }
+            if (_settings.MsgConverter.JsonNameToType.Any()) jsonSerializerSettings.Converters.Add(_settings.MsgConverter);
+            if (_settings.TxConverter.JsonNameToType.Any()) jsonSerializerSettings.Converters.Add(_settings.TxConverter);
+            if (_settings.AccountConverter.JsonNameToType.Any()) jsonSerializerSettings.Converters.Add(_settings.AccountConverter);
+            if (_settings.ProposalContentConverter.JsonNameToType.Any()) jsonSerializerSettings.Converters.Add(_settings.ProposalContentConverter);
             return jsonSerializerSettings;
-        }
-
-        public void Dispose()
-        {
-            if (_flurlClient?.IsValueCreated == true)
-            {
-                _flurlClient.Value.Dispose();
-                _flurlClient = null;
-            }
         }
     }
 }

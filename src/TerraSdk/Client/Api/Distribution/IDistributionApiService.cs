@@ -1,15 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
-using TerraSdk.Client.Models;
-using TerraSdk.ClientOld.ModelsOld;
-using TerraSdk.Core;
 using TerraSdk.Core.Account;
 
 namespace TerraSdk.Client.Api.Distribution
 {
     /// <summary>
-    /// Fee distribution module APIs.
+    ///     Fee distribution module APIs.
     /// </summary>
     public interface IDistributionApiService
     {

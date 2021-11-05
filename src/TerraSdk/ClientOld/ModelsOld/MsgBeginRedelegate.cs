@@ -5,15 +5,6 @@ namespace TerraSdk.ClientOld.ModelsOld
 {
     public class MsgBeginRedelegate : Msg
     {
-        [JsonProperty("delegator_address")]
-        public string DelegatorAddress { get; set; } = null!;
-        [JsonProperty("validator_src_address")]
-        public string ValidatorSrcAddress { get; set; } = null!;
-        [JsonProperty("validator_dst_address")]
-        public string ValidatorDstAddress { get; set; } = null!;
-        [JsonProperty("amount")]
-        public Coin Amount { get; set; } = null!;
-
         public MsgBeginRedelegate()
         {
         }
@@ -25,6 +16,16 @@ namespace TerraSdk.ClientOld.ModelsOld
             ValidatorDstAddress = validatorDstAddress;
             Amount = amount;
         }
+
+        [JsonProperty("delegator_address")] public string DelegatorAddress { get; set; } = null!;
+
+        [JsonProperty("validator_src_address")]
+        public string ValidatorSrcAddress { get; set; } = null!;
+
+        [JsonProperty("validator_dst_address")]
+        public string ValidatorDstAddress { get; set; } = null!;
+
+        [JsonProperty("amount")] public Coin Amount { get; set; } = null!;
 
         public object SignBytesObject()
         {

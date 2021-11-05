@@ -4,19 +4,10 @@ using TerraSdk.Core;
 namespace TerraSdk.ClientOld.ModelsOld
 {
     /// <summary>
-    /// MsgVerifyInvariant - message struct to verify a particular invariance.
+    ///     MsgVerifyInvariant - message struct to verify a particular invariance.
     /// </summary>
     public class MsgVerifyInvariant : Msg
     {
-        [JsonProperty("sender")]
-        public string Sender { get; set; } = null!;
-        
-        [JsonProperty("invariant_module_name")]
-        public string InvariantModuleName { get; set; } = null!;
-        
-        [JsonProperty("invariant_route")]
-        public string InvariantRoute { get; set; } = null!;
-
         public MsgVerifyInvariant()
         {
         }
@@ -27,6 +18,13 @@ namespace TerraSdk.ClientOld.ModelsOld
             InvariantModuleName = invariantModuleName;
             InvariantRoute = invariantRoute;
         }
+
+        [JsonProperty("sender")] public string Sender { get; set; } = null!;
+
+        [JsonProperty("invariant_module_name")]
+        public string InvariantModuleName { get; set; } = null!;
+
+        [JsonProperty("invariant_route")] public string InvariantRoute { get; set; } = null!;
 
         public object SignBytesObject()
         {

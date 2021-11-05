@@ -2,9 +2,6 @@
 {
     public class BinaryPublicKey
     {
-        public string? Type { get; set; }
-        public byte[] Value { get; set; } = null!;
-
         public BinaryPublicKey()
         {
         }
@@ -14,5 +11,8 @@
             Type = type;
             Value = value;
         }
+
+        public string? Type { get; set; }
+        public byte[] Value { get; set; } = null!;
     }
 }

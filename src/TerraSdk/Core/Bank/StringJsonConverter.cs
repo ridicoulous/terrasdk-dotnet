@@ -6,14 +6,18 @@ namespace TerraSdk.Core.Bank
 {
     public class StringJsonConverter : JsonConverter
     {
-        public StringJsonConverter() { }
-
         private readonly Type[]? types;
+
+        public StringJsonConverter()
+        {
+        }
 
         public StringJsonConverter(params Type[] types)
         {
             this.types = types;
         }
+
+        public override bool CanRead => false;
 
         public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
         {
@@ -24,8 +28,6 @@ namespace TerraSdk.Core.Bank
         {
             throw new NotImplementedException("Unnecessary because CanRead is false. The type will skip the converter.");
         }
-
-        public override bool CanRead => false;
 
         public override bool CanConvert(Type objectType)
         {

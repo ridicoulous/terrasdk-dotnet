@@ -5,22 +5,23 @@ namespace TerraSdk.ClientOld.ModelsOld
     public class NodeInfo
     {
         /// <summary>
-        /// Initializes a new instance of the
-        /// NodeInfo
-        /// class.
+        ///     Initializes a new instance of the
+        ///     NodeInfo
+        ///     class.
         /// </summary>
         public NodeInfo()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// NodeInfo
-        /// class.
+        ///     Initializes a new instance of the
+        ///     NodeInfo
+        ///     class.
         /// </summary>
         /// <param name="version">Tendermint version</param>
         /// <param name="other">more information on versions</param>
-        public NodeInfo(string id, string moniker, ProtocolVersion protocolVersion, string network, string channels, string listenAddr, string version, OtherVersionsInformation other)
+        public NodeInfo(string id, string moniker, ProtocolVersion protocolVersion, string network, string channels, string listenAddr,
+            string version, OtherVersionsInformation other)
         {
             Id = id;
             Moniker = moniker;
@@ -63,16 +64,15 @@ namespace TerraSdk.ClientOld.ModelsOld
         public string ListenAddr { get; set; } = null!;
 
         /// <summary>
-        /// Gets or sets tendermint version
+        ///     Gets or sets tendermint version
         /// </summary>
         [JsonProperty(PropertyName = "version")]
         public string Version { get; set; } = null!;
 
         /// <summary>
-        /// Gets or sets more information on versions
+        ///     Gets or sets more information on versions
         /// </summary>
         [JsonProperty(PropertyName = "other")]
         public OtherVersionsInformation Other { get; set; } = null!;
-
     }
 }

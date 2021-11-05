@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using System.Numerics;
-using TerraSdk.Common.Types.BigDecimal;
 
 namespace TerraSdk.Core
 {
-    public class Coins: List<Coin>
+    public class Coins : List<Coin>
     {
-        private readonly Dictionary<string, Coin> rprDict = new Dictionary<string, Coin>();
         private readonly Dictionary<string, BigInteger> dataDict = new();
+        private readonly Dictionary<string, Coin> rprDict = new();
 
         public Coins()
         {
@@ -15,7 +14,6 @@ namespace TerraSdk.Core
 
         public Coins(IList<Coin> amounts)
         {
-         
             foreach (var amount in amounts)
             {
                 Add(amount);
@@ -38,19 +36,9 @@ namespace TerraSdk.Core
         public static Coins From(params Coin[] coins)
         {
             return new Coins(coins);
-
         }
-
-
-
-
     }
 }
-
-
-
-
-
 
 
 //import { Coin } from './Coin';

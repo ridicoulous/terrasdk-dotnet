@@ -6,14 +6,14 @@ namespace TerraSdk.ClientOld.ModelsOld
     public class BlockID
     {
         /// <summary>
-        /// Initializes a new instance of the BlockID class.
+        ///     Initializes a new instance of the BlockID class.
         /// </summary>
         public BlockID()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the BlockID class.
+        ///     Initializes a new instance of the BlockID class.
         /// </summary>
         public BlockID(byte[] hash, BlockIDParts parts)
         {
@@ -31,6 +31,5 @@ namespace TerraSdk.ClientOld.ModelsOld
         /// </summary>
         [JsonProperty(PropertyName = "parts")]
         public BlockIDParts Parts { get; set; } = null!;
-
     }
 }

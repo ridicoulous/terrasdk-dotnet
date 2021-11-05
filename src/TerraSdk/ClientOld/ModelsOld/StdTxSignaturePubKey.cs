@@ -5,14 +5,14 @@ namespace TerraSdk.ClientOld.ModelsOld
     public class StdTxSignaturePubKey
     {
         /// <summary>
-        /// Initializes a new instance of the StdTxSignaturePubKey class.
+        ///     Initializes a new instance of the StdTxSignaturePubKey class.
         /// </summary>
         public StdTxSignaturePubKey()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the StdTxSignaturePubKey class.
+        ///     Initializes a new instance of the StdTxSignaturePubKey class.
         /// </summary>
         public StdTxSignaturePubKey(string type, string value)
         {
@@ -29,6 +29,5 @@ namespace TerraSdk.ClientOld.ModelsOld
         /// </summary>
         [JsonProperty(PropertyName = "value")]
         public string Value { get; set; } = null!;
-
     }
 }

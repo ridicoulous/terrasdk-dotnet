@@ -5,16 +5,10 @@ using TerraSdk.Core;
 namespace TerraSdk.ClientOld.ModelsOld
 {
     /// <summary>
-    /// Output models transaction outputs.
+    ///     Output models transaction outputs.
     /// </summary>
     public class Output
     {
-        [JsonProperty("address")]
-        public string AccAddress { get; set; } = null!;
-        
-        [JsonProperty("coins")]
-        public IList<Coin> Coins { get; set; } = null!;
-
         public Output()
         {
         }
@@ -24,5 +18,9 @@ namespace TerraSdk.ClientOld.ModelsOld
             AccAddress = accAddress;
             Coins = coins;
         }
+
+        [JsonProperty("address")] public string AccAddress { get; set; } = null!;
+
+        [JsonProperty("coins")] public IList<Coin> Coins { get; set; } = null!;
     }
 }

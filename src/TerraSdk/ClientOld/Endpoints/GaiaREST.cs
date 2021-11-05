@@ -16,15 +16,7 @@ namespace TerraSdk.ClientOld.Endpoints
             _clientGetter = clientGetter;
         }
 
-        private Task<NodeStatus> InternalGetNodeInfoAsync(CancellationToken cancellationToken = default(CancellationToken))
-        {
-            var client = _clientGetter();
-            return client.Request("node_info")
-                .GetJsonAsync<NodeStatus>(cancellationToken: cancellationToken)
-                .WrapExceptionsOld();
-        }
-        
-        public Task<NodeStatus> GetNodeInfoAsync(CancellationToken cancellationToken = default(CancellationToken))
+        public Task<NodeStatus> GetNodeInfoAsync(CancellationToken cancellationToken = default)
         {
             return InternalGetNodeInfoAsync(cancellationToken).WrapExceptionsOld();
         }
@@ -32,6 +24,14 @@ namespace TerraSdk.ClientOld.Endpoints
         public NodeStatus GetNodeInfo()
         {
             return InternalGetNodeInfoAsync().Sync();
+        }
+
+        private Task<NodeStatus> InternalGetNodeInfoAsync(CancellationToken cancellationToken = default)
+        {
+            var client = _clientGetter();
+            return client.Request("node_info")
+                .GetJsonAsync<NodeStatus>(cancellationToken)
+                .WrapExceptionsOld();
         }
     }
 }

@@ -1,7 +1,7 @@
 namespace TerraSdk.ClientOld.ModelsOld
 {
     /// <summary>
-    /// Common attribute keys.
+    ///     Common attribute keys.
     /// </summary>
     public class AttributeKeys
     {

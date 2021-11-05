@@ -6,14 +6,14 @@ namespace TerraSdk.ClientOld.ModelsOld
     public class BlockIDParts
     {
         /// <summary>
-        /// Initializes a new instance of the BlockIDParts class.
+        ///     Initializes a new instance of the BlockIDParts class.
         /// </summary>
         public BlockIDParts()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the BlockIDParts class.
+        ///     Initializes a new instance of the BlockIDParts class.
         /// </summary>
         public BlockIDParts(int? total, byte[] hash)
         {

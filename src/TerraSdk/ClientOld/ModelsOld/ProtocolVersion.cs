@@ -5,18 +5,18 @@ namespace TerraSdk.ClientOld.ModelsOld
     public class ProtocolVersion
     {
         /// <summary>
-        /// Initializes a new instance of the
-        /// ProtocolVersion
-        /// class.
+        ///     Initializes a new instance of the
+        ///     ProtocolVersion
+        ///     class.
         /// </summary>
         public ProtocolVersion()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// ProtocolVersion
-        /// class.
+        ///     Initializes a new instance of the
+        ///     ProtocolVersion
+        ///     class.
         /// </summary>
         public ProtocolVersion(ulong p2p, ulong block, ulong app)
         {
@@ -39,6 +39,5 @@ namespace TerraSdk.ClientOld.ModelsOld
         /// </summary>
         [JsonProperty(PropertyName = "app")]
         public ulong App { get; set; }
-
     }
 }

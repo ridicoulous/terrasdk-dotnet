@@ -6,14 +6,14 @@ namespace TerraSdk.ClientOld.ModelsOld
     public class TxQuery
     {
         /// <summary>
-        /// Initializes a new instance of the TxQuery class.
+        ///     Initializes a new instance of the TxQuery class.
         /// </summary>
         public TxQuery()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the TxQuery class.
+        ///     Initializes a new instance of the TxQuery class.
         /// </summary>
         public TxQuery(string txhash, long? height, StdTx tx, TxQueryResult result)
         {
@@ -32,9 +32,8 @@ namespace TerraSdk.ClientOld.ModelsOld
         /// </summary>
         [JsonProperty(PropertyName = "Txhash")]
         public string Txhash { get; set; } = null!;
-        
-        [JsonProperty(PropertyName = "code")]
-        public uint Code { get; set; }
+
+        [JsonProperty(PropertyName = "code")] public uint Code { get; set; }
 
         /// <summary>
         /// </summary>
@@ -45,6 +44,5 @@ namespace TerraSdk.ClientOld.ModelsOld
         /// </summary>
         [JsonProperty(PropertyName = "result")]
         public TxQueryResult Result { get; set; } = null!;
-
     }
 }

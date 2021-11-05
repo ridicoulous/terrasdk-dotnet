@@ -9,7 +9,7 @@ namespace TerraSdk.ClientOld.Crypto
     public interface ICryptoService
     {
         /// <summary>
-        /// Parses encoded private key.
+        ///     Parses encoded private key.
         /// </summary>
         /// <param name="encodedKey"></param>
         /// <param name="passphrase"></param>
@@ -17,14 +17,14 @@ namespace TerraSdk.ClientOld.Crypto
         BinaryPrivateKey ParsePrivateKey(string encodedKey, string? passphrase);
 
         /// <summary>
-        /// Parses public key.
+        ///     Parses public key.
         /// </summary>
         /// <param name="publicKey"></param>
         /// <returns></returns>
         BinaryPublicKey ParsePublicKey(PublicKey publicKey);
-        
+
         /// <summary>
-        /// Creates a signature for given bytes.
+        ///     Creates a signature for given bytes.
         /// </summary>
         /// <param name="bytesToSign"></param>
         /// <param name="key"></param>
@@ -32,7 +32,7 @@ namespace TerraSdk.ClientOld.Crypto
         byte[] Sign(byte[] bytesToSign, BinaryPrivateKey key);
 
         /// <summary>
-        /// Verifies sign.
+        ///     Verifies sign.
         /// </summary>
         /// <param name="message">Message which was signed.</param>
         /// <param name="sign"></param>
@@ -41,8 +41,8 @@ namespace TerraSdk.ClientOld.Crypto
         bool VerifySign(byte[] message, byte[] sign, BinaryPublicKey key);
 
         /// <summary>
-        /// Tries to make public key from private.
-        /// Returns null if can't.
+        ///     Tries to make public key from private.
+        ///     Returns null if can't.
         /// </summary>
         /// <param name="publicKey"></param>
         /// <param name="privateKey"></param>
@@ -50,7 +50,7 @@ namespace TerraSdk.ClientOld.Crypto
         PublicKey? MakePublicKey(PublicKey? publicKey, BinaryPrivateKey privateKey);
 
         /// <summary>
-        /// Verifies sign.
+        ///     Verifies sign.
         /// </summary>
         /// <param name="message">Message which was signed.</param>
         /// <param name="sign"></param>
@@ -71,7 +71,7 @@ namespace TerraSdk.ClientOld.Crypto
         public StdSignature MakeStdSignature(string chainId, ulong accountNumber, ulong sequence, StdFee fee, Msg[] msgs, string memo,
             ISerializer serializer, BinaryPrivateKey privateKey, PublicKey? publicKey = default)
         {
-            var stdSignDoc = new StdSignMsg(chainId, accountNumber,  sequence, fee, msgs, memo);
+            var stdSignDoc = new StdSignMsg(chainId, accountNumber, sequence, fee, msgs, memo);
 
             var bytesToSign = Encoding.UTF8.GetBytes(serializer.SerializeSortedAndCompact(stdSignDoc));
             byte[] signedBytes = Sign(bytesToSign, privateKey);
@@ -86,6 +86,5 @@ namespace TerraSdk.ClientOld.Crypto
             //    .Select(s => MakeStdSignature(chainId, s.Account.GetAccountNumber(), s.Account.GetSequence(), tx.Fee, tx.Msg, tx.Memo, serializer, s.EncodedPrivateKey, s.Passphrase, s.Account.GetPublicKey()))
             //    .ToList();
         }
-        
     }
 }

@@ -5,16 +5,16 @@ namespace TerraSdk.ClientOld.ModelsOld
     public class AplicationVersion
     {
         /// <summary>
-        /// Initializes a new instance of the Get200ApplicationJsonProperties
-        /// class.
+        ///     Initializes a new instance of the Get200ApplicationJsonProperties
+        ///     class.
         /// </summary>
         public AplicationVersion()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the Get200ApplicationJsonProperties
-        /// class.
+        ///     Initializes a new instance of the Get200ApplicationJsonProperties
+        ///     class.
         /// </summary>
         public AplicationVersion(string buildTags, string clientName, string commit, string go, string name, string serverName, string version)
         {
@@ -61,6 +61,5 @@ namespace TerraSdk.ClientOld.ModelsOld
         /// </summary>
         [JsonProperty(PropertyName = "version")]
         public string Version { get; set; } = null!;
-
     }
 }

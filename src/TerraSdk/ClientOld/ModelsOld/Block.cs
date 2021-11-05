@@ -5,7 +5,7 @@ namespace TerraSdk.ClientOld.ModelsOld
     public class Block
     {
         /// <summary>
-        /// Initializes a new instance of the Block class.
+        ///     Initializes a new instance of the Block class.
         /// </summary>
         public Block()
         {
@@ -38,6 +38,5 @@ namespace TerraSdk.ClientOld.ModelsOld
         /// </summary>
         [JsonProperty(PropertyName = "last_commit")]
         public BlockLastCommit? LastCommit { get; set; }
-
     }
 }
