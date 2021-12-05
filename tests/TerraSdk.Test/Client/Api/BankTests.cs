@@ -2,7 +2,7 @@
 using TerraSdk.Client.Api;
 using TerraSdk.Client.Api.Bank;
 using TerraSdk.Common.Exceptions;
-using TerraSdk.Common.RestClient;
+
 using TerraSdk.Test.Utils;
 using Urls;
 using Xunit;
@@ -18,8 +18,8 @@ namespace TerraSdk.Test.Client.Api
         public BankTests(ITestOutputHelper outputHelper) : base(outputHelper)
         {
 
-            client = new RestClient.Net.Client(new NewtonsoftSerializationAdapter(), new AbsoluteUrl( "https://bombay-lcd.terra.dev/"));
-            bankApiService = new BankApiService(client);
+            //client = new RestClient.Net.Client(new NewtonsoftSerializationAdapter(), new AbsoluteUrl( "https://bombay-lcd.terra.dev/"));
+            //bankApiService = new BankApiService(client);
 
         }
 
