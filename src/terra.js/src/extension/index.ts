@@ -1,7 +1,5 @@
 import { CreateTxOptions } from '../client';
 import PostMessageStream from './PostMessageStream';
-import { Any } from '@terra-money/terra.proto/google/protobuf/any';
-import { Fee as Fee_pb } from '@terra-money/terra.proto/cosmos/tx/v1beta1/tx';
 
 interface ResponseData {
   name: string;
@@ -21,6 +19,11 @@ interface Option extends CreateTxOptions {
   accountNumber?: number;
 }
 
+interface SignBytesOption {
+  bytes: Buffer;
+  purgeQueue?: boolean; // default true
+}
+
 declare global {
   interface Window {
     // add you custom properties and methods
@@ -32,22 +35,12 @@ declare global {
  * Extension class is for communicating between page and extension
  */
 export class Extension {
-  static instance: Extension;
   private inpageStream!: PostMessageStream;
 
-  /**
-   * Using singleton pattern, hence every instanciation will return same value
-   */
-  constructor() {
-    if (Extension.instance) {
-      return Extension.instance;
-    }
-
-    Extension.instance = this;
-
+  constructor(identifier = 'station') {
     this.inpageStream = new PostMessageStream({
-      name: 'station:inpage',
-      target: 'station:content',
+      name: `${identifier}:inpage`,
+      target: `${identifier}:content`,
     });
   }
 
@@ -173,33 +166,38 @@ export class Extension {
    * @return {string}  payload.result.signature  Base64 encoded signature
    * @return {number}  payload.result.recid      Recovery id
    * @return {StdSignMsg.Data} payload.result.stdSignMsgData
-   *
-   * @example of broadcasting
-   *
-   * const { signature, public_key, recid, stdSignMsg } = payload.result;
-   *
-   * const sig = StdSignature.fromData({
-   *   signature,
-   *   pub_key: {
-   *    type: 'tendermint/PubKeySecp256k1',
-   *    value: public_key,
-   *  },
-   * });
-   *
-   * const stdSignMsg = StdSignMsg.fromData(payload.result.stdSignMsgData);
-   * terra.tx.broadcast(new StdTx(stdSignMsg.msgs, stdSignMsg.fee, [sig], stdSignMsg.memo));
    */
   sign(options: Option): number {
     return this.send('sign', {
       ...options,
-      msgs: options.msgs.map(msg => Any.toJSON(msg.packAny())),
-      fee: options.fee ? Fee_pb.toJSON(options.fee?.toProto()) : undefined,
+      msgs: options.msgs.map(msg => msg.toJSON()),
+      fee: options.fee?.toJSON(),
       memo: options.memo,
       gasPrices: options.gasPrices?.toString(),
       gasAdjustment: options.gasAdjustment?.toString(),
       account_number: options.accountNumber,
       sequence: options.sequence,
       waitForConfirmation: options.waitForConfirmation,
+      purgeQueue: options.purgeQueue,
+    });
+  }
+
+  /**
+   * Request for signing bytes
+   *
+   * @return {string}  name               'onSign'
+   * @return {object}  payload
+   * @return {number}  payload.id         identifier
+   * @return {string}  payload.origin     origin address
+   * @return {Msg[]}   payload.msgs       requested msgs
+   * @return {boolean} payload.success
+   * @return {string}  payload.result.public_key Base64 encoded public key
+   * @return {string}  payload.result.signature  Base64 encoded signature
+   * @return {number}  payload.result.recid      Recovery id
+   */
+  signBytes(options: SignBytesOption): number {
+    return this.send('sign', {
+      bytes: options.bytes.toString('base64'),
       purgeQueue: options.purgeQueue,
     });
   }
@@ -220,8 +218,8 @@ export class Extension {
    */
   post(options: Option): number {
     return this.send('post', {
-      msgs: options.msgs.map(msg => Any.toJSON(msg.packAny())),
-      fee: options.fee ? Fee_pb.toJSON(options.fee?.toProto()) : undefined,
+      msgs: options.msgs.map(msg => msg.toJSON()),
+      fee: options.fee?.toJSON(),
       memo: options.memo,
       gasPrices: options.gasPrices?.toString(),
       gasAdjustment: options.gasAdjustment?.toString(),

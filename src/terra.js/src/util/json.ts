@@ -3,12 +3,13 @@ export function prepareSignBytes(obj: any): any {
     return obj.map(prepareSignBytes);
   }
 
-  // string or number
-  if (typeof obj !== `object`) {
+  // string, number, or null
+  if (typeof obj !== `object` || obj === null) {
     return obj;
   }
 
   const sorted: any = {};
+
   Object.keys(obj)
     .sort()
     .forEach(key => {
@@ -32,13 +33,15 @@ export abstract class JSONSerializable<A, D, P> {
 
 export function removeNull(obj: any): any {
   if (obj !== null && typeof obj === 'object') {
-    Object.keys(obj).forEach(function (key) {
-      if (obj[key] === null) {
-        delete obj[key];
-      } else if (typeof obj[key] === 'object') {
-        removeNull(obj[key]);
-      }
-    });
+    return Object.entries(obj)
+      .filter(([, v]) => v != null)
+      .reduce(
+        (acc, [k, v]) => ({
+          ...acc,
+          [k]: v === Object(v) && !Array.isArray(v) ? removeNull(v) : v,
+        }),
+        {}
+      );
   }
 
   return obj;
